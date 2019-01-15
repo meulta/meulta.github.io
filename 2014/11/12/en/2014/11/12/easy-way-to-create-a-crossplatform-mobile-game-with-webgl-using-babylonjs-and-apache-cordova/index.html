@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Easy way to create a crossplatform mobile game with WebGL using BabylonJS and Apache Cordova | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="As David Rousset says in his blog (http://blogs.msdn.com/b/davrous/archive/2014/06/20/the-web-the-next-game-frontier.aspx), the web is the next game frontier. I totally agree with him.   The web is ev">
+<meta name="keywords" content="HTML5,Mobile,BabylonJS,Game,Cordova">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Easy way to create a crossplatform mobile game with WebGL using BabylonJS and Apache Cordova">
+<meta property="og:url" content="http://yoursite.com/2014/11/12//en/2014/11/12/easy-way-to-create-a-crossplatform-mobile-game-with-webgl-using-babylonjs-and-apache-cordova//index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="As David Rousset says in his blog (http://blogs.msdn.com/b/davrous/archive/2014/06/20/the-web-the-next-game-frontier.aspx), the web is the next game frontier. I totally agree with him.   The web is ev">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/8765.image_thumb_565D959F.png">
+<meta property="og:image" content="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/6786.image_thumb_08A11D85.png">
+<meta property="og:image" content="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/7587.image_thumb_61FA434A.png">
+<meta property="og:updated_time" content="2019-01-15T20:29:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Easy way to create a crossplatform mobile game with WebGL using BabylonJS and Apache Cordova">
+<meta name="twitter:description" content="As David Rousset says in his blog (http://blogs.msdn.com/b/davrous/archive/2014/06/20/the-web-the-next-game-frontier.aspx), the web is the next game frontier. I totally agree with him.   The web is ev">
+<meta name="twitter:image" content="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/8765.image_thumb_565D959F.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-/en/2014/11/12/easy-way-to-create-a-crossplatform-mobile-game-with-webgl-using-babylonjs-and-apache-cordova/" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/11/12/en/2014/11/12/easy-way-to-create-a-crossplatform-mobile-game-with-webgl-using-babylonjs-and-apache-cordova/" class="article-date">
+  <time datetime="2014-11-12T22:29:00.000Z" itemprop="datePublished">2014-11-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Easy way to create a crossplatform mobile game with WebGL using BabylonJS and Apache Cordova
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>As <a href="http://www.twitter.com/davrous" target="_blank" rel="noopener">David Rousset</a> says in his blog (<a href="http://blogs.msdn.com/b/davrous/archive/2014/06/20/the-web-the-next-game-frontier.aspx" target="_blank" rel="noopener">http://blogs.msdn.com/b/davrous/archive/2014/06/20/the-web-the-next-game-frontier.aspx</a>), the web is <a href="http://blogs.msdn.com/b/davrous/archive/2014/03/20/next-game-frontier-2014-videos-amp-content.aspx" target="_blank" rel="noopener">the next game frontier</a>. I totally agree with him.</p>
+<p align="center"><br>  <i><strong><span style="font-size: large;">The web is everywhere.</span></strong> </i><br></p>
+
+<p>When you create a responsive website, you eventually get to all the connected devices in the world, with just a URL. That is why there is so much effort and work going on around WebGL and all the frameworks available to help developers creating new gaming experiences on the web.</p>
+<p>Just by giving a look at the <a href="http://babylonjs.com/" target="_blank" rel="noopener">BabylonJS</a> website, you can see how incredible “3D in web” can be.</p>
+<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/3362.image_08308AD5.png" target="_blank" rel="noopener"><img style="float: none; margin-left: auto; display: block; margin-right: auto; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/8765.image_thumb_565D959F.png" alt="image" width="679" height="492" border="0"></a></p>
+<p>When talking about distribution though the web may not be always the best channel. Do people have to search for your game url or run into it by chance? How can you tell the world that your game is really great on mobile and they need to test it?</p>
+<p>Mobile has long time been a great opportunity for game developers. In this world, one did not wait for WebGL to appear to create and distribute applications and games. The application stores of each of the 3 main platforms (iOS, Android, Windows) are a really great way to do this. People go there to search and find games. You want to be there.</p>
+<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/0045.image_1AC538F2.png" target="_blank" rel="noopener"><img style="float: none; margin-left: auto; display: block; margin-right: auto; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/6786.image_thumb_08A11D85.png" alt="image" width="703" height="381" border="0"></a></p>
+<p>And that is only one of many reasons that having your game available as an application is a good strategy. When you are hosted in an application, many features are available easily: phone contacts to find friends to play with, mobile orientation, storage, push notifications, etc. Moreover, you do not need internet to be playable.</p>
+<p>That being said, what if it could be easy to create a game playable in a full browser experience from a web URL and also as an application with enhanced features? Your game will really be available <strong>every</strong>where, wouldn’t it?</p>
+<p>Well… the good news is that since a few month (and the support of WebGL on every mobile browsers), this dream finally come true!</p>
+<p>Here is a quick video showing you the exact same code running inside an application on iOS, Android and Windows Phone.</p>
+<blockquote>
+<p>You can download the full sample here : <a href="https://meulta.blob.core.windows.net/samples/BabylonJsSample.zip" title="https://meulta.blob.core.windows.net/samples/BabylonJsSample.zip" target="_blank" rel="noopener">https://meulta.blob.core.windows.net/samples/BabylonJsSample.zip</a></p>
+</blockquote>
+<p>In this article, I will explain you how to do this in a really simple way using <strong>Apache Cordova</strong>, <strong>CocoonJS</strong> and the incredibly powerful and simple to use WebGL framework: <strong>BabylonJS</strong>. 🙂</p>
+<blockquote>
+<p><em>Feel free to get in touch with me on twitter to talk about this:</em> <a href="http://twitter.com/emargraff" target="_blank" rel="noopener"><em>http://twitter.com/emargraff</em></a>__</p>
+</blockquote>
+<blockquote>
+<p><em>This article is not going into detail about how to use BabylonJS to create great 3D scenes. To learn more about this, you can follow the MVA course done by <a href="http://channel9.msdn.com/Series/Introduction-to-WebGL-3D-with-HTML5-and-Babylonjs" target="_blank" rel="noopener">David Catuhe</a> and David Rousset</em> <strong>:</strong> <a href="http://channel9.msdn.com/Series/Introduction-to-WebGL-3D-with-HTML5-and-Babylonjs" target="_blank" rel="noopener">http://channel9.msdn.com/Series/Introduction-to-WebGL-3D-with-HTML5-and-Babylonjs</a><em>**</em></p>
+</blockquote>
+<p><strong>To be able to do this, you need to follow some easy steps. Let’s go!</strong></p>
+<h1 id="1-Install-Cordova"><a href="#1-Install-Cordova" class="headerlink" title="1. Install Cordova"></a>1. Install Cordova</h1><p>The easiest way to install Cordova is to use NodeJS Package Manager (npm) that you can get from the <a href="http://www.nodejs.com" target="_blank" rel="noopener">www.nodejs.com</a> website. Once installed, you just have to run the following command line:</p>
+<pre class="code"><b><i>  npm install –g cordova</i></b></pre>
+
+<p><em>Note: on iOS, you need to prefix all your commands (npm and later Cordova) with <strong>sudo</strong> to run it as an administrator.</em></p>
+<h1 id="2-Install-frameworks"><a href="#2-Install-frameworks" class="headerlink" title="2. Install frameworks"></a>2. Install frameworks</h1><p>Cordova works in a really simple way: you put all your HTML/Javascript code inside a <strong>www</strong> folder and Cordova manage for you the creation of a project for each platform containing your code. On iOS and Android, this code is running inside a WebView even if the HTML code is stored inside the app and not get from an online server. On Windows (Phone and Tablet) this is a bit different as this platform is able to run HTML/Javascript as a first class language to create native apps. That is why there is no WebView on the Windows platform project generated by Cordova and why any Cordova app will be faster on Windows.</p>
+<p>Anyway, you need to install and configure the build tools and frameworks Cordova will be using to compile for each platform:</p>
+<ul>
+<li><a href="http://cordova.apache.org/docs/en/4.0.0/guide_platforms_win8_index.md.html#Windows%20Platform%20Guide" target="_blank" rel="noopener">Tools for Windows</a></li>
+<li><a href="http://cordova.apache.org/docs/en/4.0.0/guide_platforms_android_config.md.html#Android%20Configuration" target="_blank" rel="noopener">Tools for Android</a></li>
+<li><a href="http://cordova.apache.org/docs/en/4.0.0/guide_platforms_ios_config.md.html#iOS%20Configuration" target="_blank" rel="noopener">Tools for iOS</a></li>
+</ul>
+<h1 id="3-Create-the-cordova-project"><a href="#3-Create-the-cordova-project" class="headerlink" title="3. Create the cordova project"></a>3. Create the cordova project</h1><p>This is a really simple step as you only need to run the following command line:</p>
+<pre class="code"><b><i>  cordova create myproject</i></b></pre>
+
+<p>Where <strong>myproject</strong> have to be replaced with your project name.</p>
+<blockquote>
+<p><em>We usually use a reverse domain name notation to name cordova project such as <strong>com.mycompany.myproject.</strong> This is not mandatory.</em></p>
+</blockquote>
+<p>This command line initialize a directory containing some folders such as <strong>www</strong> which will contain your code and <strong>plugins</strong> where Cordova store the code for each plugin you add.</p>
+<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/1854.image_395BD743.png" target="_blank" rel="noopener"><img style="display: inline; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/7587.image_thumb_61FA434A.png" alt="image" width="437" height="349" border="0"></a></p>
+<blockquote>
+<p><em>A plugin is a Cordova extension generally used to access a specific feature on the phone. There is one for the camera, another one for accelerometer, etc.</em></p>
+</blockquote>
+<h1 id="4-Add-the-BabylonJS-3D-scene"><a href="#4-Add-the-BabylonJS-3D-scene" class="headerlink" title="4. Add the BabylonJS 3D scene"></a>4. Add the BabylonJS 3D scene</h1><p>For this example, we are going to create a really simple scene containing a cube.</p>
+<p>Open the index.html file in an HTML editor such as Visual Studio and delete all its content. From there, you can add any BabylonJS code you want. You can find great samples on the <a href="http://www.babylonjs.com" target="_blank" rel="noopener">www.babylonjs.com</a> website.</p>
+<p>To create a simple 3D scene, copy the following code in you index.html file:</p>
+<p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>  <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">&lt;</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: maroon;">html</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;"><span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: red;">xmlns</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">=&#8221;<a href="http://www.w3.org/1999/xhtml&#8221;&gt;" target="_blank" rel="noopener">http://www.w3.org/1999/xhtml&#8221;&gt;</a></span><br></p>
+
+<p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>  <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">&lt;</span><span class="GramE"><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: maroon;">head</span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">&gt;</span><br></p>
+
+<p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>  </p><p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">   <span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">&lt;</span><span class="GramE"><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: maroon;">meta</span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;"><span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: red;">http-equiv</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">=&#8221;Content-Type&#8221;</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;"><span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: red;">content</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">=&#8221;text/html; charset=utf-8&#8243;</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;"><span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">/&gt;</span><br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">   <span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">&lt;</span><span class="GramE"><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: maroon;">title</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">&gt;</span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">Babylon &#8211; Basic scene</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">&lt;/</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: maroon;">title</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">&gt;</span><!--?xml namespace=namespace prefix="o" ?--><br>  </p>
+
+  <p><br>    &nbsp;<br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">   <span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">&lt;</span><span class="GramE"><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: maroon;">style</span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">&gt;</span><br>  </p>
+
+  <p><br>    &nbsp;<br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">       <span class="Apple-converted-space"> </span></span><span class="GramE"><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: maroon;">html</span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">,<span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: maroon;">body</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;"><span class="Apple-converted-space"> </span>{</span><br>  </p>
+
+  <p><br>    &nbsp;<br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">           <span class="Apple-converted-space"> </span></span><span class="GramE"><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: red;">overflow</span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">:<span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">hidden</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">;</span><br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">           <span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: red;">width</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">:<span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">100%</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">;</span><br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">           <span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: red;">height</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">:<span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">100%</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">;</span><br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">           <span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: red;">margin</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">:<span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;"></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">;</span><br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">           <span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: red;">padding</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">:<span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;"></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">;</span><br>  </p>
+
+  <p><br>    &nbsp;<br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">       <span class="Apple-converted-space"> </span>}</span><br>  </p>
+
+  <p><br>    &nbsp;<br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">       <span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: maroon;">#renderCanvas</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;"><span class="Apple-converted-space"> </span>{</span><br>  </p>
+
+  <p><br>    &nbsp;<br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">           <span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: red;">width</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">:<span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">100%</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">;</span><br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">           <span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: red;">height</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">:<span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">100%</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">;</span><br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">           <span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: red;">touch-action</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">:<span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">none</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">;</span><br>  </p>
+
+  <p><br>    &nbsp;<br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">       <span class="Apple-converted-space"> </span>}</span><br>  </p>
+
+  <p><br>    &nbsp;<br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">   <span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">&lt;/</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: maroon;">style</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">&gt;</span><br>  </p>
+
+  <p><br>    &nbsp;<br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">   <span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">&lt;</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: maroon;">script</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;"><span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: red;">src</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">=&#8221;babylon.js&#8221;&gt;&lt;/</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: maroon;">script</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">&gt;</span><br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">   <span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">&lt;</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: maroon;">script</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;"><span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: red;">src</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">=&#8221;hand.js&#8221;&gt;&lt;/</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: maroon;">script</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">&gt;</span><br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">   <span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">&lt;</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: maroon;">script</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;"><span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: red;">src</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">=&#8221;cordova.max.js&#8221;&gt;&lt;/</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: maroon;">script</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">&gt;</span><br>  </p>
+
+  <p><br>    &nbsp;<br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">&lt;/</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: maroon;">head</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">&gt;</span><br>  </p>
+
+  <p><br>    &nbsp;<br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">&lt;</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: maroon;">body</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">&gt;</span><br>  </p>
+
+  <p><br>    &nbsp;<br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">   <span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">&lt;</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: maroon;">canvas</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;"><span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: red;">id</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">=&#8221;renderCanvas&#8221;&gt;&lt;/</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: maroon;">canvas</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">&gt;</span><br>  </p>
+
+  <p><br>    &nbsp;<br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">   <span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">&lt;</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: maroon;">script</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;"><span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: red;">type</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">=&#8221;text/javascript&#8221;&gt;</span><br>  </p>
+
+  <p><br>    &nbsp;<br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">       <span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: green;">// Get the canvas element from our HTML below</span><br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">       <span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">var</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;"><span class="Apple-converted-space"> </span>canvas = document.getElementById(</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: #a31515;">&#8220;renderCanvas&#8221;</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">);</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;"> </span><br>  </p>
+
+  <p><br>    &nbsp;<br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">       <span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: green;">// Load the BABYLON 3D engine</span><br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">       <span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">var</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;"><span class="Apple-converted-space"> </span>engine =<span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">new</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;"><span class="Apple-converted-space"> </span>BABYLON.Engine(canvas,<span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">true</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">);</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;"> </span><br>  </p>
+
+  <p><br>    &nbsp;<br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">       <span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: blue;">var</span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;"><span class="Apple-converted-space"> </span>cube;</span><br>  </p>
+
+  <p><br>    &nbsp;<br>  </p>
+
+  <p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>    </p><p class="MsoNormal" style="white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;"><br>      <span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: black;">       <span class="Apple-converted-space"> </span></span><span lang="EN-US" style="font-size: 9.5pt; font-family: consolas; background: white; color: green;">// &#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-</span><br>    </p>
+
+<pre><code>&lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+  &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;       &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: green;&quot;&gt;// Here begins a function that we will &amp;#8216;call&amp;#8217; just after it&amp;#8217;s built&lt;/span&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+  &amp;nbsp;
+&lt;/p&gt;
+
+&lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+  &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;       &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: blue;&quot;&gt;var&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;createScene =&lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: blue;&quot;&gt;function&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;() {&lt;/span&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+  &amp;nbsp;
+&lt;/p&gt;
+
+&lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+  &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;           &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: green;&quot;&gt;// Now create a basic Babylon Scene object&lt;/span&gt;
+&lt;/p&gt;
+
+&lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+  &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;           &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: blue;&quot;&gt;var&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;scene =&lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: blue;&quot;&gt;new&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;BABYLON.Scene(engine);&lt;/span&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+  &amp;nbsp;
+&lt;/p&gt;
+
+&lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+  &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt; &lt;/span&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+  &amp;nbsp;
+&lt;/p&gt;
+
+&lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+  &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;           &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: green;&quot;&gt;// This creates and positions a free camera&lt;/span&gt;
+&lt;/p&gt;
+
+&lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+  &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;           &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;GramE&quot;&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: blue;&quot;&gt;var&lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;camera =&lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: blue;&quot;&gt;new&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;BABYLON.TouchCamera(&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: #a31515;&quot;&gt;&amp;#8220;camerarotate&amp;#8221;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;, &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: blue;&quot;&gt;new&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;BABYLON.Vector3(0, 0, 10), scene);&lt;/span&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+  &amp;nbsp;
+&lt;/p&gt;
+
+&lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+  &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;           &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;camera.rotation =&lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: blue;&quot;&gt;new&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;BABYLON.Vector3(0, Math.PI, 0);&lt;/span&gt;
+&lt;/p&gt;
+
+&lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+  &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt; &lt;/span&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+  &amp;nbsp;
+&lt;/p&gt;
+
+&lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+  &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;           &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: green;&quot;&gt;// This attaches the camera to the canvas&lt;/span&gt;
+&lt;/p&gt;
+
+&lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+  &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;           &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;camera.attachControl(canvas,&lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: blue;&quot;&gt;false&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;);&lt;/span&gt;
+&lt;/p&gt;
+
+&lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+  &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt; &lt;/span&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+  &amp;nbsp;
+&lt;/p&gt;
+
+&lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+  &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;           &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: green;&quot;&gt;// This creates a light, aiming 0,1,0 &amp;#8211; to the sky.&lt;/span&gt;
+&lt;/p&gt;
+
+&lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+  &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;           &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: blue;&quot;&gt;var&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;light =&lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: blue;&quot;&gt;new&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;BABYLON.HemisphericLight(&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: #a31515;&quot;&gt;&amp;#8220;light1&amp;#8221;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;,&lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: blue;&quot;&gt;new&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;BABYLON.Vector3(0, 1, 0), scene);&lt;/span&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+  &amp;nbsp;
+&lt;/p&gt;
+
+&lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+  &lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+    &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;           &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: green;&quot;&gt;// Dim the light a small amount&lt;/span&gt;
+  &lt;/p&gt;
+
+  &lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+    &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;           &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;light.intensity = .5;&lt;/span&gt;
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    &amp;nbsp;
+  &lt;/p&gt;
+
+  &lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+    &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;           &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;cube =&lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: blue;&quot;&gt;new&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;BABYLON.Mesh.CreateBox(&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: #a31515;&quot;&gt;&amp;#8220;box&amp;#8221;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;, 2, scene);&lt;/span&gt;
+  &lt;/p&gt;
+
+  &lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+    &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;           &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;cube.material =&lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: blue;&quot;&gt;new&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;BABYLON.StandardMaterial(&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: #a31515;&quot;&gt;&amp;#8220;Mat&amp;#8221;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;, scene);&lt;/span&gt;
+  &lt;/p&gt;
+
+  &lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+    &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;cube.rotation.z = 100;&lt;/span&gt;
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    &amp;nbsp;
+  &lt;/p&gt;
+
+  &lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+    &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;           &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;cube.rotation.y = 100;&lt;/span&gt;
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    &amp;nbsp;
+  &lt;/p&gt;
+
+  &lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+    &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;           &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: green;&quot;&gt;// Register a render loop to repeatedly render the scene&lt;/span&gt;
+  &lt;/p&gt;
+
+  &lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+    &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;           &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;engine.runRenderLoop(&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: blue;&quot;&gt;function&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;() {&lt;/span&gt;
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    &amp;nbsp;
+  &lt;/p&gt;
+
+  &lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+    &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;               &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;scene.render();&lt;/span&gt;
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    &amp;nbsp;
+  &lt;/p&gt;
+
+  &lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+    &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;           &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;});&lt;/span&gt;
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    &amp;nbsp;
+  &lt;/p&gt;
+
+  &lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+    &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;           &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: green;&quot;&gt;// Leave this function&lt;/span&gt;
+  &lt;/p&gt;
+
+  &lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+    &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;           &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: blue;&quot;&gt;return&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;scene;&lt;/span&gt;
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    &amp;nbsp;
+  &lt;/p&gt;
+
+  &lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+    &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;       &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;}; &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: green;&quot;&gt;// End of createScene function&lt;/span&gt;
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    &amp;nbsp;
+  &lt;/p&gt;
+
+  &lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+    &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;       &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: green;&quot;&gt;// &amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;&amp;#8212;-&lt;/span&gt;
+  &lt;/p&gt;
+
+  &lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+    &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;       &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: green;&quot;&gt;// Now, call the createScene function that you just finished creating&lt;/span&gt;
+  &lt;/p&gt;
+
+  &lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+    &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;       &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: blue;&quot;&gt;var&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;scene = createScene();&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt; &lt;/span&gt;
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    &amp;nbsp;
+  &lt;/p&gt;
+
+  &lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+    &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt;   &lt;span class=&quot;Apple-converted-space&quot;&gt; &lt;/span&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: blue;&quot;&gt;&lt;/&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: maroon;&quot;&gt;script&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: blue;&quot;&gt;&gt;&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: black;&quot;&gt; &lt;/span&gt;
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    &amp;nbsp;
+  &lt;/p&gt;
+
+  &lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+    &lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: blue;&quot;&gt;&lt;/&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: maroon;&quot;&gt;body&lt;/span&gt;&lt;span lang=&quot;EN-US&quot; style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: blue;&quot;&gt;&gt;&lt;/span&gt;
+  &lt;/p&gt;
+
+  &lt;p class=&quot;MsoNormal&quot; style=&quot;white-space: normal; word-spacing: 0px; text-transform: none; color: #000000; font: 11pt calibri, sans-serif; margin: 0cm 0cm 0pt; letter-spacing: normal; text-indent: 0px; -webkit-text-stroke-width: 0px;&quot;&gt;
+    &lt;span style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: blue;&quot;&gt;&lt;/&lt;/span&gt;&lt;span class=&quot;GramE&quot;&gt;&lt;span style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: maroon;&quot;&gt;html&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 9.5pt; font-family: consolas; background: white; color: blue;&quot;&gt;&gt;&lt;/span&gt;
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    You also need to download the Babylon.js and hand.js files that are available here: &lt;a href=&quot;https://github.com/BabylonJS/Babylon.js&quot;&gt;https://github.com/BabylonJS/Babylon.js&lt;/a&gt; and here: &lt;a href=&quot;http://handjs.codeplex.com/&quot;&gt;http://handjs.codeplex.com/&lt;/a&gt;.
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    You can test the result in a web browser, here is how this simple cube looks in IE.
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    &lt;a href=&quot;https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/2335.image_73D967C8.png&quot;&gt;&lt;img style=&quot;display: inline; border-width: 0px;&quot; title=&quot;image&quot; src=&quot;https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/5482.image_thumb_1C77D3D0.png&quot; alt=&quot;image&quot; width=&quot;568&quot; height=&quot;395&quot; border=&quot;0&quot; /&gt;&lt;/a&gt;
+  &lt;/p&gt;
+
+  &lt;h1&gt;
+    5. Add the Windows platform
+  &lt;/h1&gt;
+
+  &lt;p&gt;
+    Now that all our web code is ready and available in the&lt;b&gt; www&lt;/b&gt; folder, all we have to do is add the project to deploy on each platform. This is done using Cordova command line tool.
+  &lt;/p&gt;
+
+  &lt;pre class=&quot;code&quot;&gt;&lt;b&gt;&lt;i&gt;  cordova platform add Windows&lt;/i&gt;&lt;/b&gt;&lt;/pre&gt;
+
+  &lt;p&gt;
+    This command “simply” create a Visual Studio solution and some projects in it which are hosting the files from the &lt;b&gt;www&lt;/b&gt; folder. As I said earlier in this article, the Windows project generated by Cordova take advantage of the Windows platform and generate a native html/javascript app. That is why you will not find a WebView in the Visual Studio projects.
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    You can use the Microsoft tooling to build, deploy and debug the files generated by cordova but this is only mandatory for the debug part. Building and deploying can be done directly from the command line.
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    For instance, building is done through this line:
+  &lt;/p&gt;
+
+  &lt;pre class=&quot;code&quot;&gt;&lt;b&gt;&lt;i&gt;  cordova build windows&lt;/i&gt;&lt;/b&gt;&lt;/pre&gt;
+
+  &lt;p&gt;
+    The build instruction is a shortcut for 2 successive commands which are: &lt;b&gt;prepare&lt;/b&gt; and &lt;b&gt;compile&lt;/b&gt;. You can use them independently to respectively: update the platform generated project with any change done in the cordova project files and compile the platform.
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    You can run your app on a specific platform using the &lt;b&gt;run&lt;/b&gt; command. It is possible to run it in a local emulator or a physical device connecting through USB.
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    This will run on the phone emulator
+  &lt;/p&gt;
+
+  &lt;pre class=&quot;code&quot;&gt;&lt;b&gt;&lt;i&gt;  cordova run windows --emulator -- --phone &lt;/i&gt;&lt;/b&gt;&lt;/pre&gt;
+
+  &lt;p&gt;
+    This will run on a physical phone:
+  &lt;/p&gt;
+
+  &lt;pre class=&quot;code&quot;&gt;&lt;b&gt;&lt;i&gt;  cordova run windows --device -- --phone&lt;/i&gt;&lt;/b&gt;&lt;/pre&gt;
+
+  &lt;blockquote&gt;
+    &lt;p&gt;
+      &lt;i&gt;Please note the double dashes ‘&amp;#8211;‘ which are not a typing mistake I made here but a required command in the line.&lt;/i&gt;
+    &lt;/p&gt;
+  &lt;/blockquote&gt;
+
+  &lt;p&gt;
+    And here is the result on the Windows Phone emulator:
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    &lt;a href=&quot;https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/8078.image_2C1A6F92.png&quot;&gt;&lt;img style=&quot;display: inline; border-width: 0px;&quot; title=&quot;image&quot; src=&quot;https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/0160.image_thumb_22C13B0F.png&quot; alt=&quot;image&quot; width=&quot;275&quot; height=&quot;504&quot; border=&quot;0&quot; /&gt;&lt;/a&gt;
+  &lt;/p&gt;
+
+  &lt;h1&gt;
+    6. Going crossplatform
+  &lt;/h1&gt;
+
+  &lt;p&gt;
+    The good part is that all of these steps are working exactly the same on iOS. All you need is having a mac somewhere, copy your folder on it and run the following command:
+  &lt;/p&gt;
+
+  &lt;pre class=&quot;code&quot;&gt;&lt;b&gt;&lt;i&gt;  cordova platform add ios&lt;/i&gt;&lt;/b&gt;&lt;/pre&gt;
+
+  &lt;p&gt;
+    Then running the &lt;b&gt;&lt;i&gt;run&lt;/i&gt;&lt;/b&gt; command for ios will deploy and run it on the emulator or the device connected.
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    However, for this to work you need to configure your environment according to this documentation: &lt;a href=&quot;http://cordova.apache.org/docs/en/4.0.0/guide_platforms_ios_index.md.html#iOS%20Platform%20Guide&quot;&gt;http://cordova.apache.org/docs/en/4.0.0/guide_platforms_ios_index.md.html#iOS%20Platform%20Guide&lt;/a&gt; and you need to be on iOS 8 or higher because the iOS webview only support WebGL since this specific version.
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    On Android, this is pretty much the same story. There is a problem though : the Android webview only support WebGL from the 36.0.0.0 version which is going to be shipped with Android L and not available at the moment I am writing this article.
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    So: what can you do to get a crossplatform game using WebGL? There is a really simple solution provided by &lt;a href=&quot;https://www.ludei.com/cocoonjs/&quot;&gt;CocoonJS.&lt;/a&gt;
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    CocoonJS is a solution to create multiplatform applications. It provides an extension to the cordova command line and give you a cordova plugin call &lt;i&gt;WebView+&lt;/i&gt;. This plugin is based on Chromium and enables WebGL even if you are on a version of Android where the webview does not support it by default. In other words, CocoonJS replaces the default WebView used by Cordova by this WebView+.
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    To do it, you need to install CocoonJS using the following command line:
+  &lt;/p&gt;
+
+  &lt;pre class=&quot;code&quot;&gt;&lt;b&gt;&lt;i&gt;  npm install -g cocoonjs&lt;/i&gt;&lt;/b&gt;&lt;/pre&gt;
+
+  &lt;p&gt;
+    This install a new command line tool which is working exactly the same cordova does. To add the android platform, run this:
+  &lt;/p&gt;
+
+  &lt;pre class=&quot;code&quot;&gt;&lt;b&gt;&lt;i&gt;  Cocoonjs platform add android&lt;/i&gt;&lt;/b&gt;&lt;/pre&gt;
+
+  &lt;p&gt;
+    Then, to force cordova to use the WebView+ instead of the classic one:
+  &lt;/p&gt;
+
+  &lt;pre class=&quot;code&quot;&gt;&lt;b&gt;&lt;i&gt;  Cocoonjs plugin add com.ludei.webview.plus&lt;/i&gt;&lt;/b&gt;&lt;/pre&gt;
+
+  &lt;p&gt;
+    &amp;nbsp;
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    &lt;a href=&quot;https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/6886.image_04768419.png&quot;&gt;&lt;img style=&quot;display: inline; border-width: 0px;&quot; title=&quot;image&quot; src=&quot;https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/5265.image_thumb_0FA29F14.png&quot; alt=&quot;image&quot; width=&quot;636&quot; height=&quot;111&quot; border=&quot;0&quot; /&gt;&lt;/a&gt;
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    Build it, run it, and there you go: it just works! 🙂
+  &lt;/p&gt;
+
+  &lt;blockquote&gt;
+    &lt;p&gt;
+      &lt;i&gt;Be aware that when you do this, the &lt;strong&gt;WebView+&lt;/strong&gt; is using chrome, which cannot be used in emulators. When you add it to your project you are stuck with real device debugging. &lt;/i&gt;
+    &lt;/p&gt;
+  &lt;/blockquote&gt;
+
+  &lt;h1&gt;
+    7. Getting the most of each platform
+  &lt;/h1&gt;
+
+  &lt;p&gt;
+    We now have a multiplatform HTML5 game that is distributed as an application and can be discovered from each application store. That is great but we can do more.
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    As I told you, the second Cordova goal is to make us capable of easily using the phone features from Javascript in a uniform way across platforms. This is done through plugins. You can find the whole plugin list on the Apache Cordova website: &lt;a href=&quot;http://cordova.apache.org/docs/en/3.6.0/cordova_plugins_pluginapis.md.html#Plugin%20APIs&quot;&gt;http://cordova.apache.org/docs/en/3.6.0/cordova_plugins_pluginapis.md.html#Plugin%20APIs&lt;/a&gt;
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    I am pretty sure you will find a lot of great ideas on what plugins to use and be creative about it 🙂
+  &lt;/p&gt;
+
+  &lt;h1&gt;
+    8. Working with great tools : Visual Studio 2015
+  &lt;/h1&gt;
+
+  &lt;p&gt;
+    This is not new that &lt;strong&gt;Microsoft&lt;/strong&gt; is deeply involved in the Open Source community and working a lot with open source projets. With Visual Studio 2015, a new step is being taken mainly because this important things:
+  &lt;/p&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;
+      Visual Studio 2015 is going to be FREE for students and open source developers (yes &lt;b&gt;FREE&lt;/b&gt;).
+    &lt;/li&gt;
+    &lt;li&gt;
+      Visual Studio 2015 comes by default with Cordova tooling for create, improving and debugging cordova projects.
+    &lt;/li&gt;
+    &lt;li&gt;
+      Visual Studio 2015 comes with a really really really fast android emulator you can use to debug your android apps (created using Xamarin, C++ or Cordova technologies)
+    &lt;/li&gt;
+    &lt;li&gt;
+      Cordova tooling will help you get plug and play iOS debugging through network
+    &lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;p&gt;
+    &amp;nbsp;
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    A real advantage is also that it is going to install all the tools you need to compile on Android as you can see on this screenshot from the installer.
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    &lt;a href=&quot;https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/0714.Capture_593862AB.png&quot;&gt;&lt;img style=&quot;display: inline; border-width: 0px;&quot; title=&quot;Capture&quot; src=&quot;https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/7838.Capture_thumb_68715C29.png&quot; alt=&quot;Capture&quot; width=&quot;412&quot; height=&quot;578&quot; border=&quot;0&quot; /&gt;&lt;/a&gt;
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    Why am I talking about this here? Obviously because this can be a great tool for you to create crossplatform WebGL games. Run it, attach Visual Studio 2015 to it and let the debug begin 🙂
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    You can learn more about this here:
+  &lt;/p&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;
+      Visual Studio tools for Apache Cordova : &lt;a href=&quot;http://www.visualstudio.com/en-us/explore/cordova-vs.aspx&quot;&gt;http://www.visualstudio.com/en-us/explore/cordova-vs.aspx&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      Android emulator : &lt;a href=&quot;http://channel9.msdn.com/events/Visual-Studio/Connect-event-2014/516&quot;&gt;http://channel9.msdn.com/events/Visual-Studio/Connect-event-2014/516&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      More information about Visual Studio 2015 and the open source world : &lt;a href=&quot;http://www.hanselman.com/blog/AnnouncingNET2015NETasOpenSourceNETonMacandLinuxandVisualStudioCommunity.aspx&quot;&gt;http://www.hanselman.com/blog/AnnouncingNET2015NETasOpenSourceNETonMacandLinuxandVisualStudioCommunity.aspx&lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;h1&gt;
+    Conclusion
+  &lt;/h1&gt;
+
+  &lt;p&gt;
+    You just get through really simple steps to create you app using web languages. In a near future I really hope that every platform is going to understand HTML and Javascript as first class languages to create apps. Windows does it in Windows RT apps since a lot a time and Windows Phone is there since the last version (8.1). That could be a great advance for the future of mobile apps and games.
+  &lt;/p&gt;
+
+  &lt;blockquote&gt;
+    &lt;p&gt;
+      &lt;i&gt;Do not hesitate to share your thoughts and tests on the comments or on twitter! (&lt;a href=&quot;http://twitter.com/emargraff&quot;&gt;@emargraff&lt;/a&gt;)&lt;/i&gt;
+    &lt;/p&gt;
+  &lt;/blockquote&gt;
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/11/12/en/2014/11/12/easy-way-to-create-a-crossplatform-mobile-game-with-webgl-using-babylonjs-and-apache-cordova/" data-id="cjqy3nr9a0031s8ul7z3zkzjh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BabylonJS/">BabylonJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cordova/">Cordova</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Game/">Game</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mobile/">Mobile</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/11/17/fr/2014/11/17/7-raisons-pour-lesquelles-visual-studio-2015-est-le-meilleur-outil-pour-dvelopper-une-application-cordova/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          7 raisons pour lesquelles Visual Studio 2015 est le meilleur outil pour développer une application Cordova
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/09/11/fr/2014/09/11/3-approches-pour-crer-son-application-mobile-sur-toutes-les-plateformes/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">3 approches pour créer son application mobile sur toutes les plateformes</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Babylon-js/">Babylon.js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bots/">Bots</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Bots/Node-js/">Node.js</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Bots/Node-js/Vorlon-js/">Vorlon.js</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bots/Progressive-web-apps/">Progressive web apps</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Bots/Progressive-web-apps/Web/">Web</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Express-js/">Express.js</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Express-js/Node-js/">Node.js</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Express-js/Node-js/Vorlon-js/">Vorlon.js</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vorlon-js/">Vorlon.js</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Vorlon-js/Web/">Web</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Accessibility/">Accessibility</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BabylonJS/">BabylonJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bots/">Bots</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cordova/">Cordova</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Debug/">Debug</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Game/">Game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HoloLens/">HoloLens</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mixed-Reality/">Mixed Reality</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mobile/">Mobile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Responsive/">Responsive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Titanium/">Titanium</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio-2015/">Visual Studio 2015</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio-Code/">Visual Studio Code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vorlon-js/">Vorlon.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebGL/">WebGL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xamarin/">Xamarin</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Accessibility/" style="font-size: 15px;">Accessibility</a> <a href="/tags/BabylonJS/" style="font-size: 12.5px;">BabylonJS</a> <a href="/tags/Bots/" style="font-size: 10px;">Bots</a> <a href="/tags/Cordova/" style="font-size: 15px;">Cordova</a> <a href="/tags/Debug/" style="font-size: 12.5px;">Debug</a> <a href="/tags/Game/" style="font-size: 12.5px;">Game</a> <a href="/tags/HTML5/" style="font-size: 20px;">HTML5</a> <a href="/tags/HoloLens/" style="font-size: 10px;">HoloLens</a> <a href="/tags/Mixed-Reality/" style="font-size: 10px;">Mixed Reality</a> <a href="/tags/Mobile/" style="font-size: 17.5px;">Mobile</a> <a href="/tags/Node-js/" style="font-size: 12.5px;">Node.js</a> <a href="/tags/Responsive/" style="font-size: 15px;">Responsive</a> <a href="/tags/Titanium/" style="font-size: 10px;">Titanium</a> <a href="/tags/Visual-Studio-2015/" style="font-size: 10px;">Visual Studio 2015</a> <a href="/tags/Visual-Studio-Code/" style="font-size: 10px;">Visual Studio Code</a> <a href="/tags/Vorlon-js/" style="font-size: 17.5px;">Vorlon.js</a> <a href="/tags/WebGL/" style="font-size: 10px;">WebGL</a> <a href="/tags/Xamarin/" style="font-size: 10px;">Xamarin</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/05/18/experimenting-with-windows-machine-learning-and-mixed-reality/">Experimenting with Windows Machine Learning and Mixed Reality</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/17/en/2017/04/17/bot-framework-web-chat-and-push-notifications/">Bot framework, web chat and push notifications</a>
+          </li>
+        
+          <li>
+            <a href="/2017/01/25/en/2017/01/25/how-to-debug-your-bot-with-vorlon-js/">How to debug your bot with Vorlon.js</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/15/en/2016/11/15/debug-your-dom-history-using-vorlon-js/">Debug your dom history using Vorlon.js</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/05/en/2016/07/05/remote-inspect-node-js-and-express-with-vorlon-js/">Remote inspect Node.js and Express with Vorlon.js</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
