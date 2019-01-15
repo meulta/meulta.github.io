@@ -136,12 +136,142 @@
 <li><strong>ModelName</strong>: a class responsible for running the model evaluation. It contains a static constructor and an asynchronous method to evaluate  the model prediction.</li>
 </ul>
 <p>Here is an example of generated code:</p>
-<div id="gist89626828" class="gist"><br>  <div class="gist-file"><br>    <div class="gist-data"><br>      <div class="js-gist-file-update-container js-task-list-container file-box"><br>        <div id="file-wrapper-cs" class="file"><br>          <div itemprop="text" class="blob-wrapper data type-c "><br>            <table class="highlight tab-size js-file-line-container" data-tab-size="8"><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L1" class="blob-num js-line-number" data-line-number="1"><br>                </td><br><br>                <td id="file-wrapper-cs-LC1" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-k">using</span> <span class="pl-en">System</span>;<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L2" class="blob-num js-line-number" data-line-number="2"><br>                </td><br><br>                <td id="file-wrapper-cs-LC2" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-k">using</span> <span class="pl-en">System</span>.<span class="pl-en">Collections</span>.<span class="pl-en">Generic</span>;<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L3" class="blob-num js-line-number" data-line-number="3"><br>                </td><br><br>                <td id="file-wrapper-cs-LC3" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-k">using</span> <span class="pl-en">System</span>.<span class="pl-en">Threading</span>.<span class="pl-en">Tasks</span>;<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L4" class="blob-num js-line-number" data-line-number="4"><br>                </td><br><br>                <td id="file-wrapper-cs-LC4" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-k">using</span> <span class="pl-en">Windows</span>.<span class="pl-en">Media</span>;<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L5" class="blob-num js-line-number" data-line-number="5"><br>                </td><br><br>                <td id="file-wrapper-cs-LC5" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-k">using</span> <span class="pl-en">Windows</span>.<span class="pl-en">Storage</span>;<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L6" class="blob-num js-line-number" data-line-number="6"><br>                </td><br><br>                <td id="file-wrapper-cs-LC6" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-k">using</span> <span class="pl-en">Windows</span>.<span class="pl-en">AI</span>.<span class="pl-en">MachineLearning</span>.<span class="pl-en">Preview</span>;<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L7" class="blob-num js-line-number" data-line-number="7"><br>                </td><br><br>                <td id="file-wrapper-cs-LC7" class="blob-code blob-code-inner js-file-line"><br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L8" class="blob-num js-line-number" data-line-number="8"><br>                </td><br><br>                <td id="file-wrapper-cs-LC8" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-k">namespace</span> <span class="pl-en">MyNamespace</span><br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L9" class="blob-num js-line-number" data-line-number="9"><br>                </td><br><br>                <td id="file-wrapper-cs-LC9" class="blob-code blob-code-inner js-file-line"><br>                  {<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L10" class="blob-num js-line-number" data-line-number="10"><br>                </td><br><br>                <td id="file-wrapper-cs-LC10" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-k">public</span> <span class="pl-k">sealed</span> <span class="pl-k">class</span> <span class="pl-en">MyModelInput</span><br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L11" class="blob-num js-line-number" data-line-number="11"><br>                </td><br><br>                <td id="file-wrapper-cs-LC11" class="blob-code blob-code-inner js-file-line"><br>                  {<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L12" class="blob-num js-line-number" data-line-number="12"><br>                </td><br><br>                <td id="file-wrapper-cs-LC12" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-k">public</span> <span class="pl-en">VideoFrame</span> <span class="pl-smi">data</span> { <span class="pl-k">get</span>; <span class="pl-k">set</span>; }<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L13" class="blob-num js-line-number" data-line-number="13"><br>                </td><br><br>                <td id="file-wrapper-cs-LC13" class="blob-code blob-code-inner js-file-line"><br>                  }<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L14" class="blob-num js-line-number" data-line-number="14"><br>                </td><br><br>                <td id="file-wrapper-cs-LC14" class="blob-code blob-code-inner js-file-line"><br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L15" class="blob-num js-line-number" data-line-number="15"><br>                </td><br><br>                <td id="file-wrapper-cs-LC15" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-k">public</span> <span class="pl-k">sealed</span> <span class="pl-k">class</span> <span class="pl-en">MyModelOutput</span><br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L16" class="blob-num js-line-number" data-line-number="16"><br>                </td><br><br>                <td id="file-wrapper-cs-LC16" class="blob-code blob-code-inner js-file-line"><br>                  {<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L17" class="blob-num js-line-number" data-line-number="17"><br>                </td><br><br>                <td id="file-wrapper-cs-LC17" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-k">public</span> <span class="pl-en">IList</span>&lt;<span class="pl-k">string</span>&gt; <span class="pl-smi">classLabel</span> { <span class="pl-k">get</span>; <span class="pl-k">set</span>; }<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L18" class="blob-num js-line-number" data-line-number="18"><br>                </td><br><br>                <td id="file-wrapper-cs-LC18" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-k">public</span> <span class="pl-en">IDictionary</span>&lt;<span class="pl-k">string</span>, <span class="pl-k">float</span>&gt; <span class="pl-smi">loss</span> { <span class="pl-k">get</span>; <span class="pl-k">set</span>; }<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L19" class="blob-num js-line-number" data-line-number="19"><br>                </td><br><br>                <td id="file-wrapper-cs-LC19" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-k">public</span> <span class="pl-en">MyModelOutput</span>()<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L20" class="blob-num js-line-number" data-line-number="20"><br>                </td><br><br>                <td id="file-wrapper-cs-LC20" class="blob-code blob-code-inner js-file-line"><br>                  {<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L21" class="blob-num js-line-number" data-line-number="21"><br>                </td><br><br>                <td id="file-wrapper-cs-LC21" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-k">this</span>.<span class="pl-smi">classLabel</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">List</span>&lt;<span class="pl-k">string</span>&gt;();<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L22" class="blob-num js-line-number" data-line-number="22"><br>                </td><br><br>                <td id="file-wrapper-cs-LC22" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-k">this</span>.<span class="pl-smi">loss</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Dictionary</span>&lt;<span class="pl-k">string</span>, <span class="pl-k">float</span>&gt;();<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L23" class="blob-num js-line-number" data-line-number="23"><br>                </td><br><br>                <td id="file-wrapper-cs-LC23" class="blob-code blob-code-inner js-file-line"><br>                  }<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L24" class="blob-num js-line-number" data-line-number="24"><br>                </td><br><br>                <td id="file-wrapper-cs-LC24" class="blob-code blob-code-inner js-file-line"><br>                  }<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L25" class="blob-num js-line-number" data-line-number="25"><br>                </td><br><br>                <td id="file-wrapper-cs-LC25" class="blob-code blob-code-inner js-file-line"><br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L26" class="blob-num js-line-number" data-line-number="26"><br>                </td><br><br>                <td id="file-wrapper-cs-LC26" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-k">public</span> <span class="pl-k">sealed</span> <span class="pl-k">class</span> <span class="pl-en">MyModel</span><br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L27" class="blob-num js-line-number" data-line-number="27"><br>                </td><br><br>                <td id="file-wrapper-cs-LC27" class="blob-code blob-code-inner js-file-line"><br>                  {<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L28" class="blob-num js-line-number" data-line-number="28"><br>                </td><br><br>                <td id="file-wrapper-cs-LC28" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-k">private</span> <span class="pl-en">LearningModelPreview</span> <span class="pl-smi">learningModel</span>;<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L29" class="blob-num js-line-number" data-line-number="29"><br>                </td><br><br>                <td id="file-wrapper-cs-LC29" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">async</span> <span class="pl-en">Task</span>&lt;<span class="pl-en">MyModel</span>&gt; <span class="pl-en">CreateMyModel</span>(<span class="pl-en">StorageFile</span> <span class="pl-smi">file</span>)<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L30" class="blob-num js-line-number" data-line-number="30"><br>                </td><br><br>                <td id="file-wrapper-cs-LC30" class="blob-code blob-code-inner js-file-line"><br>                  {<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L31" class="blob-num js-line-number" data-line-number="31"><br>                </td><br><br>                <td id="file-wrapper-cs-LC31" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-en">LearningModelPreview</span> <span class="pl-smi">learningModel</span> <span class="pl-k">=</span> <span class="pl-k">await</span> <span class="pl-smi">LearningModelPreview</span>.<span class="pl-en">LoadModelFromStorageFileAsync</span>(<span class="pl-smi">file</span>);<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L32" class="blob-num js-line-number" data-line-number="32"><br>                </td><br><br>                <td id="file-wrapper-cs-LC32" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-en">MyModel</span> <span class="pl-smi">model</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">MyModel</span>();<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L33" class="blob-num js-line-number" data-line-number="33"><br>                </td><br><br>                <td id="file-wrapper-cs-LC33" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-smi">model</span>.<span class="pl-smi">learningModel</span> <span class="pl-k">=</span> <span class="pl-smi">learningModel</span>;<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L34" class="blob-num js-line-number" data-line-number="34"><br>                </td><br><br>                <td id="file-wrapper-cs-LC34" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-k">return</span> <span class="pl-smi">model</span>;<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L35" class="blob-num js-line-number" data-line-number="35"><br>                </td><br><br>                <td id="file-wrapper-cs-LC35" class="blob-code blob-code-inner js-file-line"><br>                  }<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L36" class="blob-num js-line-number" data-line-number="36"><br>                </td><br><br>                <td id="file-wrapper-cs-LC36" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-k">public</span> <span class="pl-k">async</span> <span class="pl-en">Task</span>&lt;<span class="pl-en">MyModelOutput</span>&gt; <span class="pl-en">EvaluateAsync</span>(<span class="pl-en">MyModelInput</span> <span class="pl-smi">input</span>) {<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L37" class="blob-num js-line-number" data-line-number="37"><br>                </td><br><br>                <td id="file-wrapper-cs-LC37" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-en">MyModelOutput</span> <span class="pl-smi">output</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">MyModelOutput</span>();<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L38" class="blob-num js-line-number" data-line-number="38"><br>                </td><br><br>                <td id="file-wrapper-cs-LC38" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-en">LearningModelBindingPreview</span> <span class="pl-smi">binding</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">LearningModelBindingPreview</span>(<span class="pl-smi">learningModel</span>);<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L39" class="blob-num js-line-number" data-line-number="39"><br>                </td><br><br>                <td id="file-wrapper-cs-LC39" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-smi">binding</span>.<span class="pl-en">Bind</span>(<span class="pl-s"><span class="pl-pds">“</span>data<span class="pl-pds">“</span></span>, <span class="pl-smi">input</span>.<span class="pl-smi">data</span>);<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L40" class="blob-num js-line-number" data-line-number="40"><br>                </td><br><br>                <td id="file-wrapper-cs-LC40" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-smi">binding</span>.<span class="pl-en">Bind</span>(<span class="pl-s"><span class="pl-pds">“</span>classLabel<span class="pl-pds">“</span></span>, <span class="pl-smi">output</span>.<span class="pl-smi">classLabel</span>);<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L41" class="blob-num js-line-number" data-line-number="41"><br>                </td><br><br>                <td id="file-wrapper-cs-LC41" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-smi">binding</span>.<span class="pl-en">Bind</span>(<span class="pl-s"><span class="pl-pds">“</span>loss<span class="pl-pds">“</span></span>, <span class="pl-smi">output</span>.<span class="pl-smi">loss</span>);<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L42" class="blob-num js-line-number" data-line-number="42"><br>                </td><br><br>                <td id="file-wrapper-cs-LC42" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-en">LearningModelEvaluationResultPreview</span> <span class="pl-smi">evalResult</span> <span class="pl-k">=</span> <span class="pl-k">await</span> <span class="pl-smi">learningModel</span>.<span class="pl-en">EvaluateAsync</span>(<span class="pl-smi">binding</span>, <span class="pl-smi">string</span>.<span class="pl-smi">Empty</span>);<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L43" class="blob-num js-line-number" data-line-number="43"><br>                </td><br><br>                <td id="file-wrapper-cs-LC43" class="blob-code blob-code-inner js-file-line"><br>                  <span class="pl-k">return</span> <span class="pl-smi">output</span>;<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L44" class="blob-num js-line-number" data-line-number="44"><br>                </td><br><br>                <td id="file-wrapper-cs-LC44" class="blob-code blob-code-inner js-file-line"><br>                  }<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L45" class="blob-num js-line-number" data-line-number="45"><br>                </td><br><br>                <td id="file-wrapper-cs-LC45" class="blob-code blob-code-inner js-file-line"><br>                  }<br>                </td><br>              </tr><br><br>              <tr class="line"><br>                <td id="file-wrapper-cs-L46" class="blob-num js-line-number" data-line-number="46"><br>                </td><br><br>                <td id="file-wrapper-cs-LC46" class="blob-code blob-code-inner js-file-line"><br>                  }<br>                </td><br>              </tr><br>            </table><br>          </div><br>        </div><br>      </div><br>    </div>
+<pre>
+using System;
 
-<pre><code>&lt;div class=&quot;gist-meta&quot;&gt;
-  &lt;a href=&quot;https://gist.github.com/meulta/f4d6c9b8aa69ad76d0ef18dbbfce4fd7/raw/fb1d1dab6d2806c680f25b17ae929d33bc91694a/wrapper.cs&quot; style=&quot;float:right&quot;&gt;view raw&lt;/a&gt; &lt;a href=&quot;https://gist.github.com/meulta/f4d6c9b8aa69ad76d0ef18dbbfce4fd7#file-wrapper-cs&quot;&gt;wrapper.cs&lt;/a&gt; hosted with &amp;#10084; by &lt;a href=&quot;https://github.com&quot;&gt;GitHub&lt;/a&gt;
-&lt;/div&gt;
-</code></pre><p>  </p></div><br></div><p></p>
+
+using System.Collections.Generic;
+
+
+using System.Threading.Tasks;
+
+
+using Windows.Media;
+
+
+using Windows.Storage;
+
+
+using Windows.AI.MachineLearning.Preview;
+
+
+
+
+namespace MyNamespace
+
+
+{
+
+
+public sealed class MyModelInput
+
+
+{
+
+
+public VideoFrame data { get; set; }
+
+
+}
+
+
+
+
+public sealed class MyModelOutput
+
+
+{
+
+
+public IList<string> classLabel { get; set; }
+
+
+public IDictionary<string, float=""> loss { get; set; }
+
+
+public MyModelOutput()
+
+
+{
+
+
+this.classLabel = new List<string>();
+
+
+this.loss = new Dictionary<string, float="">();
+
+
+}
+
+
+}
+
+
+
+
+public sealed class MyModel
+
+
+{
+
+
+private LearningModelPreview learningModel;
+
+
+public static async Task<mymodel> CreateMyModel(StorageFile file)
+
+
+{
+
+
+LearningModelPreview learningModel = await LearningModelPreview.LoadModelFromStorageFileAsync(file);
+
+
+MyModel model = new MyModel();
+
+
+model.learningModel = learningModel;
+
+
+return model;
+
+
+}
+
+
+public async Task<mymodeloutput> EvaluateAsync(MyModelInput input) {
+
+
+MyModelOutput output = new MyModelOutput();
+
+
+LearningModelBindingPreview binding = new LearningModelBindingPreview(learningModel);
+
+
+binding.Bind(“data“, input.data);
+
+
+binding.Bind(“classLabel“, output.classLabel);
+
+
+binding.Bind(“loss“, output.loss);
+
+
+LearningModelEvaluationResultPreview evalResult = await learningModel.EvaluateAsync(binding, string.Empty);
+
+
+return output;
+
+
+}
+
+
+}
+
+
+}
+</mymodeloutput></mymodel></string,></string></string,></string></pre>
+
 <p style="text-align: left;"><br>  <em><strong>Note</strong>: When exporting from the Custom Vision service, the name of the model is a generated one. You might have to change it to something that is more human readable.</em><br></p>
 
 <p>As you can see in this example, the generation tool created an output structure with 2 parameters:</p>
@@ -211,7 +341,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/18/experimenting-with-windows-machine-learning-and-mixed-reality/" data-id="cjqybvx7u003fe8ulqazzfgx1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/18/experimenting-with-windows-machine-learning-and-mixed-reality/" data-id="cjqyc9nv10038hwulxu8c78d0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HoloLens/">HoloLens</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mixed-Reality/">Mixed Reality</a></li></ul>
@@ -405,7 +535,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/17/bot-framework-web-chat-and-push-notifications/" data-id="cjqybvx83003ne8ul4svjt770" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/17/bot-framework-web-chat-and-push-notifications/" data-id="cjqyc9nvk003nhwulj4ca51hm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -500,7 +630,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/25/how-to-debug-your-bot-with-vorlon-js/" data-id="cjqybvx3p000te8ulms1s684c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/25/how-to-debug-your-bot-with-vorlon-js/" data-id="cjqyc9nss000thwulnip23574" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bots/">Bots</a></li></ul>
@@ -562,7 +692,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/11/15/debug-your-dom-history-using-vorlon-js/" data-id="cjqybvx260001e8ulqykzv45b" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/11/15/debug-your-dom-history-using-vorlon-js/" data-id="cjqyc9nrg0001hwulpdx1mrhe" class="article-share-link">Share</a>
       
       
     </footer>
@@ -661,7 +791,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/05/remote-inspect-node-js-and-express-with-vorlon-js/" data-id="cjqybvx1v0000e8ulw1iiyg6o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/05/remote-inspect-node-js-and-express-with-vorlon-js/" data-id="cjqyc9nr90000hwulvhwh49bz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -741,7 +871,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/06/04/one-year-of-vorlon-js/" data-id="cjqybvx3l000re8ulcofyx1ar" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/06/04/one-year-of-vorlon-js/" data-id="cjqyc9nso000rhwuly33uhm02" class="article-share-link">Share</a>
       
       
     </footer>
@@ -864,7 +994,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/02/01/vorlon-js-0-2-1-is-out/" data-id="cjqybvx3i000ne8ulfvjrpjvw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/02/01/vorlon-js-0-2-1-is-out/" data-id="cjqyc9nsm000nhwulb57d79f2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Accessibility/">Accessibility</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Debug/">Debug</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vorlon-js/">Vorlon.js</a></li></ul>
@@ -943,7 +1073,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/12/11/une-liste-de-bonnes-pratiques-pour-le-web-moderne/" data-id="cjqybvx3g000le8ul3fd9kjcv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/12/11/une-liste-de-bonnes-pratiques-pour-le-web-moderne/" data-id="cjqyc9nsl000lhwul72d0c9kr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Accessibility/">Accessibility</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML5/">HTML5</a></li></ul>
@@ -1042,7 +1172,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/11/27/how-vorlon-js-helps-you-improve-your-web-code/" data-id="cjqybvx38000ie8uliro7od7e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/11/27/how-vorlon-js-helps-you-improve-your-web-code/" data-id="cjqyc9nsj000ihwullw7lptnn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Accessibility/">Accessibility</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mobile/">Mobile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Responsive/">Responsive</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vorlon-js/">Vorlon.js</a></li></ul>
@@ -1178,7 +1308,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/11/24/dbuguer-node-js-avec-vs-code/" data-id="cjqybvx5z002ie8ul0tyn33le" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/11/24/dbuguer-node-js-avec-vs-code/" data-id="cjqyc9ntx002ihwul1a52r7yi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Debug/">Debug</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Visual-Studio-Code/">Visual Studio Code</a></li></ul>
