@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://yoursite.com/media/training.png">
 <meta property="og:image" content="http://yoursite.com/media/export.png">
 <meta property="og:image" content="http://yoursite.com/media/streamingassets.png">
-<meta property="og:updated_time" content="2019-01-15T22:38:25.555Z">
+<meta property="og:updated_time" content="2019-01-15T22:41:23.847Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Experimenting with Windows Machine Learning and Mixed Reality">
 <meta name="twitter:description" content="If you have any question about this blog article, feel free to contact me on twitter: @meulta  I have an awesome job at Microsoft: I get to work on mixing AI, Cloud and Mixed Reality experiences with">
@@ -146,137 +146,51 @@
 <p>Here is an example of generated code:</p>
 <pre>
 using System;
-
-
 using System.Collections.Generic;
-
-
 using System.Threading.Tasks;
-
-
 using Windows.Media;
-
-
 using Windows.Storage;
-
-
 using Windows.AI.MachineLearning.Preview;
 
-
-
-
 namespace MyNamespace
-
-
 {
-
-
-public sealed class MyModelInput
-
-
-{
-
-
-public VideoFrame data { get; set; }
-
-
-}
-
-
-
+  public sealed class MyModelInput
+  {
+    public VideoFrame data { get; set; }
+  }
 
 public sealed class MyModelOutput
-
-
 {
-
-
-public IList<string> classLabel { get; set; }
-
-
-public IDictionary<string, float=""> loss { get; set; }
-
-
-public MyModelOutput()
-
-
-{
-
-
-this.classLabel = new List<string>();
-
-
-this.loss = new Dictionary<string, float="">();
-
-
+  public IList<string> classLabel { get; set; }
+  public IDictionary<string, float=""> loss { get; set; }
+  public MyModelOutput()
+  {
+    this.classLabel = new List<string>();
+    this.loss = new Dictionary<string, float="">();
+  }
 }
 
+  public sealed class MyModel
+  {
+    private LearningModelPreview learningModel;
+    public static async Task<mymodel> CreateMyModel(StorageFile file)
+    {
+      LearningModelPreview learningModel = await LearningModelPreview.LoadModelFromStorageFileAsync(file);
+      MyModel model = new MyModel();
+      model.learningModel = learningModel;
+      return model;
+    }
 
-}
-
-
-
-
-public sealed class MyModel
-
-
-{
-
-
-private LearningModelPreview learningModel;
-
-
-public static async Task<mymodel> CreateMyModel(StorageFile file)
-
-
-{
-
-
-LearningModelPreview learningModel = await LearningModelPreview.LoadModelFromStorageFileAsync(file);
-
-
-MyModel model = new MyModel();
-
-
-model.learningModel = learningModel;
-
-
-return model;
-
-
-}
-
-
-public async Task<mymodeloutput> EvaluateAsync(MyModelInput input) {
-
-
-MyModelOutput output = new MyModelOutput();
-
-
-LearningModelBindingPreview binding = new LearningModelBindingPreview(learningModel);
-
-
-binding.Bind(“data“, input.data);
-
-
-binding.Bind(“classLabel“, output.classLabel);
-
-
-binding.Bind(“loss“, output.loss);
-
-
-LearningModelEvaluationResultPreview evalResult = await learningModel.EvaluateAsync(binding, string.Empty);
-
-
-return output;
-
-
-}
-
-
-}
-
-
+    public async Task<mymodeloutput> EvaluateAsync(MyModelInput input) {
+      MyModelOutput output = new MyModelOutput();
+      LearningModelBindingPreview binding = new LearningModelBindingPreview(learningModel);
+      binding.Bind(“data“, input.data);
+      binding.Bind(“classLabel“, output.classLabel);
+      binding.Bind(“loss“, output.loss);
+      LearningModelEvaluationResultPreview evalResult = await learningModel.EvaluateAsync(binding, string.Empty);
+      return output;
+    }
+  }
 }
 </mymodeloutput></mymodel></string,></string></string,></string></pre>
 
@@ -349,7 +263,7 @@ return output;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/18/experimenting-with-windows-machine-learning-and-mixed-reality/" data-id="cjqyc9nv10038hwulxu8c78d0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/18/experimenting-with-windows-machine-learning-and-mixed-reality/" data-id="cjqycdimw00389culur8axua0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HoloLens/">HoloLens</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mixed-Reality/">Mixed Reality</a></li></ul>

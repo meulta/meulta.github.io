@@ -138,137 +138,51 @@
 <p>Here is an example of generated code:</p>
 <pre>
 using System;
-
-
 using System.Collections.Generic;
-
-
 using System.Threading.Tasks;
-
-
 using Windows.Media;
-
-
 using Windows.Storage;
-
-
 using Windows.AI.MachineLearning.Preview;
 
-
-
-
 namespace MyNamespace
-
-
 {
-
-
-public sealed class MyModelInput
-
-
-{
-
-
-public VideoFrame data { get; set; }
-
-
-}
-
-
-
+  public sealed class MyModelInput
+  {
+    public VideoFrame data { get; set; }
+  }
 
 public sealed class MyModelOutput
-
-
 {
-
-
-public IList<string> classLabel { get; set; }
-
-
-public IDictionary<string, float=""> loss { get; set; }
-
-
-public MyModelOutput()
-
-
-{
-
-
-this.classLabel = new List<string>();
-
-
-this.loss = new Dictionary<string, float="">();
-
-
+  public IList<string> classLabel { get; set; }
+  public IDictionary<string, float=""> loss { get; set; }
+  public MyModelOutput()
+  {
+    this.classLabel = new List<string>();
+    this.loss = new Dictionary<string, float="">();
+  }
 }
 
+  public sealed class MyModel
+  {
+    private LearningModelPreview learningModel;
+    public static async Task<mymodel> CreateMyModel(StorageFile file)
+    {
+      LearningModelPreview learningModel = await LearningModelPreview.LoadModelFromStorageFileAsync(file);
+      MyModel model = new MyModel();
+      model.learningModel = learningModel;
+      return model;
+    }
 
-}
-
-
-
-
-public sealed class MyModel
-
-
-{
-
-
-private LearningModelPreview learningModel;
-
-
-public static async Task<mymodel> CreateMyModel(StorageFile file)
-
-
-{
-
-
-LearningModelPreview learningModel = await LearningModelPreview.LoadModelFromStorageFileAsync(file);
-
-
-MyModel model = new MyModel();
-
-
-model.learningModel = learningModel;
-
-
-return model;
-
-
-}
-
-
-public async Task<mymodeloutput> EvaluateAsync(MyModelInput input) {
-
-
-MyModelOutput output = new MyModelOutput();
-
-
-LearningModelBindingPreview binding = new LearningModelBindingPreview(learningModel);
-
-
-binding.Bind(“data“, input.data);
-
-
-binding.Bind(“classLabel“, output.classLabel);
-
-
-binding.Bind(“loss“, output.loss);
-
-
-LearningModelEvaluationResultPreview evalResult = await learningModel.EvaluateAsync(binding, string.Empty);
-
-
-return output;
-
-
-}
-
-
-}
-
-
+    public async Task<mymodeloutput> EvaluateAsync(MyModelInput input) {
+      MyModelOutput output = new MyModelOutput();
+      LearningModelBindingPreview binding = new LearningModelBindingPreview(learningModel);
+      binding.Bind(“data“, input.data);
+      binding.Bind(“classLabel“, output.classLabel);
+      binding.Bind(“loss“, output.loss);
+      LearningModelEvaluationResultPreview evalResult = await learningModel.EvaluateAsync(binding, string.Empty);
+      return output;
+    }
+  }
 }
 </mymodeloutput></mymodel></string,></string></string,></string></pre>
 
@@ -341,7 +255,7 @@ return output;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/18/experimenting-with-windows-machine-learning-and-mixed-reality/" data-id="cjqyc9nv10038hwulxu8c78d0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/18/experimenting-with-windows-machine-learning-and-mixed-reality/" data-id="cjqycdimw00389culur8axua0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HoloLens/">HoloLens</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mixed-Reality/">Mixed Reality</a></li></ul>
@@ -535,7 +449,7 @@ return output;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/17/bot-framework-web-chat-and-push-notifications/" data-id="cjqyc9nvk003nhwulj4ca51hm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/17/bot-framework-web-chat-and-push-notifications/" data-id="cjqycdinn003n9cullwesl1d5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -630,7 +544,7 @@ return output;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/25/how-to-debug-your-bot-with-vorlon-js/" data-id="cjqyc9nss000thwulnip23574" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/25/how-to-debug-your-bot-with-vorlon-js/" data-id="cjqycdikr000t9cul9g8bip89" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bots/">Bots</a></li></ul>
@@ -692,7 +606,7 @@ return output;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/11/15/debug-your-dom-history-using-vorlon-js/" data-id="cjqyc9nrg0001hwulpdx1mrhe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/11/15/debug-your-dom-history-using-vorlon-js/" data-id="cjqycdijn00019culp5e2et69" class="article-share-link">Share</a>
       
       
     </footer>
@@ -791,7 +705,7 @@ return output;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/05/remote-inspect-node-js-and-express-with-vorlon-js/" data-id="cjqyc9nr90000hwulvhwh49bz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/05/remote-inspect-node-js-and-express-with-vorlon-js/" data-id="cjqycdijg00009cul492uzx2w" class="article-share-link">Share</a>
       
       
     </footer>
@@ -871,7 +785,7 @@ return output;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/06/04/one-year-of-vorlon-js/" data-id="cjqyc9nso000rhwuly33uhm02" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/06/04/one-year-of-vorlon-js/" data-id="cjqycdiko000r9cul0esc82db" class="article-share-link">Share</a>
       
       
     </footer>
@@ -994,7 +908,7 @@ return output;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/02/01/vorlon-js-0-2-1-is-out/" data-id="cjqyc9nsm000nhwulb57d79f2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/02/01/vorlon-js-0-2-1-is-out/" data-id="cjqycdikl000n9culjc0oidvb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Accessibility/">Accessibility</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Debug/">Debug</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vorlon-js/">Vorlon.js</a></li></ul>
@@ -1073,7 +987,7 @@ return output;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/12/11/une-liste-de-bonnes-pratiques-pour-le-web-moderne/" data-id="cjqyc9nsl000lhwul72d0c9kr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/12/11/une-liste-de-bonnes-pratiques-pour-le-web-moderne/" data-id="cjqycdikk000l9culam3pqg91" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Accessibility/">Accessibility</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML5/">HTML5</a></li></ul>
@@ -1172,7 +1086,7 @@ return output;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/11/27/how-vorlon-js-helps-you-improve-your-web-code/" data-id="cjqyc9nsj000ihwullw7lptnn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/11/27/how-vorlon-js-helps-you-improve-your-web-code/" data-id="cjqycdiki000i9culu44yqoj0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Accessibility/">Accessibility</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mobile/">Mobile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Responsive/">Responsive</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vorlon-js/">Vorlon.js</a></li></ul>
@@ -1308,7 +1222,7 @@ return output;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/11/24/dbuguer-node-js-avec-vs-code/" data-id="cjqyc9ntx002ihwul1a52r7yi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/11/24/dbuguer-node-js-avec-vs-code/" data-id="cjqycdilx002i9culyuw9d79g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Debug/">Debug</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Visual-Studio-Code/">Visual Studio Code</a></li></ul>
