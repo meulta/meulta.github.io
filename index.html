@@ -136,7 +136,7 @@
 <li><strong>ModelName</strong>: a class responsible for running the model evaluation. It contains a static constructor and an asynchronous method to evaluate  the model prediction.</li>
 </ul>
 <p>Here is an example of generated code:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line">using Windows.Media;</span><br><span class="line">using Windows.Storage;</span><br><span class="line">using Windows.AI.MachineLearning.Preview;</span><br><span class="line"></span><br><span class="line">namespace MyNamespace</span><br><span class="line">&#123;</span><br><span class="line">  public sealed class MyModelInput</span><br><span class="line">  &#123;</span><br><span class="line">    public VideoFrame data &#123; get; set; &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">public sealed class MyModelOutput</span><br><span class="line">&#123;</span><br><span class="line">  public IList&lt;string&gt; classLabel &#123; get; set; &#125;</span><br><span class="line">  public IDictionary&lt;string, float&gt; loss &#123; get; set; &#125;</span><br><span class="line">  public MyModelOutput()</span><br><span class="line">  &#123;</span><br><span class="line">    this.classLabel = new List&lt;string&gt;();</span><br><span class="line">    this.loss = new Dictionary&lt;string, float&gt;();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  public sealed class MyModel</span><br><span class="line">  &#123;</span><br><span class="line">    private LearningModelPreview learningModel;</span><br><span class="line">    public static async Task&lt;MyModel&gt; CreateMyModel(StorageFile file)</span><br><span class="line">    &#123;</span><br><span class="line">      LearningModelPreview learningModel = await LearningModelPreview.LoadModelFromStorageFileAsync(file);</span><br><span class="line">      MyModel model = new MyModel();</span><br><span class="line">      model.learningModel = learningModel;</span><br><span class="line">      return model;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public async Task&lt;MyModelOutput&gt; EvaluateAsync(MyModelInput input) &#123;</span><br><span class="line">      MyModelOutput output = new MyModelOutput();</span><br><span class="line">      LearningModelBindingPreview binding = new LearningModelBindingPreview(learningModel);</span><br><span class="line">      binding.Bind(“data“, input.data);</span><br><span class="line">      binding.Bind(“classLabel“, output.classLabel);</span><br><span class="line">      binding.Bind(“loss“, output.loss);</span><br><span class="line">      LearningModelEvaluationResultPreview evalResult = await learningModel.EvaluateAsync(binding, string.Empty);</span><br><span class="line">      return output;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br><span class="line"><span class="keyword">using</span> Windows.Media;</span><br><span class="line"><span class="keyword">using</span> Windows.Storage;</span><br><span class="line"><span class="keyword">using</span> Windows.AI.MachineLearning.Preview;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">MyNamespace</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">class</span> <span class="title">MyModelInput</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">public</span> VideoFrame data &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">class</span> <span class="title">MyModelOutput</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span> IList&lt;<span class="keyword">string</span>&gt; classLabel &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">  <span class="keyword">public</span> IDictionary&lt;<span class="keyword">string</span>, <span class="keyword">float</span>&gt; loss &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">MyModelOutput</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>  &#123;</span><br><span class="line">    <span class="keyword">this</span>.classLabel = <span class="keyword">new</span> List&lt;<span class="keyword">string</span>&gt;();</span><br><span class="line">    <span class="keyword">this</span>.loss = <span class="keyword">new</span> Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">float</span>&gt;();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">class</span> <span class="title">MyModel</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">private</span> LearningModelPreview learningModel;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">async</span> Task&lt;MyModel&gt; <span class="title">CreateMyModel</span>(<span class="params">StorageFile file</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">      LearningModelPreview learningModel = <span class="keyword">await</span> LearningModelPreview.LoadModelFromStorageFileAsync(file);</span><br><span class="line">      MyModel model = <span class="keyword">new</span> MyModel();</span><br><span class="line">      model.learningModel = learningModel;</span><br><span class="line">      <span class="keyword">return</span> model;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;MyModelOutput&gt; <span class="title">EvaluateAsync</span>(<span class="params">MyModelInput input</span>)</span> &#123;</span><br><span class="line">      MyModelOutput output = <span class="keyword">new</span> MyModelOutput();</span><br><span class="line">      LearningModelBindingPreview binding = <span class="keyword">new</span> LearningModelBindingPreview(learningModel);</span><br><span class="line">      binding.Bind(“data“, input.data);</span><br><span class="line">      binding.Bind(“classLabel“, output.classLabel);</span><br><span class="line">      binding.Bind(“loss“, output.loss);</span><br><span class="line">      LearningModelEvaluationResultPreview evalResult = <span class="keyword">await</span> learningModel.EvaluateAsync(binding, <span class="keyword">string</span>.Empty);</span><br><span class="line">      <span class="keyword">return</span> output;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p style="text-align: left;"><br>  <em><strong>Note</strong>: When exporting from the Custom Vision service, the name of the model is a generated one. You might have to change it to something that is more human readable.</em><br></p>
 
 <p>As you can see in this example, the generation tool created an output structure with 2 parameters:</p>
@@ -206,7 +206,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/18/experimenting-with-windows-machine-learning-and-mixed-reality/" data-id="cjqyci1wm0038moulpi2mmt3p" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/18/experimenting-with-windows-machine-learning-and-mixed-reality/" data-id="cjqycjgml0038mwulqlorr8ww" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HoloLens/">HoloLens</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mixed-Reality/">Mixed Reality</a></li></ul>
@@ -400,7 +400,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/17/bot-framework-web-chat-and-push-notifications/" data-id="cjqyci1xr003nmoulicwrkis8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/17/bot-framework-web-chat-and-push-notifications/" data-id="cjqycjgn4003nmwul3xusg4el" class="article-share-link">Share</a>
       
       
     </footer>
@@ -495,7 +495,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/25/how-to-debug-your-bot-with-vorlon-js/" data-id="cjqyci1ua000tmoul0d4akjdw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/25/how-to-debug-your-bot-with-vorlon-js/" data-id="cjqycjgk1000tmwulxqaxfwu1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bots/">Bots</a></li></ul>
@@ -557,7 +557,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/11/15/debug-your-dom-history-using-vorlon-js/" data-id="cjqyci1t50001moulvkiqfaov" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/11/15/debug-your-dom-history-using-vorlon-js/" data-id="cjqycjghw0001mwulxex7zu00" class="article-share-link">Share</a>
       
       
     </footer>
@@ -656,7 +656,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/05/remote-inspect-node-js-and-express-with-vorlon-js/" data-id="cjqyci1su0000moulh3rzulsz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/05/remote-inspect-node-js-and-express-with-vorlon-js/" data-id="cjqycjgho0000mwulzf73bcz1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -736,7 +736,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/06/04/one-year-of-vorlon-js/" data-id="cjqyci1u6000rmoul7n01onxi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/06/04/one-year-of-vorlon-js/" data-id="cjqycjgjz000rmwul3z8j7qqh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -859,7 +859,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/02/01/vorlon-js-0-2-1-is-out/" data-id="cjqyci1u3000nmoul8eonrila" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/02/01/vorlon-js-0-2-1-is-out/" data-id="cjqycjgjw000nmwul2tuh5w4r" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Accessibility/">Accessibility</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Debug/">Debug</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vorlon-js/">Vorlon.js</a></li></ul>
@@ -938,7 +938,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/12/11/une-liste-de-bonnes-pratiques-pour-le-web-moderne/" data-id="cjqyci1u1000lmoule6yl1m7f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/12/11/une-liste-de-bonnes-pratiques-pour-le-web-moderne/" data-id="cjqycjgju000lmwul21m7sq8f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Accessibility/">Accessibility</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML5/">HTML5</a></li></ul>
@@ -1037,7 +1037,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/11/27/how-vorlon-js-helps-you-improve-your-web-code/" data-id="cjqyci1u0000imoulr9prrvo1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/11/27/how-vorlon-js-helps-you-improve-your-web-code/" data-id="cjqycjgjs000imwule3f66b3d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Accessibility/">Accessibility</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mobile/">Mobile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Responsive/">Responsive</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vorlon-js/">Vorlon.js</a></li></ul>
@@ -1173,7 +1173,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/11/24/dbuguer-node-js-avec-vs-code/" data-id="cjqyci1vh002imoulogxwyymx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/11/24/dbuguer-node-js-avec-vs-code/" data-id="cjqycjgle002imwullwkqzlrx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Debug/">Debug</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Visual-Studio-Code/">Visual Studio Code</a></li></ul>
