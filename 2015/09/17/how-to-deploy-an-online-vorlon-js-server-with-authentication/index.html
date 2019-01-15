@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>How to deploy an online Vorlon.js server with authentication | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="If you have any question about this article or Vorlon.js, feel free to contact me on twitter: http://twitter.com/meulta  When we started Vorlon.js with Pierre, David and David we wanted to keep it as">
+<meta name="keywords" content="Vorlon.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to deploy an online Vorlon.js server with authentication">
+<meta property="og:url" content="http://yoursite.com/2015/09/17/how-to-deploy-an-online-vorlon-js-server-with-authentication/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="If you have any question about this article or Vorlon.js, feel free to contact me on twitter: http://twitter.com/meulta  When we started Vorlon.js with Pierre, David and David we wanted to keep it as">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/7245.image_thumb_673CC676.png">
+<meta property="og:image" content="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/8080.image_thumb_713B45E0.png">
+<meta property="og:image" content="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/6675.image_thumb_37BAC69A.png">
+<meta property="og:image" content="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/3858.vorlonauth_thumb_201D57AB.png">
+<meta property="og:image" content="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/1033.image_thumb_413B3723.png">
+<meta property="og:image" content="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/0676.image_thumb_6E52B4A2.png">
+<meta property="og:image" content="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/3681.image_thumb_1C35247D.png">
+<meta property="og:updated_time" content="2019-01-15T19:30:04.149Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How to deploy an online Vorlon.js server with authentication">
+<meta name="twitter:description" content="If you have any question about this article or Vorlon.js, feel free to contact me on twitter: http://twitter.com/meulta  When we started Vorlon.js with Pierre, David and David we wanted to keep it as">
+<meta name="twitter:image" content="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/7245.image_thumb_673CC676.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-how-to-deploy-an-online-vorlon-js-server-with-authentication" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/17/how-to-deploy-an-online-vorlon-js-server-with-authentication/" class="article-date">
+  <time datetime="2015-09-17T19:35:13.000Z" itemprop="datePublished">2015-09-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Vorlon-js/">Vorlon.js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      How to deploy an online Vorlon.js server with authentication
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p><em>If you have any question about this article or Vorlon.js, feel free to contact me on twitter:</em> <a href="http://twitter.com/meulta" target="_blank" rel="noopener"><em>http://twitter.com/meulta</em></a></p>
+</blockquote>
+<p>When we started <a href="http://vorlon.io" target="_blank">Vorlon.js</a> with <a href="http://twitter.com/pierlag" target="_blank">Pierre</a>, <a href="https://twitter.com/deltakosh" target="_blank">David</a> and <a href="https://twitter.com/davrous" target="_blank">David</a> we wanted to keep it as simple as possible. It is our main concern, our mojo. That is why you only have to run <strong>npm install –g vorlon</strong> to get a Vorlon server and that you only have to add <strong>ONE</strong> line of code in your client to connect it to the Vorlon dashboard. This is why in the early version we did not implement any kind of <strong>authentication</strong>.</p>
+<p>In this article I will explain to you why we added this and how to activate it.</p>
+<p>If you never used Vorlon.js, read this first : <a href="http://blogs.msdn.com/b/eternalcoding/archive/2015/04/30/why-we-made-vorlon-js-and-how-to-use-it-to-debug-your-javascript-remotely.aspx" title="http://blogs.msdn.com/b/eternalcoding/archive/2015/04/30/why-we-made-vorlon-js-and-how-to-use-it-to-debug-your-javascript-remotely.aspx" target="_blank" rel="noopener">http://blogs.msdn.com/b/eternalcoding/archive/2015/04/30/why-we-made-vorlon-js-and-how-to-use-it-to-debug-your-javascript-remotely.aspx</a></p>
+<h1 id="Why-we-implemented-authentication"><a href="#Why-we-implemented-authentication" class="headerlink" title="Why we implemented authentication"></a>Why we implemented authentication</h1><p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/4274.image_6E59723D.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/7245.image_thumb_673CC676.png" alt="image" width="341" height="179" border="0"></a></p>
+<p>When we did our first demos in public we published our own Vorlon server instance in a Microsoft Azure website. At this time we didn’t have a way to specify a login and password for the dashboard.</p>
+<p><strong>This once led to a huge fail 🙂</strong></p>
+<p>Someone in the public copied the url displayed on my screen and accessed the dashboard from his computer. This messed up with the one displayed on my computer and totally screwed our demo. <strong>YEY ! o/</strong></p>
+<p>From this fail we made the decision to implement a simple authentication. This is obviously helping us for our demos but also you in the case you want to publish a publicly accessible version of the dashboard.</p>
+<h1 id="How-to-deploy-Vorlon-js-online-easily"><a href="#How-to-deploy-Vorlon-js-online-easily" class="headerlink" title="How to deploy Vorlon.js online easily ?"></a>How to deploy Vorlon.js online easily ?</h1><p>Vorlon is really easy to install. All you need to to is having Node.js Package Manager (npm) on you box and run the correct command line. Everything is get to you from the npm platform and you can start you instance typing <strong>vorlon</strong> in your command line.</p>
+<p>From there you need to make your server accessible through the internet and open the correct tcp port etc. etc. This can be a bit complicated and if you do not want to manage that yourself you can use a feature we added for you in our github repository : <a href="https://github.com/microsoftdx/vorlonjs" title="https://github.com/microsoftdx/vorlonjs" target="_blank" rel="noopener">https://github.com/microsoftdx/vorlonjs</a>.</p>
+<p>If you go on the bottom of the repo, in the readme section,  you get access to a <strong>Deploy to Azure</strong> button.</p>
+<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/6470.image_72111B19.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/8080.image_thumb_713B45E0.png" alt="image" width="552" height="251" border="0"></a></p>
+<p>By clicking on this, we automatically get you through a 3 steps process which will:</p>
+<ul>
+<li>Create an Azure website on your Azure subscription (*)</li>
+<li>Deploy the latest version of Vorlon on it</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong><em>(*) if you do not have an azure subscription and want to get one you can know more in the last section of this article (with FREE options in it ;-))</em></strong></p>
+<p>All of this is <strong>automated</strong>. You can see a quick video of this here :</p>
+<h1 id="How-to-activate-authentication"><a href="#How-to-activate-authentication" class="headerlink" title="How to activate authentication"></a>How to activate authentication</h1><p><em><strong>PLEASE NOTE:</strong> For now the authentication is only available in the <strong>development-0.0.16</strong> branch on the GitHub repo. To get it, you need to deploy the code from this branch (manually somewhere you want or using Azure deploy). It will be available on the npm package in the 0.0.16 version we should release by the end of september.</em></p>
+<p>We implemented authentication using <a href="http://passportjs.org/" target="_blank">passport.js</a>. We chose to activated a simple mode which you specify a login and password. For now you can only specify one account and we may implemented a more sophisticated version of this later (including <strong>Twitter</strong> and <strong>Facebook</strong> auth and multiple accounts management).</p>
+<p>You can activate a basic authentication on the Vorlon.js dashboard by adding 3 values to the config.json file:</p>
+<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/6254.image_47C704A0.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/6675.image_thumb_37BAC69A.png" alt="image" width="692" height="116" border="0"></a></p>
+<p>This file is located in the <strong>/server</strong> folder on your Vorlon.js deployment folder (or in the _node_modules_ folder if you deployed using <strong>npm</strong>).</p>
+<p>Restart your Vorlon instance and <strong>BAM</strong> you are now prompted and asked to give your username and password.</p>
+<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/6237.vorlonauth_333BF3A6.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="vorlonauth" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/3858.vorlonauth_thumb_201D57AB.png" alt="vorlonauth" width="662" height="486" border="0"></a></p>
+<p>Easy right? 🙂</p>
+<h1 id="How-to-change-the-config-json-file-when-deployed-on-Azure"><a href="#How-to-change-the-config-json-file-when-deployed-on-Azure" class="headerlink" title="How to change the config.json file when deployed on Azure"></a>How to change the config.json file when deployed on Azure</h1><p>If you chose to deploy Vorlon on an Azure subscription you can access the files hosted on the Azure Web App using Visual Studio Online Monaco. This is a free tool actionable from the <strong>Configure</strong> section of your web app in the Azure Dashboard.</p>
+<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/4382.image_3F6AE15C.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/1033.image_thumb_413B3723.png" alt="image" width="491" height="94" border="0"></a></p>
+<p>You can then get access to the <strong>Edit in Visual Studio Online</strong> button on your web app dashboard page.</p>
+<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/4375.image_37E202A0.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/0676.image_thumb_6E52B4A2.png" alt="image" width="298" height="46" border="0"></a></p>
+<p>Navigate to the config.json file and edit it to activate authentication (or add / remove plugins also !):</p>
+<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/2262.image_521788E6.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/3681.image_thumb_1C35247D.png" alt="image" width="719" height="560" border="0"></a></p>
+<p><em><strong>Note : do not forget to restart the service for this to be taken into account</strong></em>.</p>
+<p>## </p>
+<h1 id="I-want-to-use-an-Azure-Web-App-but-do-not-have-an-account-yet-what-are-my-options"><a href="#I-want-to-use-an-Azure-Web-App-but-do-not-have-an-account-yet-what-are-my-options" class="headerlink" title="I want to use an Azure Web App but do not have an account yet, what are my options ?"></a>I want to use an Azure Web App but do not have an account yet, what are my options ?</h1><p>You can create an account on the <a href="http://azure.microsoft.com" target="_blank" rel="noopener">http://azure.microsoft.com</a> website. This will get you the ability to create free azure web apps. 🙂</p>
+<p>Another way to test it is to get a trial by going here : <a href="https://azure.microsoft.com/en-us/pricing/free-trial/" title="https://azure.microsoft.com/en-us/pricing/free-trial/" target="_blank" rel="noopener">https://azure.microsoft.com/en-us/pricing/free-trial/</a>. You will have a credit card-free account to try azure for one month.</p>
+<p>Finally, if you are a Startup or anything else which matches with the requirements you can create a Bizspark account: <a href="https://www.microsoft.com/bizspark" title="https://www.microsoft.com/bizspark" target="_blank" rel="noopener">https://www.microsoft.com/bizspark</a> this will enable you pretty much the same thing as the trial but going on for 3 years.</p>
+<p>And if you <strong>really</strong> want to host Vorlon elsewhere there are no problems, it will work the same way 🙂</p>
+<blockquote>
+<p><em>If you have any question about this article or Vorlon.js, feel free to contact me on twitter:</em> <a href="http://twitter.com/meulta" target="_blank" rel="noopener"><em>http://twitter.com/meulta</em></a></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/17/how-to-deploy-an-online-vorlon-js-server-with-authentication/" data-id="cjqy5mxtu000gm8ulybuiwusl" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vorlon-js/">Vorlon.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/10/29/vorlon-js-0-1-0-is-out/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Vorlon.js 0.1.0 is out !
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/06/24/vorlon-js-0-0-15-is-out/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vorlon.js 0.0.15 is out !</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Babylon-js/">Babylon.js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bots/">Bots</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Bots/Node-js/">Node.js</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Bots/Node-js/Vorlon-js/">Vorlon.js</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bots/Progressive-web-apps/">Progressive web apps</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Bots/Progressive-web-apps/Web/">Web</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Express-js/">Express.js</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Express-js/Node-js/">Node.js</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Express-js/Node-js/Vorlon-js/">Vorlon.js</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vorlon-js/">Vorlon.js</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Vorlon-js/Web/">Web</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Accessibility/">Accessibility</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BabylonJS/">BabylonJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bots/">Bots</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cordova/">Cordova</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Debug/">Debug</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Game/">Game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HoloLens/">HoloLens</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mixed-Reality/">Mixed Reality</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mobile/">Mobile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Responsive/">Responsive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Titanium/">Titanium</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio-2015/">Visual Studio 2015</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio-Code/">Visual Studio Code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vorlon-js/">Vorlon.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebGL/">WebGL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xamarin/">Xamarin</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Accessibility/" style="font-size: 15px;">Accessibility</a> <a href="/tags/BabylonJS/" style="font-size: 12.5px;">BabylonJS</a> <a href="/tags/Bots/" style="font-size: 10px;">Bots</a> <a href="/tags/Cordova/" style="font-size: 15px;">Cordova</a> <a href="/tags/Debug/" style="font-size: 12.5px;">Debug</a> <a href="/tags/Game/" style="font-size: 12.5px;">Game</a> <a href="/tags/HTML5/" style="font-size: 20px;">HTML5</a> <a href="/tags/HoloLens/" style="font-size: 10px;">HoloLens</a> <a href="/tags/Mixed-Reality/" style="font-size: 10px;">Mixed Reality</a> <a href="/tags/Mobile/" style="font-size: 17.5px;">Mobile</a> <a href="/tags/Node-js/" style="font-size: 12.5px;">Node.js</a> <a href="/tags/Responsive/" style="font-size: 15px;">Responsive</a> <a href="/tags/Titanium/" style="font-size: 10px;">Titanium</a> <a href="/tags/Visual-Studio-2015/" style="font-size: 10px;">Visual Studio 2015</a> <a href="/tags/Visual-Studio-Code/" style="font-size: 10px;">Visual Studio Code</a> <a href="/tags/Vorlon-js/" style="font-size: 17.5px;">Vorlon.js</a> <a href="/tags/WebGL/" style="font-size: 10px;">WebGL</a> <a href="/tags/Xamarin/" style="font-size: 10px;">Xamarin</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/05/18/experimenting-with-windows-machine-learning-and-mixed-reality/">Experimenting with Windows Machine Learning and Mixed Reality</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/17/bot-framework-web-chat-and-push-notifications/">Bot framework, web chat and push notifications</a>
+          </li>
+        
+          <li>
+            <a href="/2017/01/25/how-to-debug-your-bot-with-vorlon-js/">How to debug your bot with Vorlon.js</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/15/debug-your-dom-history-using-vorlon-js/">Debug your dom history using Vorlon.js</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/05/remote-inspect-node-js-and-express-with-vorlon-js/">Remote inspect Node.js and Express with Vorlon.js</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
