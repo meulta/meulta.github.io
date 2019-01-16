@@ -1,20 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
-  
 
-  
-  <title>Vorlon.js 0.1.0 is out ! | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="If you have any question about this article or Vorlon.js, feel free to contact me on twitter: http://twitter.com/meulta   The Vorlon.js core team is split between Paris and Redmond. Last week we deci">
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Meulta&#39;s blog">
+    <title>Vorlon.js 0.1.0 is out ! - Meulta&#39;s blog</title>
+    <meta name="author" content="Etienne Margraff">
+    
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Etienne Margraff","sameAs":["https://github.com/meulta","https://twitter.com/meulta","https://www.linkedin.com/in/etima/"],"image":"avatar.jpg"},"articleBody":"\nIf you have any question about this article or Vorlon.js, feel free to contact me on twitter: http://twitter.com/meulta \n\nThe Vorlon.js core team is split between Paris and Redmond. Last week we decided to ship a new big release and we all took a plane to Redmond and get together for a 2 days intense pair programming session. After multiple hours of bug bashing and last minute features coding we are happy and proud to announce that we published the new version of Vorlon.js : 0.1.0 !\n\nYou can get it by running the npm install –g vorlon command, clone the GitHub repo: https://github.com/Microsoftdx/vorlonjs or install it using the new deploy to Azure button we added between the last version and the new one (read more about this).\n\n4 month between the 0.0.15 and the 0.1.0 version and we are now up to almost 1000 commits, 100 pull requests and we closed and fixed 120 issues. Vorlon.js is heading the right direction and this is mainly thanks to the web community: thanks to you guys ! 🙂\nWhat is new in this releaseUnit testing pluginWe now have a unit testing plugin based on qUnit. You can upload you Qunit file or directly type your test on the Vorlon.js dashboard : it will run it on the client side and get you the result summary.\n\nThis has been done by Cubitouch.\n## \nDevice pluginThis is inspired from the http://mydevice.io website created by Raphael Goetter. It is giving you information about the device you are running your website on like the pixel ratio, the pixel per points, the meta viewport or even the User Agent.\n\nBest practices pluginCreating a web site can be challenging sometimes because you have to follow a lot of rules and best practices to provide the best experience possible. We decided to help you improving your code with Vorlon.js through the Best Practices analyzer. It is performing static and dynamic analytics on your code to tell you what could be better. It is organized into 4 categories:\n\nAccessibility: Warn you if you have forgotten thing like alt on images or aria attributes\nMobile Web: Are you using responsive practices ? do you use the meta viewport tag?\nPerformances: Are your files minified? Did you bundle them do reduce http request count ?\nWeb standards: Are you doing browser detection? Are you correctly using CSS prefixes?\n\n&nbsp;\nThis is only a subset of all the rules we have here, and the two guys who did it (Guillaume Leborgne and Mehdi Lahlou) made it extensible. You can create your own rules and easily add them to this analyzer.\n\nImprovements and other plugins :Vorlon.js got its first third party plugin : Wappalyzer which is available in the GitHub repo folder plugins library.\nThe DOM Explorer has been highly improved with :\n\nAll of the nodes displayed (not only body, but head too)\nCSS updates\nA better search UI\nSelect a DOM on the client\n\n&nbsp;\nObject explorer is better integrated in the dashboard and we did some bug fixes.\nDashboardWe did a lot of refactoring, performance and stability improvements on the dashboard. You can also refresh the client side from there by clicking on the reload client button.\n\nHTTP Proxy : use Vorlon.js without changing your client codeWe created a new awesome feature we were able to ship on this version : the HTTP proxy. This allows you to inject the Vorlon.js client code automatically while browsing your website.\nThe way it works is really simple: all the http requests you do for your client site are redirected through an http proxy hosted on node.js side by side with the Vorlon.js server. Each time an HTML page goes there we inject the script tag you would have had to add yourself.\nTo use it: only browse this url : http://localhost:1337/httpproxy (or any domain name you are using instead of localhost).\n\nEnter your url and click on  :\n\nOpen website only : to open a proxified url for your website\nOpen dashboard only: to open the dashboard plugged to a session according to the proxified version of your website\nInspect with Vorlon.js: to open both in one click\n\n&nbsp;\nYou can notice than the URL is different from your original one :\n\nIt is composed of multiple parts:\nhttp://localhost:5050/vorlonproxy/root.html?vorlonproxytarget=[YOURWEBSITEURL]&amp;vorlonsessionid=[DASHBOARDSESSION]\nYou just have to browse your Vorlon.js instance using the correct session :\nhttp://localhost:1337/dashboard/[DASHBOARDSESSION]\nAnd everything works the same way you already know ! 🙂 Isn’t that awesome ?\nA huge thanks to Guillaume Leborgne who did a really strong work on this one.\nMore improvementsWe added support for authentication  :\n\nAnd automated deployment from GitHub to you Microsoft Azure account:\n\nYou can read more about this here : http://blogs.msdn.com/b/emargraff/archive/2015/09/17/how-to-deploy-an-online-vorlon-js-server-with-authentication.aspx\nDo not hesitate to share about this with us on twitter or to create an issue on GitHub: https://github.com/MicrosoftDX/Vorlonjs\nAnd if you want to participate, jump in and create new plugins ! Here is something to get you started : http://blogs.msdn.com/b/emargraff/archive/2015/06/01/how-to-create-a-vorlon-js-plugin.aspx\nHave fun 🙂\n\nIf you have any question about this article or Vorlon.js, feel free to contact me on twitter: http://twitter.com/meulta\n\n","dateCreated":"2015-10-29T02:52:06-07:00","dateModified":"2019-01-15T15:13:55-08:00","datePublished":"2015-10-29T02:52:06-07:00","description":"","headline":"Vorlon.js 0.1.0 is out !","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/10/29/vorlon-js-0-1-0-is-out/"},"publisher":{"@type":"Organization","name":"Etienne Margraff","sameAs":["https://github.com/meulta","https://twitter.com/meulta","https://www.linkedin.com/in/etima/"],"image":"avatar.jpg","logo":{"@type":"ImageObject","url":"avatar.jpg"}},"url":"http://yoursite.com/2015/10/29/vorlon-js-0-1-0-is-out/","keywords":"HTML5, Mobile, Vorlon.js, Responsive"}</script>
+    <meta name="description" content="If you have any question about this article or Vorlon.js, feel free to contact me on twitter: http://twitter.com/meulta   The Vorlon.js core team is split between Paris and Redmond. Last week we deci">
 <meta name="keywords" content="HTML5,Mobile,Vorlon.js,Responsive">
-<meta property="og:type" content="article">
+<meta property="og:type" content="blog">
 <meta property="og:title" content="Vorlon.js 0.1.0 is out !">
 <meta property="og:url" content="http://yoursite.com/2015/10/29/vorlon-js-0-1-0-is-out/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Meulta&#39;s blog">
 <meta property="og:description" content="If you have any question about this article or Vorlon.js, feel free to contact me on twitter: http://twitter.com/meulta   The Vorlon.js core team is split between Paris and Redmond. Last week we deci">
-<meta property="og:locale" content="default">
+<meta property="og:locale" content="en">
 <meta property="og:image" content="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/4035.vorlon_thumb_11110F35.png">
 <meta property="og:image" content="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/0777.image_thumb_5241A93D.png">
 <meta property="og:image" content="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/7848.image_thumb_2F0EBA78.png">
@@ -30,79 +37,195 @@
 <meta name="twitter:title" content="Vorlon.js 0.1.0 is out !">
 <meta name="twitter:description" content="If you have any question about this article or Vorlon.js, feel free to contact me on twitter: http://twitter.com/meulta   The Vorlon.js core team is split between Paris and Redmond. Last week we deci">
 <meta name="twitter:image" content="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/4035.vorlon_thumb_11110F35.png">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
+<meta name="twitter:creator" content="@http:&#x2F;&#x2F;twitter.com&#x2F;meulta">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://yoursite.com/assets/images/avatar.jpg"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-c4ozcsklz4kht2pebhp44xorvyverh23toayhn7i6ubrpyedak24hv1v0hyd.min.css">
+    <!--STYLES END-->
+    
+
+    
 </head>
-</html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">Meulta&#39;s blog</a>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+    
         
-          <a class="main-nav-link" href="/">Home</a>
+            <a class="header-right-picture " href="#about">
         
-          <a class="main-nav-link" href="/archives">Archives</a>
         
-      </nav>
-      <nav id="sub-nav">
+            <img class="header-picture" src="/assets/images/avatar.jpg" alt="Author&#39;s picture">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
+        </a>
+    
 </header>
-      <div class="outer">
-        <section id="main"><article id="post-vorlon-js-0-1-0-is-out" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/10/29/vorlon-js-0-1-0-is-out/" class="article-date">
-  <time datetime="2015-10-29T09:52:06.000Z" itemprop="datePublished">2015-10-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Vorlon-js/">Vorlon.js</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+            <!-- Define author's picture -->
+
+
+
         
-  
-    <h1 class="article-title" itemprop="name">
-      Vorlon.js 0.1.0 is out !
-    </h1>
-  
-
-      </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/avatar.jpg" alt="Author&#39;s picture">
+                </a>
+                <h4 class="sidebar-profile-name">Etienne Margraff</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>I write code and love working with web, AR, VR and Spatial Computing</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/ " title="Home">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="Categories">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="Tags">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="Archives">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="#about" title="About">
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/meulta" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://twitter.com/meulta" target="_blank" rel="noopener" title="Twitter">
+                    
+                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://www.linkedin.com/in/etima/" target="_blank" rel="noopener" title="LinkedIn">
+                    
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Vorlon.js 0.1.0 is out !
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2015-10-29T02:52:06-07:00">
+	
+		    Oct 29, 2015
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Vorlon-js/">Vorlon.js</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <blockquote>
 <p><em>If you have any question about this article or Vorlon.js, feel free to contact me on twitter: <a href="http://twitter.com/meulta" target="_blank" rel="noopener">http://twitter.com/meulta</a></em> </p>
 </blockquote>
 <p>The Vorlon.js core team is split between Paris and Redmond. Last week we decided to ship a new big release and we all took a plane to Redmond and get together for a 2 days intense pair programming session. After multiple hours of bug bashing and last minute features coding we are <strong>happy and proud to announce</strong> that we published the new version of <strong>Vorlon.js : 0.1.0</strong> !</p>
@@ -169,147 +292,258 @@
 <p><em>If you have any question about this article or Vorlon.js, feel free to contact me on twitter: <a href="http://twitter.com/meulta" target="_blank" rel="noopener">http://twitter.com/meulta</a></em></p>
 </blockquote>
 
-      
+            
+
+        </div>
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/10/29/vorlon-js-0-1-0-is-out/" data-id="cjqyfv9nd000mf4ulwtww8hm7" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mobile/">Mobile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Responsive/">Responsive</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vorlon-js/">Vorlon.js</a></li></ul>
-
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2015/11/24/dbuguer-node-js-avec-vs-code/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
+    <div id="post-footer" class="post-footer main-content-wrap">
         
-          Débuguer Node.js avec VS Code
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2015/09/17/how-to-deploy-an-online-vorlon-js-server-with-authentication/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">How to deploy an online Vorlon.js server with authentication</div>
-    </a>
-  
-</nav>
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/HTML5/">HTML5</a> <a class="tag tag--primary tag--small t-link" href="/tags/Mobile/">Mobile</a> <a class="tag tag--primary tag--small t-link" href="/tags/Responsive/">Responsive</a> <a class="tag tag--primary tag--small t-link" href="/tags/Vorlon-js/">Vorlon.js</a>
 
-  
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/24/dbuguer-node-js-avec-vs-code/" data-tooltip="Débuguer Node.js avec VS Code" aria-label="PREVIOUS: Débuguer Node.js avec VS Code">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/09/17/how-to-deploy-an-online-vorlon-js-server-with-authentication/" data-tooltip="How to deploy an online Vorlon.js server with authentication" aria-label="NEXT: How to deploy an online Vorlon.js server with authentication">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/10/29/vorlon-js-0-1-0-is-out/" title="Share on Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/10/29/vorlon-js-0-1-0-is-out/" title="Share on Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/10/29/vorlon-js-0-1-0-is-out/" title="Share on Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
 </article>
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Babylon-js/">Babylon.js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bots/">Bots</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Bots/Node-js/">Node.js</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Bots/Node-js/Vorlon-js/">Vorlon.js</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bots/Progressive-web-apps/">Progressive web apps</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Bots/Progressive-web-apps/Web/">Web</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Express-js/">Express.js</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Express-js/Node-js/">Node.js</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Express-js/Node-js/Vorlon-js/">Vorlon.js</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vorlon-js/">Vorlon.js</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Vorlon-js/Web/">Web</a></li></ul></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Accessibility/">Accessibility</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BabylonJS/">BabylonJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bots/">Bots</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cordova/">Cordova</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Debug/">Debug</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Game/">Game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HoloLens/">HoloLens</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mixed-Reality/">Mixed Reality</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mobile/">Mobile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Responsive/">Responsive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Titanium/">Titanium</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio-2015/">Visual Studio 2015</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio-Code/">Visual Studio Code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vorlon-js/">Vorlon.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebGL/">WebGL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xamarin/">Xamarin</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Accessibility/" style="font-size: 15px;">Accessibility</a> <a href="/tags/BabylonJS/" style="font-size: 12.5px;">BabylonJS</a> <a href="/tags/Bots/" style="font-size: 10px;">Bots</a> <a href="/tags/Cordova/" style="font-size: 15px;">Cordova</a> <a href="/tags/Debug/" style="font-size: 12.5px;">Debug</a> <a href="/tags/Game/" style="font-size: 12.5px;">Game</a> <a href="/tags/HTML5/" style="font-size: 20px;">HTML5</a> <a href="/tags/HoloLens/" style="font-size: 10px;">HoloLens</a> <a href="/tags/Mixed-Reality/" style="font-size: 10px;">Mixed Reality</a> <a href="/tags/Mobile/" style="font-size: 17.5px;">Mobile</a> <a href="/tags/Node-js/" style="font-size: 12.5px;">Node.js</a> <a href="/tags/Responsive/" style="font-size: 15px;">Responsive</a> <a href="/tags/Titanium/" style="font-size: 10px;">Titanium</a> <a href="/tags/Visual-Studio-2015/" style="font-size: 10px;">Visual Studio 2015</a> <a href="/tags/Visual-Studio-Code/" style="font-size: 10px;">Visual Studio Code</a> <a href="/tags/Vorlon-js/" style="font-size: 17.5px;">Vorlon.js</a> <a href="/tags/WebGL/" style="font-size: 10px;">WebGL</a> <a href="/tags/Xamarin/" style="font-size: 10px;">Xamarin</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2018/05/18/experimenting-with-windows-machine-learning-and-mixed-reality/">Experimenting with Windows Machine Learning and Mixed Reality</a>
-          </li>
-        
-          <li>
-            <a href="/2017/04/17/bot-framework-web-chat-and-push-notifications/">Bot framework, web chat and push notifications</a>
-          </li>
-        
-          <li>
-            <a href="/2017/01/25/how-to-debug-your-bot-with-vorlon-js/">How to debug your bot with Vorlon.js</a>
-          </li>
-        
-          <li>
-            <a href="/2016/11/15/debug-your-dom-history-using-vorlon-js/">Debug your dom history using Vorlon.js</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/05/remote-inspect-node-js-and-express-with-vorlon-js/">Remote inspect Node.js and Express with Vorlon.js</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 Etienne Margraff. All Rights Reserved.
+    </span>
 </footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/24/dbuguer-node-js-avec-vs-code/" data-tooltip="Débuguer Node.js avec VS Code" aria-label="PREVIOUS: Débuguer Node.js avec VS Code">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/09/17/how-to-deploy-an-online-vorlon-js-server-with-authentication/" data-tooltip="How to deploy an online Vorlon.js server with authentication" aria-label="NEXT: How to deploy an online Vorlon.js server with authentication">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/10/29/vorlon-js-0-1-0-is-out/" title="Share on Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/10/29/vorlon-js-0-1-0-is-out/" title="Share on Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/10/29/vorlon-js-0-1-0-is-out/" title="Share on Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/10/29/vorlon-js-0-1-0-is-out/">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/10/29/vorlon-js-0-1-0-is-out/">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/10/29/vorlon-js-0-1-0-is-out/">
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    </a>
+                </li>
+            
+        </ul>
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+
+
+            
+        </div>
+        
+
+
+    
+        
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/avatar.jpg" alt="Author&#39;s picture">
+        
+            <h4 id="about-card-name">Etienne Margraff</h4>
+        
+            <div id="about-card-bio"><p>I write code and love working with web, AR, VR and Spatial Computing</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>Software Engineering Lead</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Seattle, WA
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover-v1.2.0.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-dbd16rvloemmuxdzniplmnxxvwoz24eya9wol0b7vvmlokgqsjivmb8dnscy.min.js"></script>
+<!--SCRIPTS END-->
+
+    
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
-
-<script src="/js/script.js"></script>
-
-
-
-  </div>
-</body>
+    </body>
 </html>

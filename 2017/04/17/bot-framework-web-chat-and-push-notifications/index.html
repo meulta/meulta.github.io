@@ -1,98 +1,221 @@
-<!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
-  
 
-  
-  <title>Bot framework, web chat and push notifications | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="This blog article is explaining how to setup web push notifications on a bot framework web chat control. For this, we will use service workers and VAPID. All the code shown here is available in this G">
-<meta property="og:type" content="article">
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Meulta&#39;s blog">
+    <title>Bot framework, web chat and push notifications - Meulta&#39;s blog</title>
+    <meta name="author" content="Etienne Margraff">
+    
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Etienne Margraff","sameAs":["https://github.com/meulta","https://twitter.com/meulta","https://www.linkedin.com/in/etima/"],"image":"avatar.jpg"},"articleBody":"This blog article is explaining how to setup web push notifications on a bot framework web chat control. For this, we will use service workers and VAPID. All the code shown here is available in this Github repository containing the full version of it. You can also try this live sample or watch the video below.\n  push-notifications.mp4\n\n\nIf you have any question about this blog article, feel free to contact me on twitter: @meulta\n\nProgressive web appsThe web is in a perpetual evolution. The advantage that apps have over it on mobile platforms is slowly fading away as more and more features are available from the browser. The web community and web browsers team like Microsoft Edge, Google Chrome and Mozilla Firefox are working on enabling the next wave of native-like web experiences, where web content can have the essential capabilities and user experience of native desktop or mobile apps. These web apps can start up instantly, can run in the background and have additional APIs available for developers. We call them: Progressive Web Apps (PWAs).\nPWAs are safe, connectivity independent, installable and responsive websites. There is a great chance that you already used one, even without knowing it. Did you already received notifications from Facebook even if the website is not opened in your browser? It is because Facebook is starting to use some of the underlining technology in PWAs. The heart of these new technologies are service workers.\nService workers are slowly being implemented in every browser to help web developers create web apps that are connectivity independent. You can see them as a proxy that goes between the local webpage and your server. It is used to handle caching, push notifications, and even temporary disconnection with background sync.\nBot framework, web chat and the need of push notificationsThe Microsoft Bot Framework is a platform that helps developers create a bot which works across multiple channels. You use the Node.js or C# botbuilder SDK to create the bot backend and you can almost automatically make is available on Skype, Slack, Facebook, and a lot more. The combinaison of the web chat and Direct Line is one of these channels. Its name is pretty explicit: it is a web chat control that you can embed in any web page. It is very useful when, for example, you want to embed a support bot chat window directly in your website. Web clients have always been inferior to native clients in one way: background.  Your native client can be granted privileges to run in the background and engage users even when the app isn’t running.  We want to provide that same functionality for the web client\nAs you might be using at least one instant messaging app on a day to day basis, you should be familiar with the fact that if someone talks to you when the app is closed or reduced you will receive a notification. You can click or tap on it to view the new message and the previous conversation. Having this is important to make the chat UI usable in the long term. It is the same if you are talking with a bot. Usually it will give you an answer pretty quickly as there is no concept of a bot being “away from keyboard” or “not connected”. This said, you might get a message from a bot which:\n\nTook some time to compute or get so did not arrive instantly\nIs a proactive message from the bot at a random time\nIs a human which took over the conversation and “replaced” the bot\nYour network doesn’t allow for immediate communication\n\nPush notifications help the user not missing an important message from you. By enabling them to the web client we will fix the gap between native and web clients.\nPush notificationsIf you never handled push notifications in an app it is important to understand how it works.\nWhen you receive a push notification from an app or a website, even if it looks like they sent it to you directly: it is not technically true. They used a push notification service. This push notification service is linked to the platform you are using. Android uses a push server and Windows another one. It is the same for push notification on a browser: Chrome has its own server, Firefox too, etc.\nWhen you want to be able to send push to a client, you globally have to follow these steps:\n\nStep 1: Setup an account on every platform you want to be able to send push to. The push service creates a push sender key that you will need later.\nStep 2: Subscribe a client to push: this is done and handled by the platform. You do not call directly the push server but you ask the platform to do it. For it to work and for the push server to be able to identify yourself, you have to provide the key it gave you.\nStep 3: The client get information related to the new subscription: an endpoint on the push server to call to send a new notification and keys for authentication\nStep 4: Usually, your client code then sends that to your server code to store this subscription information\nStep 5+: each time you want to send a notification to this client, you use the endpoint and keys that you got from it. The push server will then send that notification to the system which registered (a browser, a mobile, a desktop, etc.). Finally, the system displays it to the user who can see it and click on it.\n\n\nThis is identical for native apps and web apps. However, web notifications are a newer and more progressive spec.  They allow for developers to set up push without all the overhead of accounts on each platform. Your web app will still use the push server associated with each platform but you will generate your own keys. This is done by using VAPID (Voluntary Application Server Identification).\nFor example, if you setup classic push notifications on chrome, you will have to give a GCM_SENDER_ID you got from a Firebase account. Using VAPID, chrome will still be using Firebase to register and get push events but you will give it your own key, which will also work with other browsers.\nIn this scenario, your server code is responsible for creating private and public keys. This is a one-time creation process. In your web client code, you use the public key to register to the push server associated with the current browser. The push service understand that you are using VAPID and you get an endpoint and an auth token. This basically only replace step 3 and you can do everything else the same way.  VAPIDs represent the modern approach to push.\nTo get a deeper understanding of how VAPIDs work, you can check out any of these resources:\n\nhttps://rossta.net/blog/using-the-web-push-api-with-vapid.html\nhttps://developers.google.com/web/updates/2016/07/web-push-interop-wins\nhttps://blog.mozilla.org/services/2016/04/04/using-vapid-with-webpush/\n\nWhen you setup push on a website, you have to do it through a service worker. A service worker is a piece of code which is running side by side with your website client code. The 2 main differences are:\n\nIt can run even if the website is not open in a tab\nIt is dedicated to network related work such as… push!\n\nIn a push scenario, the service worker registers specifically to a “push” event. Its code will be running in the background to get and display what is pushed, and your client code will be responsible for the rest:\n\nregistering the service worker JavaScript file using serviceWorker.register(…)\nregistering to the push service and getting back the endpoint, key and secret for this push subscription\nsending the endpoint, key and secret to your server code so it can send a push notification later\n\nNote: when you register for push in your client code, the browser will automatically ask for the user’s permission to enable push notifications.\nOk, enough talking, let’s implement that!\nDisclaimer 1: The code I am going to talk about here is from a fully working sample which is available here: https://github.com/meulta/webchat-pushnotifications You can go and have a look at the whole implementation. I will only talk about interesting pieces here. \nDisclaimer 2: If you do not know anything about the Bot Framework I highly recommend reading the documentation: https://docs.botframework.com/en-us/\n_Disclaimer 3: concepts I talk about here will work for any website even if you are not using bot framework _\nDisclaimer 4: sorry about all these disclaimers! &#x1f609;\nAdding push notification to an existing bot\nYou can try a live version of this sample here: https://webchatpush.azurewebsites.net/web/index.html\n\nThe bot we are using in this sample is a really simple one. If you say anything to it, it will start sending one message every 5 seconds. You can stop it by saying “stop”.\nYou can have a look at the code doing this (https://github.com/meulta/webchat-pushnotifications/blob/master/bot.js#L84-L103) but please do not take it as a reference to send messages proactively to a user from a bot. I tried to keep it as simple as possible as this is not the important part here. You can read more about how to send a message proactively to a user here: https://docs.botframework.com/en-us/azure-bot-service/templates/proactive/\nThis server code is responsible for creating VAPID keys and send push notification to clients.\n\nCreating Vapid keys\n\nIf you create your server code in Node.js then you can use a very cool module created by Mozilla which will do almost all the work for you: web-push : https://github.com/web-push-libs/web-push\nYou will have to first generated Vapid keys using the webPush.generateVapidKeys() function. You only have to do this once or when you want to reset your keys. In our sample, we generate them and store them in a local JSON file. You might want to store this somewhere more secure.\n1234567891011121314151617181920212223242526const vapidKeyFilePath = \"./vapidKey.json\";var vapidKeys = &#123;&#125;;if (fs.existsSync(vapidKeyFilePath)) &#123;  //if the vapid file exists, then we try to parse its content   //to retrieve the public and private key  //more tests might be necessary here  try &#123;    vapidKeys = JSON.parse(fs.readFileSync(vapidKeyFilePath));  &#125;    catch (e) &#123;    console.error(\"There is an error with the vapid key file. Log: \" + e.message);    process.exit(-1);  &#125;&#125;else &#123;  //if the file did not exists, we use the web-push module to create keys  //and store them in the file for future use  //you should copy the public key in the index.js file  vapidKeys = webPush.generateVAPIDKeys();  fs.writeFileSync(vapidKeyFilePath, JSON.stringify(vapidKeys));  console.log(\"No vapid key file found. One was generated. Here is the public key: \" + vapidKeys.publicKey);&#125;\nYou then have to call the setVapidDetails() function to configure the web push module to send push notifications using the vapid private key. This will ensure the push server to be sure it comes from you.\n1234webPush.setVapidDetails(  'mailto:example@yourdomain.org',  vapidKeys.publicKey,  vapidKeys.privateKey);\n\nHandling event to register push\n\nA bot can receive messages from the user but it can also receive events from the client code. This is very handful to send data to your bot backend code without the user knowing it. In the web chat control it is called the backchannel.\nWe are going to use this backchannel for the client code to have a way of sending every user push subscription information. We just listen to incoming activities of type event and check that the message name is pushsubscriptionadded (which is one I totally imagine myself, you can pass whatever name you want).\nEach time the bot receive a new push subscription, we store it in a local variable associating it to the user internal id in the bot. Note that it might be best to store it in the bot user data.\n12345bot.on(\"event\", function (message) &#123;  if (message.name === \"pushsubscriptionadded\") &#123;    pushPerUser[message.user.id] = message.value;  &#125;&#125;);\n\nCatching messages going out and sending push notifications\n\nIn our current scenario, we want to send a push notification to the user each time there is a message sent by the bot. This can easily be done with an event called outgoing. You subscribe to this event then check to see if there is a push notification associated with the user the outgoing message is sent to. If we do, then we use the webPush.sendNotification() function from the web-push module. It will use the VAPID private key and the information from the push subscription to ask the appropriate web push server to send a notification to the browser. It knows which server to talk to thanks to the endpoint property we got from the client in the pushsubscriptionadded event call.\n1234567891011121314bot.on(\"outgoing\", function (message) &#123;  if (pushPerUser &amp;&amp; pushPerUser[message.address.user.id]) &#123;    var pushsub = pushPerUser[message.address.user.id];    webPush.sendNotification(&#123;        endpoint: pushsub.endpoint,        TTL: \"1\",        keys: &#123;        p256dh: pushsub.key,        auth: pushsub.authSecret      &#125;    &#125;, message.text);  &#125;&#125;);\nSetting up push in the clientThis is the most interesting part. The first role of the client code is to register the service worker in the browser. To do this, we use the navigator.serviceWorker.register() function by giving it the service worker file name. This function return a Promise so you can chain a .then() function to execute some code once the service worker is registered. If the service worker is already registered, it will return the current one.\nIn our case, we take this opportunity to try to get the existing push notification manager subscription using registration.pushManager.getSubscription() (where registration is the service worker instance). If it does not exist, we will just have to create and return a new one create using registration.pushManager.subscribe() giving it an applicationServerKey. This applicationServerKey is the public key your server generated.\nThe subscription object we get from this is containing everything the server will need to send a notification to the client: the endpoint, the key and a secret.\nIn the current sample, all this is done in the setupPush function which takes a callback as a parameter and calls it back with the subscription information.\n123456789101112131415161718192021222324252627282930313233343536373839var setupPush = function (done) &#123;  //first step is registering the service worker file  navigator.serviceWorker.register('service-worker.js')    .then(function (registration) &#123;    //once the sw is registered, we try to get an existing push subscription     return registration.pushManager.getSubscription()    .then(function (subscription) &#123;    //if the subscription exists, then we pass is to the next chained .then function using return    if (subscription) &#123;      return subscription;    &#125;  //if the subscription does not exists, we wrap the VAPID public key and create a new one  //we pass this new once to the next chaind .then function using return  const convertedVapidKey = urlBase64ToUint8Array(VAPID_PUBLICKEY);    return registration.pushManager.subscribe(&#123;      userVisibleOnly: true,        applicationServerKey: convertedVapidKey      &#125;);    &#125;);  &#125;)  .then(function (subscription) &#123;  //wrapping the key and secret  const rawKey = subscription.getKey ? subscription.getKey('p256dh') : '';  const key = rawKey ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))) : '';  const rawAuthSecret = subscription.getKey ? subscription.getKey('auth') : '';  const authSecret = rawAuthSecret ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) : '';  const endpoint = subscription.endpoint;  //we call back the code that asked to register push notification with the subscription information  done(&#123;    endpoint: subscription.endpoint,      key: key,      authSecret: authSecret    &#125;);  &#125;);&#125;\nThis setupPush function is called right after we setup the Web Chat control. In the callback function we give to it, we use the Direct Line SDK to send an event of type pushsubscriptionadded to the bot, through the back channel.\n123456789101112131415161718setupPush((subscriptionInfo) =&gt; &#123;  //once push notifications are setup, we get the subscription info back in this callback  //we use the backchannel to send this info back to the bot using an 'event’ activity  botConnection    .postActivity(&#123;      type: \"event\",      name: \"pushsubscriptionadded\",      value: subscriptionInfo,      from: &#123; id: botConnection.conversationId &#125; //you could define your own userId here    &#125;)    .subscribe(id =&gt; &#123;    //we store the conversation id which we get back from postActivity(…) in the LocalStorage    //we will need this in case of conversation resuming    localStorage.setItem(\"pushsample.botConnection.conversationId\", botConnection.conversationId);    &#125;);  &#125;);&#125;);\nAs you can see in the code above, we also store the conversationid in the browser localStorage so it will persist. We need this to be able to resume the conversation when the user clicks on a notification after the tab was closed. We handle this by adding a get parameter to the webpage url: ?isBack=y. To resume a conversation using Direct Line, you just have to give back the conversationid as we do here:\n1234567if (getParameterByName(\"isback\") === 'y') &#123;  //if we are resuming an existing conversation, we get back the conversationid from LocalStorage  botConnection = new DirectLine.DirectLine(&#123;  secret: DIRECTLINE_SECRET,  conversationId: localStorage.getItem(\"pushsample.botConnection.conversationId\"),  webSocket: false&#125;);\nListening to push notification in the background with the service workerLast but not least, we need to write the code that will sit in the browser and handle push notification event even if the website is not opened.\n\nRegistering to push\n\nThe first piece of code is the one handling the push events.  To do this we use the self.addEventListener() function. It takes an event name (here “push”) and a callback. Each time a new push notification is received, this callback is going to be called. Here, we just call registration.showNotification() which displays it using a nice image and some text. The payload variable is built using the event data (which is the notification text we send from the server).\n12345678910111213self.addEventListener('push', function (event) &#123;//creating the notification message (we should never be in the \"no message” case)var payload = event.data ? event.data.text() : 'No message…';//we show a notification to the user with the text message//and an icon which is hosted as a resource on the websiteevent.waitUntil(    self.registration.showNotification('Chat bot!', &#123;      body: payload,      icon: '/web/img/thinking_morphi.png'    &#125;)  );&#125;);\n\nHandling click on notifications\n\nBy default, clicking on a browser notification does nothing. You can add a custom behavior using the ‘notificationclick’ event in the service worker code. Its code is pretty straightforward as we list all the clients (a tab being also seen as a client), we look if one is displaying our web page. If yes and the focus is on another one, we switch to it. If yes and the focus is on it, we do nothing. And finally, if no, we reopen the page adding the ?isBack=y parameter.\n12345678910111213141516171819202122232425262728293031323334self.addEventListener('notificationclick', function (event) &#123;  // Android doesn’t close the notification when you click on it   // See: http://crbug.com/463146   event.notification.close();  // This looks to see if the current is already open and   // focuses if it is   event.waitUntil(    //searching for all clients / tab opened in the browser    clients.matchAll(&#123;      type: \"window\"    &#125;)    .then(function (clientList) &#123;    //going through the list of clients/tab and trying to find our website    for (var i = ; i &lt; clientList.length; i++) &#123;      var client = clientList[i];      //if we find it, we put focus back on the tab      if ((client.url.toLowerCase() == baseurl + '/web/index.html' || client.url.toLowerCase() == baseurl + '/web/index.html?isback=y') &amp;&amp; 'focus' in client)      return client.focus();      &#125;      if (clients.openWindow) &#123;      //if we did not find it, then we re-open it with the isback=y parameter      //to ensure that we resume the conversation using the conversationid      return clients.openWindow('/web/index.html?isback=y');    &#125;  &#125;)  );&#125;);\nWhat’s next?Using web push notifications in a web chat control is obvious. There are a lot of other cases in which it can be really helpful. It can help you notify someone about a trending news, an update on your website or a new friend connection.\nUnderstanding how web notifications are working and adding them to one of your projects is a great first step. Implementing more PWAs’ features can be simpler than you think. At Microsoft, we have recently introduced PWA Builder, which simplifies and automates building a manifest so it’s as easy as providing resources and a description for your app. It will also help you in the process of adding service workers features to your app, such as cache management. In a future version, it will certainly also help you create the service worker code needed to handle push notifications.\nIn a very near future, service workers will be available in every modern browser: take this opportunity and be part of the Progressive Web Apps world!\n\nIf you have any question about this blog article, feel free to contact me on twitter: @meulta\n\n","dateCreated":"2017-04-17T16:18:26-07:00","dateModified":"2019-01-15T16:19:01-08:00","datePublished":"2017-04-17T16:18:26-07:00","description":"","headline":"Bot framework, web chat and push notifications","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2017/04/17/bot-framework-web-chat-and-push-notifications/"},"publisher":{"@type":"Organization","name":"Etienne Margraff","sameAs":["https://github.com/meulta","https://twitter.com/meulta","https://www.linkedin.com/in/etima/"],"image":"avatar.jpg","logo":{"@type":"ImageObject","url":"avatar.jpg"}},"url":"http://yoursite.com/2017/04/17/bot-framework-web-chat-and-push-notifications/"}</script>
+    <meta name="description" content="This blog article is explaining how to setup web push notifications on a bot framework web chat control. For this, we will use service workers and VAPID. All the code shown here is available in this G">
+<meta property="og:type" content="blog">
 <meta property="og:title" content="Bot framework, web chat and push notifications">
 <meta property="og:url" content="http://yoursite.com/2017/04/17/bot-framework-web-chat-and-push-notifications/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Meulta&#39;s blog">
 <meta property="og:description" content="This blog article is explaining how to setup web push notifications on a bot framework web chat control. For this, we will use service workers and VAPID. All the code shown here is available in this G">
-<meta property="og:locale" content="default">
+<meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/media/push.png">
 <meta property="og:updated_time" content="2019-01-16T00:19:01.695Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bot framework, web chat and push notifications">
 <meta name="twitter:description" content="This blog article is explaining how to setup web push notifications on a bot framework web chat control. For this, we will use service workers and VAPID. All the code shown here is available in this G">
 <meta name="twitter:image" content="http://yoursite.com/media/push.png">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
+<meta name="twitter:creator" content="@http:&#x2F;&#x2F;twitter.com&#x2F;meulta">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://yoursite.com/assets/images/avatar.jpg"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-c4ozcsklz4kht2pebhp44xorvyverh23toayhn7i6ubrpyedak24hv1v0hyd.min.css">
+    <!--STYLES END-->
+    
+
+    
 </head>
-</html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">Meulta&#39;s blog</a>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+    
         
-          <a class="main-nav-link" href="/">Home</a>
+            <a class="header-right-picture " href="#about">
         
-          <a class="main-nav-link" href="/archives">Archives</a>
         
-      </nav>
-      <nav id="sub-nav">
+            <img class="header-picture" src="/assets/images/avatar.jpg" alt="Author&#39;s picture">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
+        </a>
+    
 </header>
-      <div class="outer">
-        <section id="main"><article id="post-bot-framework-web-chat-and-push-notifications" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/17/bot-framework-web-chat-and-push-notifications/" class="article-date">
-  <time datetime="2017-04-17T23:18:26.000Z" itemprop="datePublished">2017-04-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Bots/">Bots</a>►<a class="article-category-link" href="/categories/Bots/Progressive-web-apps/">Progressive web apps</a>►<a class="article-category-link" href="/categories/Bots/Progressive-web-apps/Web/">Web</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+            <!-- Define author's picture -->
+
+
+
         
-  
-    <h1 class="article-title" itemprop="name">
-      Bot framework, web chat and push notifications
-    </h1>
-  
-
-      </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><em>This blog article is explaining how to setup web push notifications on a bot framework web chat control. For this, we will use service workers and VAPID. All the code shown here is available in this <a href="https://github.com/meulta/webchat-pushnotifications" target="_blank" rel="noopener">Github repository</a> containing the full version of it. You can also try <a href="https://webchatpush.azurewebsites.net/web/index.html" target="_blank" rel="noopener">this live sample</a> or watch the video below.</em></p>
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/avatar.jpg" alt="Author&#39;s picture">
+                </a>
+                <h4 class="sidebar-profile-name">Etienne Margraff</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>I write code and love working with web, AR, VR and Spatial Computing</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/ " title="Home">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="Categories">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="Tags">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="Archives">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="#about" title="About">
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/meulta" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://twitter.com/meulta" target="_blank" rel="noopener" title="Twitter">
+                    
+                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://www.linkedin.com/in/etima/" target="_blank" rel="noopener" title="LinkedIn">
+                    
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Bot framework, web chat and push notifications
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2017-04-17T16:18:26-07:00">
+	
+		    Apr 17, 2017
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Bots/">Bots</a>, <a class="category-link" href="/categories/Bots/Progressive-web-apps/">Progressive web apps</a>, <a class="category-link" href="/categories/Bots/Progressive-web-apps/Web/">Web</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <p><em>This blog article is explaining how to setup web push notifications on a bot framework web chat control. For this, we will use service workers and VAPID. All the code shown here is available in this <a href="https://github.com/meulta/webchat-pushnotifications" target="_blank" rel="noopener">Github repository</a> containing the full version of it. You can also try <a href="https://webchatpush.azurewebsites.net/web/index.html" target="_blank" rel="noopener">this live sample</a> or watch the video below.</em></p>
 <div style="width: 640px;" class="wp-video"><br>  <video class="wp-video-shortcode" id="video-255-6" width="640" height="480" loop="1" autoplay="1" preload="metadata" controls="controls"><source type="video/mp4" src="/media/push-notifications.mp4"><a href="/media/push-notifications.mp4">push-notifications.mp4</a></video><br></div>
 
 <blockquote>
@@ -200,145 +323,251 @@
 <p>If you have any question about this blog article, feel free to contact me on twitter: <a href="https://twitter.com/meulta" target="_blank" rel="noopener">@meulta</a></p>
 </blockquote>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/17/bot-framework-web-chat-and-push-notifications/" data-id="cjqyfv9p3002nf4ul6h8uuzx5" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2018/05/18/experimenting-with-windows-machine-learning-and-mixed-reality/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Experimenting with Windows Machine Learning and Mixed Reality
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/01/25/how-to-debug-your-bot-with-vorlon-js/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">How to debug your bot with Vorlon.js</div>
-    </a>
-  
-</nav>
+            
 
-  
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/05/18/experimenting-with-windows-machine-learning-and-mixed-reality/" data-tooltip="Experimenting with Windows Machine Learning and Mixed Reality" aria-label="PREVIOUS: Experimenting with Windows Machine Learning and Mixed Reality">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/01/25/how-to-debug-your-bot-with-vorlon-js/" data-tooltip="How to debug your bot with Vorlon.js" aria-label="NEXT: How to debug your bot with Vorlon.js">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/04/17/bot-framework-web-chat-and-push-notifications/" title="Share on Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2017/04/17/bot-framework-web-chat-and-push-notifications/" title="Share on Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2017/04/17/bot-framework-web-chat-and-push-notifications/" title="Share on Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
 </article>
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Babylon-js/">Babylon.js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bots/">Bots</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Bots/Node-js/">Node.js</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Bots/Node-js/Vorlon-js/">Vorlon.js</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bots/Progressive-web-apps/">Progressive web apps</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Bots/Progressive-web-apps/Web/">Web</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Express-js/">Express.js</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Express-js/Node-js/">Node.js</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Express-js/Node-js/Vorlon-js/">Vorlon.js</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vorlon-js/">Vorlon.js</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Vorlon-js/Web/">Web</a></li></ul></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Accessibility/">Accessibility</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BabylonJS/">BabylonJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bots/">Bots</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cordova/">Cordova</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Debug/">Debug</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Game/">Game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HoloLens/">HoloLens</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mixed-Reality/">Mixed Reality</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mobile/">Mobile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Responsive/">Responsive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Titanium/">Titanium</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio-2015/">Visual Studio 2015</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio-Code/">Visual Studio Code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vorlon-js/">Vorlon.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebGL/">WebGL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xamarin/">Xamarin</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Accessibility/" style="font-size: 15px;">Accessibility</a> <a href="/tags/BabylonJS/" style="font-size: 12.5px;">BabylonJS</a> <a href="/tags/Bots/" style="font-size: 10px;">Bots</a> <a href="/tags/Cordova/" style="font-size: 15px;">Cordova</a> <a href="/tags/Debug/" style="font-size: 12.5px;">Debug</a> <a href="/tags/Game/" style="font-size: 12.5px;">Game</a> <a href="/tags/HTML5/" style="font-size: 20px;">HTML5</a> <a href="/tags/HoloLens/" style="font-size: 10px;">HoloLens</a> <a href="/tags/Mixed-Reality/" style="font-size: 10px;">Mixed Reality</a> <a href="/tags/Mobile/" style="font-size: 17.5px;">Mobile</a> <a href="/tags/Node-js/" style="font-size: 12.5px;">Node.js</a> <a href="/tags/Responsive/" style="font-size: 15px;">Responsive</a> <a href="/tags/Titanium/" style="font-size: 10px;">Titanium</a> <a href="/tags/Visual-Studio-2015/" style="font-size: 10px;">Visual Studio 2015</a> <a href="/tags/Visual-Studio-Code/" style="font-size: 10px;">Visual Studio Code</a> <a href="/tags/Vorlon-js/" style="font-size: 17.5px;">Vorlon.js</a> <a href="/tags/WebGL/" style="font-size: 10px;">WebGL</a> <a href="/tags/Xamarin/" style="font-size: 10px;">Xamarin</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2018/05/18/experimenting-with-windows-machine-learning-and-mixed-reality/">Experimenting with Windows Machine Learning and Mixed Reality</a>
-          </li>
-        
-          <li>
-            <a href="/2017/04/17/bot-framework-web-chat-and-push-notifications/">Bot framework, web chat and push notifications</a>
-          </li>
-        
-          <li>
-            <a href="/2017/01/25/how-to-debug-your-bot-with-vorlon-js/">How to debug your bot with Vorlon.js</a>
-          </li>
-        
-          <li>
-            <a href="/2016/11/15/debug-your-dom-history-using-vorlon-js/">Debug your dom history using Vorlon.js</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/05/remote-inspect-node-js-and-express-with-vorlon-js/">Remote inspect Node.js and Express with Vorlon.js</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 Etienne Margraff. All Rights Reserved.
+    </span>
 </footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2018/05/18/experimenting-with-windows-machine-learning-and-mixed-reality/" data-tooltip="Experimenting with Windows Machine Learning and Mixed Reality" aria-label="PREVIOUS: Experimenting with Windows Machine Learning and Mixed Reality">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/01/25/how-to-debug-your-bot-with-vorlon-js/" data-tooltip="How to debug your bot with Vorlon.js" aria-label="NEXT: How to debug your bot with Vorlon.js">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/04/17/bot-framework-web-chat-and-push-notifications/" title="Share on Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2017/04/17/bot-framework-web-chat-and-push-notifications/" title="Share on Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2017/04/17/bot-framework-web-chat-and-push-notifications/" title="Share on Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/04/17/bot-framework-web-chat-and-push-notifications/">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2017/04/17/bot-framework-web-chat-and-push-notifications/">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2017/04/17/bot-framework-web-chat-and-push-notifications/">
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    </a>
+                </li>
+            
+        </ul>
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+
+
+            
+        </div>
+        
+
+
+    
+        
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/avatar.jpg" alt="Author&#39;s picture">
+        
+            <h4 id="about-card-name">Etienne Margraff</h4>
+        
+            <div id="about-card-bio"><p>I write code and love working with web, AR, VR and Spatial Computing</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>Software Engineering Lead</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Seattle, WA
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover-v1.2.0.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-dbd16rvloemmuxdzniplmnxxvwoz24eya9wol0b7vvmlokgqsjivmb8dnscy.min.js"></script>
+<!--SCRIPTS END-->
+
+    
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
-
-<script src="/js/script.js"></script>
-
-
-
-  </div>
-</body>
+    </body>
 </html>

@@ -1,20 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
-  
 
-  
-  <title>How to create a Vorlon.js plugin | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="If you have any question about this article or Vorlon.js, feel free to contact me on twitter: http://twitter.com/meulta  A few weeks ago we released Vorlon.js during the keynote of the //BUILD confer">
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Meulta&#39;s blog">
+    <title>How to create a Vorlon.js plugin - Meulta&#39;s blog</title>
+    <meta name="author" content="Etienne Margraff">
+    
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Etienne Margraff","sameAs":["https://github.com/meulta","https://twitter.com/meulta","https://www.linkedin.com/in/etima/"],"image":"avatar.jpg"},"articleBody":"\nIf you have any question about this article or Vorlon.js, feel free to contact me on twitter: http://twitter.com/meulta\n\nA few weeks ago we released Vorlon.js during the keynote of the //BUILD conference.\nVorlon.js is a tool which helps you debug your website. You can see it as a remote F12. It is mainly composed of a dashboard which displays data coming from your site.\nTo make it working, you only have to reference a script in you site code.\n\nWe (Pierre Lagarde, David Catuhe, David Rousset and myself) built this primarily to help web developers debugging their websites on mobile devices. Of course, proprietary solutions already exist like chrome developer tools to debug chrome mobile, or the equivalent for safari and Visual Studio for Internet Explorer or even Weinre: but none of these is really technology and platform agnostic.\nThis is the gap we wanted to fill with Vorlon.js.\n\nYou can install Vorlon.js either from npm or by cloning the GitHub repository and using gulp to make it ready to use.\nYou can find more information about that on our website (http://vorlonjs.io) or on the blog article my friend David wrote: http://blogs.msdn.com/b/eternalcoding/archive/2015/04/30/why-we-made-vorlon-js-and-how-to-use-it-to-debug-your-javascript-remotely.aspx\nTo create a plugin for Vorlon, you can use TypeScript or directly JavaScript.\nI will give you the JavaScript and TypeScript code so you can read it in your favorite language 🙂\nWhat we are going to createIn this article I chose to create a plugin which will get device information. This is based on the website http://mydevice.io/ created by Raphaël Goetter. To keep it simple I will only get the data from the Sizes section of the My Screen category.\n\nWith this plugin activated, the vorlon.js Dashboard will display size information coming from the client.\nBefore going more into details, have a look at this quick video which show you what we will create.\nIn this video, I do a demo on a desktop browser but this obviously also works on a mobile phone or tablet.\nFirst step: writing your code outside of Vorlon.jsA vorlon.js plugin is nothing more than HTML, CSS and JavaScript code. Your plugin is getting data from the client and sending it to the server to display it on the Dashboard.\nThis means that you can first do it without Vorlon.js, write everything on a simple web project and then include it in the Vorlon.js plugin architecture.\nOur plugin will get some information related to the client size and display it on an HTML list. It will also refresh the data when resizing the browser. You can see the full sample running here: http://meultasamples.azurewebsites.net/vorlonpluginsample/control.html (it is not pretty, but does the job! ;-)).\n\nThe HTML code is pretty light:\n            HTML                  &lt;!DOCTYPE html&gt; &lt;html xmlns=&#8221;http://www.w3.org/1999/xhtml&#8221;&gt; &lt;head&gt; &lt;title&gt;&lt;/title&gt; &lt;link href=&#8221;control.css&#8221; rel=&#8221;stylesheet&#8221; /&gt; &lt;script src=&#8221;vorlon.deviceinfo.js&#8221;&gt;&lt;/script&gt; &lt;/head&gt; &lt;body&gt; &lt;div id=&#8221;deviceinfo&#8221; class=&#8221;deviceinfo-container&#8221;&gt; &lt;h2&gt;My Screen&lt;/h2&gt; &lt;ul&gt; &lt;li&gt;CSS device-width: &lt;span id=&#8221;devicewidth&#8221;&gt;&lt;/span&gt;&lt;/li&gt; &lt;li&gt;CSS device-height: &lt;span id=&#8221;deviceheight&#8221;&gt;&lt;/span&gt;&lt;/li&gt; &lt;li&gt;JS screen.width: &lt;span id=&#8221;screenwidth&#8221;&gt;&lt;/span&gt;&lt;/li&gt; &lt;li&gt;JS window.innerWidth: &lt;span id=&#8221;windowinnerwidth&#8221;&gt;&lt;/span&gt;&lt;/li&gt; &lt;li&gt;JS body.clientWidth: &lt;span id=&#8221;bodyclientwidth&#8221;&gt;&lt;/span&gt;&lt;/li&gt; &lt;li&gt;JS screen.availWidth: &lt;span id=&#8221;screenavailwidth&#8221;&gt;&lt;/span&gt;&lt;/li&gt; &lt;/ul&gt; &lt;/div&gt; &lt;/body&gt; &lt;/html&gt;      \n\nIt is using the following control.css file:\n            CSS                          .deviceinfo-container { font-family: &#8220;Verdana&#8221;, &#8220;Comic Sans MS&#8221;; }                    .deviceinfo-container h2 { font-weight: normal; }                    .deviceinfo-container ul li { font-weight: bold; }                    .deviceinfo-container ul span { font-weight: normal; }            \n\nAnd the JavaScript code gets the data once the page is loaded and each time the window is resized and updates the list:\n            JavaScript                          (function(){ var compute = function() { document.getElementById(&#8216;devicewidth&#8217;).innerText = document.documentElement.clientWidth + &#8216;px&#8217;; document.getElementById(&#8216;deviceheight&#8217;).innerText = document.documentElement.clientHeight + &#8216;px&#8217;; document.getElementById(&#8216;screenwidth&#8217;).innerText =  screen.width + &#8216;px&#8217;;; document.getElementById(&#8216;windowinnerwidth&#8217;).innerText = window.innerWidth + &#8216;px&#8217;; document.getElementById(&#8216;bodyclientwidth&#8217;).innerText = document.body.clientWidth + &#8216;px&#8217;; document.getElementById(&#8216;screenavailwidth&#8217;).innerText = screen.availWidth + &#8216;px&#8217;; };                    window.onresize = function(event) { compute(); };                    document.addEventListener(&#8220;DOMContentLoaded&#8221;, compute);                    })();            \n\nSo, until now we are only writing simple classic web code 🙂\nLet’s now have a look at how to transform that into a Vorlon.js plugin!\nCreate the basic JavaScript/TypeScript code for the pluginIn Vorlon.js, a plugin is composed of 2 JavaScript classes. The minimum code contains a constructor and the getID function.\nThe first one is the Client side code which inherits the ClientPlugin class. Its name should end by .client.js/ts:\n            JavaScript              TypeScript            var extends = this.extends || function (d, b){    for (var p in b)        if (b.hasOwnProperty(p)) d[p] = b[p];     function () { this.constructor = d; }\n     .prototype = b.prototype;     d.prototype = new ();};var VORLON;(function (VORLON) {     var MyDeviceInfoClient = (function (_super) {\n         extends(MyDeviceInfoClient, _super);         function MyDeviceInfoClient() {             _super.call(this, “mydeviceinfo”);             this._ready = true;         }         MyDeviceInfoClient.prototype.getID = function () {             return “MYDEVICEINFO”;         };         return MyDeviceInfoClient;     })(VORLON.ClientPlugin);     VORLON.MyDeviceInfoClient = MyDeviceInfoClient;     //Register the plugin with vorlon core     VORLON.Core.RegisterClientPlugin(new MyDeviceInfoClient());})(VORLON || (VORLON = {}));  \n\n      module VORLON {    export class MyDeviceInfoClient extends ClientPlugin {         constructor() {             super(“mydeviceinfo”);             this._ready = true;         }         public getID(): string {             return “MYDEVICEINFO”;         }     }             //Register the plugin with vorlon core     Core.RegisterClientPlugin(new MyDeviceInfoClient());}  \n\nThe second one is the Dashboard side code and inherits from the DashboardPlugin class. Its name should finish by .dashboard.ts/js:\n            JavaScript              TypeScript            var extends = this.extends || function (d, b) {     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];     function () { this.constructor = d; }\n     .prototype = b.prototype;     d.prototype = new ();};var VORLON;(function (VORLON) {     var MyDeviceInfoDashboard = (function (_super) {\n         extends(MyDeviceInfoDashboard, _super);         function MyDeviceInfoDashboard() {             _super.call(this, “mydeviceinfo”, “control.html”, “control.css”);             this._ready = true;         }         MyDeviceInfoDashboard.prototype.getID = function () {             return “MYDEVICEINFO”;         };         return MyDeviceInfoDashboard;     })(VORLON.DashboardPlugin);     VORLON.MyDeviceInfoDashboard = MyDeviceInfoDashboard;     //Register the plugin with vorlon core     VORLON.Core.RegisterDashboardPlugin(new MyDeviceInfoDashboard());})(VORLON || (VORLON = {}));  \n\n      module VORLON {     export class MyDeviceInfoDashboard extends DashboardPlugin {         constructor() {             super(“mydeviceinfo”, “control.html”, “control.css”);             this._ready = true;         }         public getID(): string {             return “MYDEVICEINFO”;         }     }     //Register the plugin with vorlon core     Core.RegisterDashboardPlugin(new MyDeviceInfoDashboard());}  \n\nThe ID is simply a string which you can choose. You will need it when you will add your plugin to the dashboard.\nThe constructor calls the super function and gives it its name. In the Dashboard side class, you also have the control.html and control.css files. This is a prerequisite for it to know these files and load them when necessary.\nThe last line of code is registering the plugin to the list managed by the Core (either for the Dasbhoard or the Client side of the plugin). The Core role is to handle all the communication and data exchange between the client and the dashboard.\nRendering on the dashboardEach time it is loading a plugin, the dashboard creates a new tab in its right pane. This is a space for your plugin to render.\nThe layout part for a Vorlon.js plugin is contained in an HTML file. In the sample we are going to create, it is called control.html which is a convention in Vorlon.js plugins. It is not displayed by default, you have to manage it in you plugin code. This is done using _insertHtmlContentAsync and generally in the startDashboardSide function.\nstartDashboardSide is called when the dashboard is instantiating your plugin on the server side. It only has one parameter which is the HTML div where you can render your control. Basically, it is the div that is displayed on your plugin tab.\n_insertHtmlContentAsync is a helper that loads asynchronously all the files you gave during the plugin construction. The first argument is the render div and the second is a callback function giving you the loaded div once everything is done.\nOn the Dashboard side plugin class, add the following code:\n            JavaScript              TypeScript                  MyDeviceInfoDashboard.prototype.startDashboardSide = function (div) {      \n\nif (div === void 0) { div = null; }\nthis._insertHtmlContentAsync(div, function (filledDiv) {\n//load data\n});\n};\n      public startDashboardSide(div: HTMLDivElement = null): void {  \n\nthis._insertHtmlContentAsync(div, (filledDiv) =&gt; {\n//load data\n})\n}\nOn the control.html part, you only have to remove the JavaScript reference which results in the following code:\n            HTML                  &lt;!DOCTYPE html&gt;      \n\n&lt;html xmlns=&#8221;http://www.w3.org/1999/xhtml&#8221;&gt;\n&lt;head&gt;\n&lt;title&gt;&lt;/title&gt;\n&lt;link href=&#8221;control.css&#8221; rel=&#8221;stylesheet&#8221; /&gt;\n&lt;/head&gt;\n&lt;body&gt;\n&lt;div id=&#8221;mydeviceinfocontainer&#8221; class=&#8221;deviceinfo-container&#8221;&gt;\n&lt;h2&gt;My Screen&lt;/h2&gt;\n&lt;ul&gt;\n&lt;li&gt;CSS device-width: &lt;span id=&#8221;devicewidth&#8221;&gt;&lt;/span&gt;&lt;/li&gt;\n&lt;li&gt;CSS device-height: &lt;span id=&#8221;deviceheight&#8221;&gt;&lt;/span&gt;&lt;/li&gt;\n&lt;li&gt;JS screen.width: &lt;span id=&#8221;screenwidth&#8221;&gt;&lt;/span&gt;&lt;/li&gt;\n&lt;li&gt;JS window.innerWidth: &lt;span id=&#8221;windowinnerwidth&#8221;&gt;&lt;/span&gt;&lt;/li&gt;\n&lt;li&gt;JS body.clientWidth: &lt;span id=&#8221;bodyclientwidth&#8221;&gt;&lt;/span&gt;&lt;/li&gt;\n&lt;li&gt;JS screen.availWidth: &lt;span id=&#8221;screenavailwidth&#8221;&gt;&lt;/span&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/div&gt;\n&lt;/body&gt;\n&lt;/html&gt;\nSending Data from the client to the pluginSo, now that you are rendering your control template in the dashboard you need to send it the data from the client. On the initial code it was done on the same page. Now you need to package everything and send it.\nAll the communication process is handle for you. You only have to create an object with data in it and call the correct function. It is a helper available in Core.Messenger named sendRealTimeMessage.\nIn the Client side plugin class we add a custom function named sendClientData. It will get all the current size information and send it.\n            JavaScript              TypeScript                  MyDeviceInfoClient.prototype.sendClientData = function () {      \n\nvar data = {\n&#8220;devicewidth&#8221;: document.documentElement.clientWidth,\n&#8220;deviceheight&#8221;: document.documentElement.clientHeight,\n&#8220;screenwidth&#8221;: screen.width,\n&#8220;windowinnerwidth&#8221;: window.innerWidth,\n&#8220;bodyclientwidth&#8221;: document.body.clientWidth,\n&#8220;screenavailwidth&#8221;: screen.availWidth\n};\nVORLON.Core.Messenger.sendRealtimeMessage(this.getID(), data, 0 / Client /);\n};\n      public sendClientData(): void {  \n\nvar data = {\n&#8220;devicewidth&#8221; : document.documentElement.clientWidth,\n&#8220;deviceheight&#8221; : document.documentElement.clientHeight,\n&#8220;screenwidth&#8221; :  screen.width,\n&#8220;windowinnerwidth&#8221; : window.innerWidth,\n&#8220;bodyclientwidth&#8221; : document.body.clientWidth,\n&#8220;screenavailwidth&#8221; : screen.availWidth\n};\nCore.Messenger.sendRealtimeMessage(this.getID(), data, RuntimeSide.Client);\n}\nsendRealtimeMessage have 3 mandatory parameters :\n\nThe plugin ID (which is the string you return on the getID function)\nThe object you want to send (here containing the sizes information)\nThe tenant were the request comes from. (Client or Dashboard)\n\nThis function needs to be called each time the dashboard asks for it (when the user switch to this client for instance) and each time the browser size changes.\nStill in the Client side plugin class, we add the startClientSide function which will be called at client initialization to register to the window.onresize event:\n            JavaScript              TypeScript                  MyDeviceInfoClient.prototype.startClientSide = function () {      \n\nvar that = this;\nwindow.onresize = function (event) {\nthat.sendClientData();\n};\n};\n      public startClientSide(): void {  \n\nvar that = this;\nwindow.onresize = (event) =&gt; {\nthat.sendClientData();\n};\n}\nEach time the user changes the size of the browser, this code will send the new information to the dashboard.\nAnd finally we need to add the refresh function. It will be called each time the dashboard need the current information from the client.\n            JavaScript              TypeScript                  MyDeviceInfoClient.prototype.refresh = function () {      \n\nthis.sendClientData();\n};\n      public refresh(): void {  \n\nthis.sendClientData();\n}\nAnd that is all ! 🙂\nDisplaying data on the dashboardNow that the data are sent from the client to the dashboard, you still need to handle them on the other side.\nTo do this, you can use the onRealtimeMessageReceivedFromClientSide function. It is called each time the client send a message through the Core.Messenger. It only have 1 parameter in which you get the object that you sent.\nIn this sample, we only have to use each value and set the correct DOM element to update the list with the new values.\nThe following code obviously goes on the Dashboard plugin side classe.\n            JavaScript              TypeScript                  MyDeviceInfoDashboard.prototype.onRealtimeMessageReceivedFromClientSide = function (receivedObject) {      \n\ndocument.getElementById(&#8216;devicewidth&#8217;).innerText = receivedObject.devicewidth + &#8216;px&#8217;;\ndocument.getElementById(&#8216;deviceheight&#8217;).innerText = receivedObject.deviceheight + &#8216;px&#8217;;\ndocument.getElementById(&#8216;screenwidth&#8217;).innerText = receivedObject.screenwidth + &#8216;px&#8217;;\n;\ndocument.getElementById(&#8216;windowinnerwidth&#8217;).innerText = receivedObject.windowinnerwidth + &#8216;px&#8217;;\ndocument.getElementById(&#8216;bodyclientwidth&#8217;).innerText = receivedObject.bodyclientwidth + &#8216;px&#8217;;\ndocument.getElementById(&#8216;screenavailwidth&#8217;).innerText = receivedObject.screenavailwidth + &#8216;px&#8217;;\n};\n      public onRealtimeMessageReceivedFromClientSide(receivedObject: any): void {  \n\ndocument.getElementById(&#8216;devicewidth&#8217;).innerText = receivedObject.devicewidth + &#8216;px&#8217;;\ndocument.getElementById(&#8216;deviceheight&#8217;).innerText = receivedObject.deviceheight + &#8216;px&#8217;;\ndocument.getElementById(&#8216;screenwidth&#8217;).innerText =  receivedObject.screenwidth + &#8216;px&#8217;;;\ndocument.getElementById(&#8216;windowinnerwidth&#8217;).innerText = receivedObject.windowinnerwidth + &#8216;px&#8217;;\ndocument.getElementById(&#8216;bodyclientwidth&#8217;).innerText = receivedObject.bodyclientwidth + &#8216;px&#8217;;\ndocument.getElementById(&#8216;screenavailwidth&#8217;).innerText = receivedObject.screenavailwidth + &#8216;px&#8217;;\n}\nLet’s test this!To be able to test this plugin, you need to go through some simples steps.\nCompile and minify\nIf you chose TypeScript you will need to use a tool such as the TypeScript compiler available on npm or integrate yourself in the gulp process by modifying the gulpfile.js available in the /Plugins folder.\nAfter the compilation from TypeScript to JavaScript is done you need to minify your JS file. It is important that you use this convention:\n\nvorlon.yourPluginName.client.js (for the maximized version)\nvorlon.yourPluginName.client.min.js (for the minified version)\nvorlon.yourPluginName.dashboard.js (for the maximize²d version)\nvorlon.yourPluginName.dashboard.min.js (for the minified version)\n\nCopy everthing in the server\nThe second step is to copy all your files in the /Server/public/vorlon/plugins folder. There you have to create a folder using your plugin name and put everything under it. This include your html, css and js files.\nHere is how it is done for the plugin we are creating in this article:\n\nAdd your plugin to the catalog.json file\nThe next step is to register your plugin in the server. To do this, add a line in the Server/config.json file:\n            JSON                          {                    &#8220;IncludeSocketIO&#8221;: true,            \n\n&#8220;plugins&#8221;: [\n{ &#8220;id&#8221;: &#8220;CONSOLE&#8221;, &#8220;name&#8221;: &#8220;Interactive Console&#8221;, &#8220;panel&#8221;: &#8220;bottom&#8221;, &#8220;foldername&#8221; : &#8220;interactiveConsole&#8221;},\n{ &#8220;id&#8221;: &#8220;DOM&#8221;, &#8220;name&#8221;: &#8220;Dom Explorer&#8221;, &#8220;panel&#8221;: &#8220;top&#8221;, &#8220;foldername&#8221; : &#8220;domExplorer&#8221; },\n{ &#8220;id&#8221;: &#8220;MODERNIZR&#8221;, &#8220;name&#8221;: &#8220;Modernizr&#8221;,&#8220;panel&#8221;: &#8220;bottom&#8221;, &#8220;foldername&#8221; : &#8220;modernizrReport&#8221; },\n{ &#8220;id&#8221; : &#8220;OBJEXPLORER&#8221;, &#8220;name&#8221; : &#8220;Obj. Explorer&#8221;,&#8220;panel&#8221;: &#8220;top&#8221;, &#8220;foldername&#8221; : &#8220;objectExplorer&#8221; },\n{ &#8220;id&#8221; : &#8220;MYDEVICEINFO&#8221;, &#8220;name&#8221; : &#8220;My Device Info&#8221;,&#8220;panel&#8221;: &#8220;top&#8221;, &#8220;foldername&#8221; : &#8220;mydeviceinfo&#8221; }\n]\n}\nYou can find more information about this here: http://vorlonjs.io/documentation/#vorlonjs-server-advanced-topics\nStart the server\nOpen a command line on the /Server folder and run the following command:\nnode server.js\n\nLaunch a client\nFinally, launch a client referencing your vorlon.js local instance. You can use the sample provided in the /Plugins/samples folder.\nBrowse the dashboard using http://localhost:1337/dashboard/default\nAnd… rock’n’roll ! 🙂\n\nYou can try to change the size of the browser in which you display your client code, you will see it change live on the dashboard.\nEasy, isn’t it? 🙂\nWhat to do now?I hope I illustrated here how easy we want the plugin creation to be. You really have to see it like writing classic web code and just split it in two parts:\n\nThe one collecting data on the client\nThe one displaying it on the dashboard\n\nVorlon.js is not only our project, it is yours also. I am pretty sure that you will have plenty of plugin ideas and we will be happy to integrate them in the project.\nDo not hesitate to fork https://github.com/MicrosoftDX/Vorlonjs and send us pull request with your creations!\nYou can find the full sample here : https://github.com/meulta/meultasamples/tree/master/vorlonpluginsample\n\nIf you have any question about this article or Vorlon.js, feel free to contact me on twitter: http://twitter.com/meulta\n\nEtienne Margraff &#8211; HTML5 Evangelist\n","dateCreated":"2015-06-01T00:00:00-07:00","dateModified":"2019-01-15T15:13:55-08:00","datePublished":"2015-06-01T00:00:00-07:00","description":"","headline":"How to create a Vorlon.js plugin","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/06/01/how-to-create-a-vorlon-js-plugin/"},"publisher":{"@type":"Organization","name":"Etienne Margraff","sameAs":["https://github.com/meulta","https://twitter.com/meulta","https://www.linkedin.com/in/etima/"],"image":"avatar.jpg","logo":{"@type":"ImageObject","url":"avatar.jpg"}},"url":"http://yoursite.com/2015/06/01/how-to-create-a-vorlon-js-plugin/","keywords":"HTML5, Mobile, Vorlon.js"}</script>
+    <meta name="description" content="If you have any question about this article or Vorlon.js, feel free to contact me on twitter: http://twitter.com/meulta  A few weeks ago we released Vorlon.js during the keynote of the //BUILD confer">
 <meta name="keywords" content="HTML5,Mobile,Vorlon.js">
-<meta property="og:type" content="article">
+<meta property="og:type" content="blog">
 <meta property="og:title" content="How to create a Vorlon.js plugin">
 <meta property="og:url" content="http://yoursite.com/2015/06/01/how-to-create-a-vorlon-js-plugin/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Meulta&#39;s blog">
 <meta property="og:description" content="If you have any question about this article or Vorlon.js, feel free to contact me on twitter: http://twitter.com/meulta  A few weeks ago we released Vorlon.js during the keynote of the //BUILD confer">
-<meta property="og:locale" content="default">
+<meta property="og:locale" content="en">
 <meta property="og:image" content="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/7651.clip_image002_thumb_4D4D0447.jpg">
 <meta property="og:image" content="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/7536.clip_image004_thumb_0080540C.png">
 <meta property="og:image" content="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/2330.clip_image006_thumb_339791AE.jpg">
@@ -26,79 +33,195 @@
 <meta name="twitter:title" content="How to create a Vorlon.js plugin">
 <meta name="twitter:description" content="If you have any question about this article or Vorlon.js, feel free to contact me on twitter: http://twitter.com/meulta  A few weeks ago we released Vorlon.js during the keynote of the //BUILD confer">
 <meta name="twitter:image" content="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/7651.clip_image002_thumb_4D4D0447.jpg">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
+<meta name="twitter:creator" content="@http:&#x2F;&#x2F;twitter.com&#x2F;meulta">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="http://yoursite.com/assets/images/avatar.jpg"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-c4ozcsklz4kht2pebhp44xorvyverh23toayhn7i6ubrpyedak24hv1v0hyd.min.css">
+    <!--STYLES END-->
+    
+
+    
 </head>
-</html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">Meulta&#39;s blog</a>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+    
         
-          <a class="main-nav-link" href="/">Home</a>
+            <a class="header-right-picture " href="#about">
         
-          <a class="main-nav-link" href="/archives">Archives</a>
         
-      </nav>
-      <nav id="sub-nav">
+            <img class="header-picture" src="/assets/images/avatar.jpg" alt="Author&#39;s picture">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
+        </a>
+    
 </header>
-      <div class="outer">
-        <section id="main"><article id="post-how-to-create-a-vorlon-js-plugin" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/06/01/how-to-create-a-vorlon-js-plugin/" class="article-date">
-  <time datetime="2015-06-01T07:00:00.000Z" itemprop="datePublished">2015-06-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Vorlon-js/">Vorlon.js</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+            <!-- Define author's picture -->
+
+
+
         
-  
-    <h1 class="article-title" itemprop="name">
-      How to create a Vorlon.js plugin
-    </h1>
-  
-
-      </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/avatar.jpg" alt="Author&#39;s picture">
+                </a>
+                <h4 class="sidebar-profile-name">Etienne Margraff</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>I write code and love working with web, AR, VR and Spatial Computing</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/ " title="Home">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="Categories">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="Tags">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="Archives">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="#about" title="About">
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/meulta" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://twitter.com/meulta" target="_blank" rel="noopener" title="Twitter">
+                    
+                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://www.linkedin.com/in/etima/" target="_blank" rel="noopener" title="LinkedIn">
+                    
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            How to create a Vorlon.js plugin
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2015-06-01T00:00:00-07:00">
+	
+		    Jun 01, 2015
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Vorlon-js/">Vorlon.js</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <blockquote>
 <p><em>If you have any question about this article or Vorlon.js, feel free to contact me on twitter:</em> <a href="http://twitter.com/meulta" target="_blank" rel="noopener"><em>http://twitter.com/meulta</em></a></p>
 </blockquote>
 <p>A few weeks ago we released <a href="http://vorlonjs.io/" target="_blank" rel="noopener">Vorlon.js</a> during the keynote of the //BUILD conference.</p>
@@ -324,147 +447,258 @@
 </blockquote>
 <p><strong><em>Etienne Margraff &#8211; HTML5 Evangelist</em></strong></p>
 
-      
+            
+
+        </div>
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/06/01/how-to-create-a-vorlon-js-plugin/" data-id="cjqyfv9pw003jf4ulxnstgf7j" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mobile/">Mobile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vorlon-js/">Vorlon.js</a></li></ul>
-
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2015/06/24/vorlon-js-0-0-15-is-out/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
+    <div id="post-footer" class="post-footer main-content-wrap">
         
-          Vorlon.js 0.0.15 is out !
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2015/02/22/procedural-textures-in-webgl-with-babylon-js/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Procedural textures in WebGL with Babylon.JS</div>
-    </a>
-  
-</nav>
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/HTML5/">HTML5</a> <a class="tag tag--primary tag--small t-link" href="/tags/Mobile/">Mobile</a> <a class="tag tag--primary tag--small t-link" href="/tags/Vorlon-js/">Vorlon.js</a>
 
-  
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/06/24/vorlon-js-0-0-15-is-out/" data-tooltip="Vorlon.js 0.0.15 is out !" aria-label="PREVIOUS: Vorlon.js 0.0.15 is out !">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/02/22/procedural-textures-in-webgl-with-babylon-js/" data-tooltip="Procedural textures in WebGL with Babylon.JS" aria-label="NEXT: Procedural textures in WebGL with Babylon.JS">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/06/01/how-to-create-a-vorlon-js-plugin/" title="Share on Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/06/01/how-to-create-a-vorlon-js-plugin/" title="Share on Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/06/01/how-to-create-a-vorlon-js-plugin/" title="Share on Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
 </article>
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Babylon-js/">Babylon.js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bots/">Bots</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Bots/Node-js/">Node.js</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Bots/Node-js/Vorlon-js/">Vorlon.js</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bots/Progressive-web-apps/">Progressive web apps</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Bots/Progressive-web-apps/Web/">Web</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Express-js/">Express.js</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Express-js/Node-js/">Node.js</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Express-js/Node-js/Vorlon-js/">Vorlon.js</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vorlon-js/">Vorlon.js</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Vorlon-js/Web/">Web</a></li></ul></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Accessibility/">Accessibility</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BabylonJS/">BabylonJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bots/">Bots</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cordova/">Cordova</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Debug/">Debug</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Game/">Game</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HoloLens/">HoloLens</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mixed-Reality/">Mixed Reality</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mobile/">Mobile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Responsive/">Responsive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Titanium/">Titanium</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio-2015/">Visual Studio 2015</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio-Code/">Visual Studio Code</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vorlon-js/">Vorlon.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebGL/">WebGL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xamarin/">Xamarin</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Accessibility/" style="font-size: 15px;">Accessibility</a> <a href="/tags/BabylonJS/" style="font-size: 12.5px;">BabylonJS</a> <a href="/tags/Bots/" style="font-size: 10px;">Bots</a> <a href="/tags/Cordova/" style="font-size: 15px;">Cordova</a> <a href="/tags/Debug/" style="font-size: 12.5px;">Debug</a> <a href="/tags/Game/" style="font-size: 12.5px;">Game</a> <a href="/tags/HTML5/" style="font-size: 20px;">HTML5</a> <a href="/tags/HoloLens/" style="font-size: 10px;">HoloLens</a> <a href="/tags/Mixed-Reality/" style="font-size: 10px;">Mixed Reality</a> <a href="/tags/Mobile/" style="font-size: 17.5px;">Mobile</a> <a href="/tags/Node-js/" style="font-size: 12.5px;">Node.js</a> <a href="/tags/Responsive/" style="font-size: 15px;">Responsive</a> <a href="/tags/Titanium/" style="font-size: 10px;">Titanium</a> <a href="/tags/Visual-Studio-2015/" style="font-size: 10px;">Visual Studio 2015</a> <a href="/tags/Visual-Studio-Code/" style="font-size: 10px;">Visual Studio Code</a> <a href="/tags/Vorlon-js/" style="font-size: 17.5px;">Vorlon.js</a> <a href="/tags/WebGL/" style="font-size: 10px;">WebGL</a> <a href="/tags/Xamarin/" style="font-size: 10px;">Xamarin</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2018/05/18/experimenting-with-windows-machine-learning-and-mixed-reality/">Experimenting with Windows Machine Learning and Mixed Reality</a>
-          </li>
-        
-          <li>
-            <a href="/2017/04/17/bot-framework-web-chat-and-push-notifications/">Bot framework, web chat and push notifications</a>
-          </li>
-        
-          <li>
-            <a href="/2017/01/25/how-to-debug-your-bot-with-vorlon-js/">How to debug your bot with Vorlon.js</a>
-          </li>
-        
-          <li>
-            <a href="/2016/11/15/debug-your-dom-history-using-vorlon-js/">Debug your dom history using Vorlon.js</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/05/remote-inspect-node-js-and-express-with-vorlon-js/">Remote inspect Node.js and Express with Vorlon.js</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 Etienne Margraff. All Rights Reserved.
+    </span>
 </footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/06/24/vorlon-js-0-0-15-is-out/" data-tooltip="Vorlon.js 0.0.15 is out !" aria-label="PREVIOUS: Vorlon.js 0.0.15 is out !">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/02/22/procedural-textures-in-webgl-with-babylon-js/" data-tooltip="Procedural textures in WebGL with Babylon.JS" aria-label="NEXT: Procedural textures in WebGL with Babylon.JS">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/06/01/how-to-create-a-vorlon-js-plugin/" title="Share on Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/06/01/how-to-create-a-vorlon-js-plugin/" title="Share on Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/06/01/how-to-create-a-vorlon-js-plugin/" title="Share on Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/06/01/how-to-create-a-vorlon-js-plugin/">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/06/01/how-to-create-a-vorlon-js-plugin/">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/06/01/how-to-create-a-vorlon-js-plugin/">
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    </a>
+                </li>
+            
+        </ul>
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+
+
+            
+        </div>
+        
+
+
+    
+        
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/avatar.jpg" alt="Author&#39;s picture">
+        
+            <h4 id="about-card-name">Etienne Margraff</h4>
+        
+            <div id="about-card-bio"><p>I write code and love working with web, AR, VR and Spatial Computing</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>Software Engineering Lead</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Seattle, WA
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover-v1.2.0.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-dbd16rvloemmuxdzniplmnxxvwoz24eya9wol0b7vvmlokgqsjivmb8dnscy.min.js"></script>
+<!--SCRIPTS END-->
+
+    
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
-
-<script src="/js/script.js"></script>
-
-
-
-  </div>
-</body>
+    </body>
 </html>
