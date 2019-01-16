@@ -186,7 +186,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/18/experimenting-with-windows-machine-learning-and-mixed-reality/" data-id="cjqyfrp35002li8uljz9a0uxk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/18/experimenting-with-windows-machine-learning-and-mixed-reality/" data-id="cjqyft4a8002l0gulm64hjaas" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HoloLens/">HoloLens</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mixed-Reality/">Mixed Reality</a></li></ul>
@@ -290,7 +290,7 @@
 </ul>
 <p>If you create your server code in Node.js then you can use a very cool module created by Mozilla which will do almost all the work for you: web-push : <a href="https://github.com/web-push-libs/web-push" target="_blank" rel="noopener">https://github.com/web-push-libs/web-push</a></p>
 <p>You will have to first generated Vapid keys using the <strong>webPush.generateVapidKeys()</strong> function. You only have to do this once or when you want to reset your keys. In our sample, we generate them and store them in a local JSON file. You might want to store this somewhere more secure.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">const vapidKeyFilePath = &quot;./vapidKey.json&quot;;</span><br><span class="line">var vapidKeys = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">if (fs.existsSync(vapidKeyFilePath)) &#123;</span><br><span class="line"></span><br><span class="line">  //if the vapid file exists, then we try to parse its content </span><br><span class="line">  //to retrieve the public and private key</span><br><span class="line">  //more tests might be necessary here</span><br><span class="line"></span><br><span class="line">  try &#123;</span><br><span class="line">    vapidKeys = JSON.parse(fs.readFileSync(vapidKeyFilePath));</span><br><span class="line">  &#125;</span><br><span class="line">    catch (e) &#123;</span><br><span class="line">    console.error(&quot;There is an error with the vapid key file. Log: &quot; + e.message);</span><br><span class="line">    process.exit(-1);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">  //if the file did not exists, we use the web-push module to create keys</span><br><span class="line">  //and store them in the file for future use</span><br><span class="line">  //you should copy the public key in the index.js file</span><br><span class="line"></span><br><span class="line">  vapidKeys = webPush.generateVAPIDKeys();</span><br><span class="line">  fs.writeFileSync(vapidKeyFilePath, JSON.stringify(vapidKeys));</span><br><span class="line">  console.log(&quot;No vapid key file found. One was generated. Here is the public key: &quot; + vapidKeys.publicKey);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vapidKeyFilePath = <span class="string">"./vapidKey.json"</span>;</span><br><span class="line"><span class="keyword">var</span> vapidKeys = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (fs.existsSync(vapidKeyFilePath)) &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//if the vapid file exists, then we try to parse its content </span></span><br><span class="line">  <span class="comment">//to retrieve the public and private key</span></span><br><span class="line">  <span class="comment">//more tests might be necessary here</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    vapidKeys = <span class="built_in">JSON</span>.parse(fs.readFileSync(vapidKeyFilePath));</span><br><span class="line">  &#125;</span><br><span class="line">    <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="built_in">console</span>.error(<span class="string">"There is an error with the vapid key file. Log: "</span> + e.message);</span><br><span class="line">    process.exit(<span class="number">-1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">//if the file did not exists, we use the web-push module to create keys</span></span><br><span class="line">  <span class="comment">//and store them in the file for future use</span></span><br><span class="line">  <span class="comment">//you should copy the public key in the index.js file</span></span><br><span class="line"></span><br><span class="line">  vapidKeys = webPush.generateVAPIDKeys();</span><br><span class="line">  fs.writeFileSync(vapidKeyFilePath, <span class="built_in">JSON</span>.stringify(vapidKeys));</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"No vapid key file found. One was generated. Here is the public key: "</span> + vapidKeys.publicKey);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>You then have to call the <strong>setVapidDetails()</strong> function to configure the web push module to send push notifications using the vapid private key. This will ensure the push server to be sure it comes from you.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">webPush.setVapidDetails(</span><br><span class="line">  &apos;mailto:example@yourdomain.org&apos;,</span><br><span class="line">  vapidKeys.publicKey,</span><br><span class="line">  vapidKeys.privateKey);</span><br></pre></td></tr></table></figure>
 <ul>
@@ -335,7 +335,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/17/bot-framework-web-chat-and-push-notifications/" data-id="cjqyfrp37002ni8ul1l6nf8ys" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/17/bot-framework-web-chat-and-push-notifications/" data-id="cjqyft4aa002n0gul3h17usjq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -430,7 +430,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/25/how-to-debug-your-bot-with-vorlon-js/" data-id="cjqyfrp1k000wi8ulv1q5jpwv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/25/how-to-debug-your-bot-with-vorlon-js/" data-id="cjqyft492000w0gulnno6l7a8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bots/">Bots</a></li></ul>
@@ -492,7 +492,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/11/15/debug-your-dom-history-using-vorlon-js/" data-id="cjqyfrp0h0003i8ulhzgmug8q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/11/15/debug-your-dom-history-using-vorlon-js/" data-id="cjqyft48400030gul49vr9do5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -591,7 +591,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/05/remote-inspect-node-js-and-express-with-vorlon-js/" data-id="cjqyfrp0c0001i8uldqmdig6z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/05/remote-inspect-node-js-and-express-with-vorlon-js/" data-id="cjqyft47z00010gul4abaquhp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -671,7 +671,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/06/04/one-year-of-vorlon-js/" data-id="cjqyfrp060000i8ults9rzejx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/06/04/one-year-of-vorlon-js/" data-id="cjqyft47s00000gulch3bisfk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -794,7 +794,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/02/01/vorlon-js-0-2-1-is-out/" data-id="cjqyfrp1d000si8ul3o55mefo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/02/01/vorlon-js-0-2-1-is-out/" data-id="cjqyft48z000s0gul91phknjk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Accessibility/">Accessibility</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Debug/">Debug</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vorlon-js/">Vorlon.js</a></li></ul>
@@ -873,7 +873,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/12/11/une-liste-de-bonnes-pratiques-pour-le-web-moderne/" data-id="cjqyfrp1a000qi8ul5a637tnq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/12/11/une-liste-de-bonnes-pratiques-pour-le-web-moderne/" data-id="cjqyft48x000q0gulavkauoh0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Accessibility/">Accessibility</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML5/">HTML5</a></li></ul>
@@ -972,7 +972,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/11/27/how-vorlon-js-helps-you-improve-your-web-code/" data-id="cjqyfrp16000ni8ulc6deizz4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/11/27/how-vorlon-js-helps-you-improve-your-web-code/" data-id="cjqyft48u000n0gulchkjs53g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Accessibility/">Accessibility</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML5/">HTML5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mobile/">Mobile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Responsive/">Responsive</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vorlon-js/">Vorlon.js</a></li></ul>
@@ -1108,7 +1108,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/11/24/dbuguer-node-js-avec-vs-code/" data-id="cjqyfrp33002ki8ulbv56pjfu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/11/24/dbuguer-node-js-avec-vs-code/" data-id="cjqyft4a7002k0gulccusgifo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Debug/">Debug</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Visual-Studio-Code/">Visual Studio Code</a></li></ul>
