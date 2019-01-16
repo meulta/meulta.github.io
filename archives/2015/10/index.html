@@ -194,7 +194,7 @@
     <section class="postShorten-group main-content-wrap">
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -222,84 +222,13 @@
 
             </div>
             
-                <div class="postShorten-content">
-                    <blockquote>
-<p><em>If you have any question about this article or Vorlon.js, feel free to contact me on twitter: <a href="http://twitter.com/meulta" target="_blank" rel="noopener">http://twitter.com/meulta</a></em> </p>
-</blockquote>
-<p>The Vorlon.js core team is split between Paris and Redmond. Last week we decided to ship a new big release and we all took a plane to Redmond and get together for a 2 days intense pair programming session. After multiple hours of bug bashing and last minute features coding we are <strong>happy and proud to announce</strong> that we published the new version of <strong>Vorlon.js : 0.1.0</strong> !</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/8228.vorlon_5629DC6B.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="vorlon" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/4035.vorlon_thumb_11110F35.png" alt="vorlon" width="413" height="265" border="0"></a></p>
-<p>You can get it by running the <strong>npm install –g vorlon</strong> command, clone the GitHub repo: <a href="https://github.com/Microsoftdx/vorlonjs" title="https://github.com/Microsoftdx/vorlonjs" target="_blank" rel="noopener">https://github.com/Microsoftdx/vorlonjs</a> or install it using the new <strong>deploy to Azure</strong> button we added between the last version and the new one (<a href="http://blogs.msdn.com/b/emargraff/archive/2015/09/17/how-to-deploy-an-online-vorlon-js-server-with-authentication.aspx" target="_blank">read more about this</a>).</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/2251.image_70F89328.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/0777.image_thumb_5241A93D.png" alt="image" width="482" height="225" border="0"></a></p>
-<p>4 month between the 0.0.15 and the 0.1.0 version and we are now up to almost <strong>1000</strong> commits, <strong>100</strong> pull requests and we closed and fixed <strong>120</strong> issues. Vorlon.js is heading the right direction and this is mainly thanks to the web community: <strong>thanks to you guys</strong> ! 🙂</p>
-<h1 id="What-is-new-in-this-release"><a href="#What-is-new-in-this-release" class="headerlink" title="What is new in this release"></a>What is new in this release</h1><h2 id="Unit-testing-plugin"><a href="#Unit-testing-plugin" class="headerlink" title="Unit testing plugin"></a>Unit testing plugin</h2><p>We now have a unit testing plugin based on qUnit. You can upload you Qunit file or directly type your test on the Vorlon.js dashboard : it will run it on the client side and get you the result summary.</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/3441.image_3F872B73.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/7848.image_thumb_2F0EBA78.png" alt="image" width="705" height="412" border="0"></a></p>
-<p>This has been done by <a href="https://github.com/cubitouch" target="_blank">Cubitouch</a>.</p>
-<p>## </p>
-<h2 id="Device-plugin"><a href="#Device-plugin" class="headerlink" title="Device plugin"></a>Device plugin</h2><p>This is inspired from the <a href="http://mydevice.io" target="_blank" rel="noopener">http://mydevice.io</a> website created by <a href="https://twitter.com/goetter" target="_blank">Raphael Goetter</a>. It is giving you information about the device you are running your website on like the pixel ratio, the pixel per points, the meta viewport or even the User Agent.</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/3806.image_314B4334.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/7382.image_thumb_059A7938.png" alt="image" width="715" height="369" border="0"></a></p>
-<h2 id="Best-practices-plugin"><a href="#Best-practices-plugin" class="headerlink" title="Best practices plugin"></a>Best practices plugin</h2><p>Creating a web site can be challenging sometimes because you have to follow a lot of rules and best practices to provide the best experience possible. We decided to help you improving your code with Vorlon.js through the Best Practices analyzer. It is performing static and dynamic analytics on your code to tell you what could be better. It is organized into 4 categories:</p>
-<ul>
-<li><strong>Accessibility:</strong> Warn you if you have forgotten thing like <strong>alt</strong> on images or aria attributes</li>
-<li><strong>Mobile Web:</strong> Are you using responsive practices ? do you use the meta viewport tag?</li>
-<li><strong>Performances:</strong> Are your files minified? Did you bundle them do reduce http request count ?</li>
-<li><strong>Web standards:</strong> Are you doing browser detection? Are you correctly using CSS prefixes?</li>
-</ul>
-<p>&nbsp;</p>
-<p>This is only a subset of all the rules we have here, and the two guys who did it (<a href="https://github.com/gleborgne" target="_blank">Guillaume Leborgne</a> and <a href="https://github.com/lahloumehdi" target="_blank">Mehdi Lahlou</a>) made it extensible. You can create your own rules and easily add them to this analyzer.</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/5808.image_40EDDEF6.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/5102.image_thumb_3794AA73.png" alt="image" width="787" height="377" border="0"></a></p>
-<h2 id="Improvements-and-other-plugins"><a href="#Improvements-and-other-plugins" class="headerlink" title="Improvements and other plugins :"></a>Improvements and other plugins :</h2><p>Vorlon.js got its first third party plugin : <a href="https://github.com/MicrosoftDX/Vorlonjs/tree/master/plugins%20library" target="_blank">Wappalyzer</a> which is available in the GitHub repo folder <strong>plugins library</strong>.</p>
-<p>The DOM Explorer has been highly improved with :</p>
-<ul>
-<li>All of the nodes displayed (not only body, but head too)</li>
-<li>CSS updates</li>
-<li>A better search UI</li>
-<li>Select a DOM on the client</li>
-</ul>
-<p>&nbsp;</p>
-<p>Object explorer is better integrated in the dashboard and we did some bug fixes.</p>
-<h2 id="Dashboard"><a href="#Dashboard" class="headerlink" title="Dashboard"></a>Dashboard</h2><p>We did a lot of refactoring, performance and stability improvements on the dashboard. You can also refresh the client side from there by clicking on the <strong>reload client</strong> button.</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/7282.image_3BA188F6.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/6886.image_thumb_38FB5DF6.png" alt="image" width="281" height="357" border="0"></a></p>
-<h2 id="HTTP-Proxy-use-Vorlon-js-without-changing-your-client-code"><a href="#HTTP-Proxy-use-Vorlon-js-without-changing-your-client-code" class="headerlink" title="HTTP Proxy : use Vorlon.js without changing your client code"></a>HTTP Proxy : use Vorlon.js without changing your client code</h2><p>We created a new awesome feature we were able to ship on this version : the <strong>HTTP proxy</strong>. This allows you to inject the <strong>Vorlon.js client code automatically</strong> while browsing your website.</p>
-<p>The way it works is really simple: all the <strong>http requests</strong> you do for your client site are redirected through an http proxy hosted on node.js side by side with the Vorlon.js server. Each time an HTML page goes there we inject the <strong>script</strong> tag you would have had to add yourself.</p>
-<p>To use it: only browse this url : <a href="http://localhost:1337/httpproxy" target="_blank" rel="noopener">http://localhost:1337/httpproxy</a> (or any domain name you are using instead of localhost).</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/4431.image_6205FCF2.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/3542.image_thumb_43BB45FC.png" alt="image" width="610" height="620" border="0"></a></p>
-<p>Enter your url and click on  :</p>
-<ul>
-<li><strong>Open website only</strong> : to open a proxified url for your website</li>
-<li><strong>Open dashboard only</strong>: to open the dashboard plugged to a session according to the proxified version of your website</li>
-<li><strong>Inspect with Vorlon.js</strong>: to open both in one click</li>
-</ul>
-<p>&nbsp;</p>
-<p>You can notice than the URL is different from your original one :</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/8400.image_06795F54.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/4645.image_thumb_47D13562.png" alt="image" width="563" height="223" border="0"></a></p>
-<p>It is composed of multiple parts:</p>
-<p><a href="http://localhost:5050/vorlonproxy/root.html?vorlonproxytarget=[YOURWEBSITEURL]&amp;vorlonsessionid=[DASHBOARDSESSION" target="_blank" rel="noopener">http://localhost:5050/vorlonproxy/root.html?vorlonproxytarget=[YOURWEBSITEURL]&amp;vorlonsessionid=[DASHBOARDSESSION</a>]</p>
-<p>You just have to browse your Vorlon.js instance using the correct session :</p>
-<p><a href="http://localhost:1337/dashboard/[DASHBOARDSESSION]" target="_blank" rel="noopener">http://localhost:1337/dashboard/[DASHBOARDSESSION]</a></p>
-<p>And everything works the same way you already know ! 🙂 Isn’t that awesome ?</p>
-<p>A huge thanks to Guillaume Leborgne who did a really strong work on this one.</p>
-<h2 id="More-improvements"><a href="#More-improvements" class="headerlink" title="More improvements"></a>More improvements</h2><p>We added support for authentication  :</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/6237.vorlonauth_333BF3A6.png" target="_blank" rel="noopener"><img title="vorlonauth" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/3858.vorlonauth_thumb_201D57AB.png" alt="vorlonauth" width="665" height="488" border="0"></a></p>
-<p>And automated deployment from GitHub to you Microsoft Azure account:</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/6470.image_72111B19.png" target="_blank" rel="noopener"><img title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/8080.image_thumb_713B45E0.png" alt="image" width="644" height="293" border="0"></a></p>
-<p>You can read more about this here : <a href="http://blogs.msdn.com/b/emargraff/archive/2015/09/17/how-to-deploy-an-online-vorlon-js-server-with-authentication.aspx" title="http://blogs.msdn.com/b/emargraff/archive/2015/09/17/how-to-deploy-an-online-vorlon-js-server-with-authentication.aspx" target="_blank" rel="noopener">http://blogs.msdn.com/b/emargraff/archive/2015/09/17/how-to-deploy-an-online-vorlon-js-server-with-authentication.aspx</a></p>
-<p>Do not hesitate to share about this with us on twitter or to create an issue on GitHub: <a href="https://github.com/MicrosoftDX/Vorlonjs" title="https://github.com/MicrosoftDX/Vorlonjs" target="_blank" rel="noopener">https://github.com/MicrosoftDX/Vorlonjs</a></p>
-<p>And if you want to participate, jump in and create new plugins ! Here is something to get you started : <a href="http://blogs.msdn.com/b/emargraff/archive/2015/06/01/how-to-create-a-vorlon-js-plugin.aspx" title="http://blogs.msdn.com/b/emargraff/archive/2015/06/01/how-to-create-a-vorlon-js-plugin.aspx" target="_blank" rel="noopener">http://blogs.msdn.com/b/emargraff/archive/2015/06/01/how-to-create-a-vorlon-js-plugin.aspx</a></p>
-<p>Have fun 🙂</p>
-<blockquote>
-<p><em>If you have any question about this article or Vorlon.js, feel free to contact me on twitter: <a href="http://twitter.com/meulta" target="_blank" rel="noopener">http://twitter.com/meulta</a></em></p>
-</blockquote>
-
+                <div class="postShorten-excerpt">
+                    <p>The Vorlon.js core team is split between Paris and Redmond. Last week we decided to ship a new big release and we all took a plane to Redmond and get together for a 2 days intense pair programming session. After multiple hours of bug bashing and last minute features coding we are <strong>happy and proud to announce</strong> that we published the new version of <strong>Vorlon.js : 0.1.0</strong> !</p>
                     
+                        <a href="/2015/10/29/vorlon-js-0-1-0-is-out/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
                         
-
-                    
-                    
-                        <p>
-                            <a href="/2015/10/29/vorlon-js-0-1-0-is-out/#post-footer" class="postShorten-excerpt_link link">
-                                Comment and share
-                            </a>
-                        </p>
                     
                 </div>
             

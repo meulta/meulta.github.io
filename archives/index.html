@@ -223,24 +223,21 @@
             </div>
             
                 <div class="postShorten-excerpt">
-                    <blockquote>
-<p>If you have any question about this blog article, feel free to contact me on twitter: <a href="https://twitter.com/meulta" target="_blank" rel="noopener">@meulta</a></p>
-</blockquote>
-<p>I have an awesome job at Microsoft: I get to work on mixing AI, Cloud and <a href="https://www.microsoft.com/en-us/windows/windows-mixed-reality" target="_blank" rel="noopener">Mixed Reality</a> experiences with partners and other companies. This enables me to work on cool new stuff and see what companies really want to do. Form all of the Microsoft <a href="https://azure.microsoft.com/en-us/services/cognitive-services/" target="_blank" rel="noopener">Cognitive Services</a> : Computer Vision is one that bring a lot to Augmented reality experiences . We&#8217;ve already helped a lot of companies using the <a href="https://customvision.ai/" target="_blank" rel="noopener">Custom Vision online service</a> which you can access via a REST API. The service tells you what’s in the image by providing a list of tags along with their probability ratio. A new feature was added more recently to show you <em>where</em> these objects are located in the image, thanks to the new Object Detection model with bounding boxes.</p>
+                    <p>I have an awesome job at Microsoft: I get to work on mixing AI, Cloud and <a href="https://www.microsoft.com/en-us/windows/windows-mixed-reality" target="_blank" rel="noopener">Mixed Reality</a> experiences with partners and other companies. This enables me to work on cool new stuff and see what companies really want to do. Form all of the Microsoft <a href="https://azure.microsoft.com/en-us/services/cognitive-services/" target="_blank" rel="noopener">Cognitive Services</a> : Computer Vision is one that bring a lot to Augmented reality experiences .<br>
                     
                         <a href="/2018/05/18/experimenting-with-windows-machine-learning-and-mixed-reality/" class="postShorten-excerpt_link link">
                             Continue reading
                         </a>
                         
                     
-                </div>
+                </p></div>
             
         </div>
         
     </article>
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -268,125 +265,13 @@
 
             </div>
             
-                <div class="postShorten-content">
+                <div class="postShorten-excerpt">
                     <p><em>This blog article is explaining how to setup web push notifications on a bot framework web chat control. For this, we will use service workers and VAPID. All the code shown here is available in this <a href="https://github.com/meulta/webchat-pushnotifications" target="_blank" rel="noopener">Github repository</a> containing the full version of it. You can also try <a href="https://webchatpush.azurewebsites.net/web/index.html" target="_blank" rel="noopener">this live sample</a> or watch the video below.</em></p>
-<div style="width: 640px;" class="wp-video"><br>  <video class="wp-video-shortcode" id="video-255-6" width="640" height="480" loop="1" autoplay="1" preload="metadata" controls="controls"><source type="video/mp4" src="/media/push-notifications.mp4"><a href="/media/push-notifications.mp4">push-notifications.mp4</a></video><br></div>
-
-<blockquote>
-<p>If you have any question about this blog article, feel free to contact me on twitter: <a href="https://twitter.com/meulta" target="_blank" rel="noopener">@meulta</a></p>
-</blockquote>
-<h1 id="Progressive-web-apps"><a href="#Progressive-web-apps" class="headerlink" title="Progressive web apps"></a><strong>Progressive web apps</strong></h1><p>The web is in a perpetual evolution. The advantage that apps have over it on mobile platforms is slowly fading away as more and more features are available from the browser. The web community and web browsers team like Microsoft Edge, Google Chrome and Mozilla Firefox are working on enabling the next wave of native-like web experiences, where web content can have the essential capabilities and user experience of native desktop or mobile apps. These web apps can start up instantly, can run in the background and have additional APIs available for developers. We call them: <a href="https://medium.com/web-on-the-edge/progressive-web-apps-on-windows-8d8eb68d524e" target="_blank" rel="noopener">Progressive Web Apps</a> (PWAs).</p>
-<p>PWAs are safe, connectivity independent, installable and responsive websites. There is a great chance that you already used one, even without knowing it. Did you already received notifications from Facebook even if the website is not opened in your browser? It is because Facebook is starting to use some of the underlining technology in PWAs. The heart of these new technologies are <a href="https://www.w3.org/TR/service-workers/" target="_blank" rel="noopener"><strong>service workers</strong>.</a></p>
-<p>Service workers are slowly being implemented in every browser to help web developers create web apps that are connectivity independent. You can see them as a proxy that goes between the local webpage and your server. It is used to handle caching, push notifications, and even temporary disconnection with background sync.</p>
-<h1 id="Bot-framework-web-chat-and-the-need-of-push-notifications"><a href="#Bot-framework-web-chat-and-the-need-of-push-notifications" class="headerlink" title="Bot framework, web chat and the need of push notifications"></a><strong>Bot framework, web chat and the need of push notifications</strong></h1><p>The <a href="https://dev.botframework.com/" target="_blank" rel="noopener">Microsoft Bot Framework</a> is a platform that helps developers create a bot which works across multiple channels. You use the Node.js or C# botbuilder SDK to create the bot backend and you can almost automatically make is available on Skype, Slack, Facebook, and a lot more. The combinaison of the <a href="https://github.com/Microsoft/BotFramework-WebChat" target="_blank" rel="noopener"><strong>web chat</strong></a> and Direct Line is one of these channels. Its name is pretty explicit: it is a web chat control that you can embed in any web page. It is very useful when, for example, you want to embed a support bot chat window directly in your website. Web clients have always been inferior to native clients in one way: background.  Your native client can be granted privileges to run in the background and engage users even when the app isn’t running.  We want to provide that same functionality for the web client</p>
-<p>As you might be using at least one instant messaging app on a day to day basis, you should be familiar with the fact that if someone talks to you when the app is closed or reduced you will receive a notification. You can click or tap on it to view the new message and the previous conversation. Having this is important to make the chat UI usable in the long term. It is the same if you are talking with a bot. Usually it will give you an answer pretty quickly as there is no concept of a bot being “away from keyboard” or “not connected”. This said, you might get a message from a bot which:</p>
-<ul>
-<li>Took some time to compute or get so did not arrive instantly</li>
-<li>Is a proactive message from the bot at a random time</li>
-<li>Is a human which took over the conversation and “replaced” the bot</li>
-<li>Your network doesn’t allow for immediate communication</li>
-</ul>
-<p><strong>Push notifications</strong> help the user not missing an important message from you. By enabling them to the web client we will fix the gap between native and web clients.</p>
-<h1 id="Push-notifications"><a href="#Push-notifications" class="headerlink" title="Push notifications"></a><strong>Push notifications</strong></h1><p>If you never handled push notifications in an app it is important to understand how it works.</p>
-<p>When you receive a push notification from an app or a website, even if it looks like they sent it to you directly: it is not technically true. They used a <strong>push notification service</strong>. This push notification service is linked to the platform you are using. Android uses a push server and Windows another one. It is the same for push notification on a browser: Chrome has its own server, Firefox too, etc.</p>
-<p>When you want to be able to send push to a client, you globally have to follow these steps:</p>
-<ul>
-<li><strong>Step 1</strong>: Setup an account on every platform you want to be able to send push to. The push service creates a push sender key that you will need later.</li>
-<li><strong>Step 2</strong>: Subscribe a client to push: this is done and handled by the platform. You do not call directly the push server but you ask the platform to do it. For it to work and for the push server to be able to identify yourself, you have to provide the key it gave you.</li>
-<li><strong>Step 3</strong>: The client get information related to the new subscription: an endpoint on the push server to call to send a new notification and keys for authentication</li>
-<li><strong>Step 4</strong>: Usually, your client code then sends that to your server code to store this subscription information</li>
-<li><strong>Step 5+</strong>: each time you want to send a notification to this client, you use the endpoint and keys that you got from it. The push server will then send that notification to the system which registered (a browser, a mobile, a desktop, etc.). Finally, the system displays it to the user who can see it and click on it.</li>
-</ul>
-<p><img class="alignnone size-full wp-image-300" src="/media/push.png" alt="" width="1896" height="1046" sizes="(max-width: 1896px) 100vw, 1896px"></p>
-<p>This is identical for native apps and web apps. However, web notifications are a newer and more progressive spec.  They allow for developers to set up push without all the overhead of accounts on each platform. Your web app will still use the push server associated with each platform but you will generate your own keys. This is done by using <a href="https://tools.ietf.org/html/draft-ietf-webpush-vapid-02" target="_blank" rel="noopener">VAPID (Voluntary Application Server Identification)</a>.</p>
-<p>For example, if you setup classic push notifications on chrome, you will have to give a GCM_SENDER_ID you got from a Firebase account. Using VAPID, chrome will still be using Firebase to register and get push events but you will give it your own key, which will also work with other browsers.</p>
-<p>In this scenario, your server code is responsible for creating private and public keys. This is a one-time creation process. In your web client code, you use the public key to register to the push server associated with the current browser. The push service understand that you are using VAPID and you get an endpoint and an auth token. This basically only replace <strong>step 3</strong> and you can do everything else the same way.  VAPIDs represent the modern approach to push.</p>
-<p>To get a deeper understanding of how VAPIDs work, you can check out any of these resources:</p>
-<ul>
-<li><a href="https://rossta.net/blog/using-the-web-push-api-with-vapid.html" target="_blank" rel="noopener">https://rossta.net/blog/using-the-web-push-api-with-vapid.html</a></li>
-<li><a href="https://developers.google.com/web/updates/2016/07/web-push-interop-wins" target="_blank" rel="noopener">https://developers.google.com/web/updates/2016/07/web-push-interop-wins</a></li>
-<li><a href="https://blog.mozilla.org/services/2016/04/04/using-vapid-with-webpush/" target="_blank" rel="noopener">https://blog.mozilla.org/services/2016/04/04/using-vapid-with-webpush/</a></li>
-</ul>
-<p>When you setup push on a website, you have to do it through a service worker. A service worker is a piece of code which is running side by side with your website client code. The 2 main differences are:</p>
-<ul>
-<li>It can run even if the website is not open in a tab</li>
-<li>It is dedicated to network related work such as… push!</li>
-</ul>
-<p>In a push scenario, the service worker registers specifically to a “push” event. Its code will be running in the background to get and display what is pushed, and your client code will be responsible for the rest:</p>
-<ul>
-<li>registering the service worker JavaScript file using <strong>serviceWorker.register(…)</strong></li>
-<li>registering to the push service and getting back the endpoint, key and secret for this push subscription</li>
-<li>sending the endpoint, key and secret to your server code so it can send a push notification later</li>
-</ul>
-<p><em>Note: when you register for push in your client code, the browser will automatically ask for the user’s permission to enable push notifications.</em></p>
-<p><strong>Ok, enough talking, let’s implement that!</strong></p>
-<p><em>Disclaimer 1: The code I am going to talk about here is from a fully working sample which is available here:</em> <a href="https://github.com/meulta/webchat-pushnotifications" target="_blank" rel="noopener"><em>https://github.com/meulta/webchat-pushnotifications</em></a> <em>You can go and have a look at the whole implementation. I will only talk about interesting pieces here.</em> </p>
-<p><em>Disclaimer 2: If you do not know anything about the Bot Framework I highly recommend reading the documentation:</em> <a href="https://docs.botframework.com/en-us/" target="_blank" rel="noopener">https://docs.botframework.com/en-us/</a></p>
-<p>_Disclaimer 3: concepts I talk about here will work for any website even if you are not using bot framework _</p>
-<p><em>Disclaimer 4: sorry about all these disclaimers!</em> <em>&#x1f609;</em></p>
-<h1 id="Adding-push-notification-to-an-existing-bot"><a href="#Adding-push-notification-to-an-existing-bot" class="headerlink" title="Adding push notification to an existing bot"></a><strong>Adding push notification to an existing bot</strong></h1><blockquote>
-<p>You can try a live version of this sample here: <a href="https://webchatpush.azurewebsites.net/web/index.html" target="_blank" rel="noopener">https://webchatpush.azurewebsites.net/web/index.html</a></p>
-</blockquote>
-<p>The bot we are using in this sample is a really simple one. If you say anything to it, it will start sending one message every 5 seconds. You can stop it by saying “stop”.</p>
-<p>You can have a look at the code doing this (<a href="https://github.com/meulta/webchat-pushnotifications/blob/master/bot.js#L84-L103" target="_blank" rel="noopener">https://github.com/meulta/webchat-pushnotifications/blob/master/bot.js#L84-L103</a>) but please do not take it as a reference to send messages proactively to a user from a bot. I tried to keep it as simple as possible as this is not the important part here. You can read more about how to send a message proactively to a user here: <a href="https://docs.botframework.com/en-us/azure-bot-service/templates/proactive/" target="_blank" rel="noopener">https://docs.botframework.com/en-us/azure-bot-service/templates/proactive/</a></p>
-<p>This server code is responsible for creating VAPID keys and send push notification to clients.</p>
-<ul>
-<li><strong>Creating Vapid keys</strong></li>
-</ul>
-<p>If you create your server code in Node.js then you can use a very cool module created by Mozilla which will do almost all the work for you: web-push : <a href="https://github.com/web-push-libs/web-push" target="_blank" rel="noopener">https://github.com/web-push-libs/web-push</a></p>
-<p>You will have to first generated Vapid keys using the <strong>webPush.generateVapidKeys()</strong> function. You only have to do this once or when you want to reset your keys. In our sample, we generate them and store them in a local JSON file. You might want to store this somewhere more secure.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vapidKeyFilePath = <span class="string">"./vapidKey.json"</span>;</span><br><span class="line"><span class="keyword">var</span> vapidKeys = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (fs.existsSync(vapidKeyFilePath)) &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//if the vapid file exists, then we try to parse its content </span></span><br><span class="line">  <span class="comment">//to retrieve the public and private key</span></span><br><span class="line">  <span class="comment">//more tests might be necessary here</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    vapidKeys = <span class="built_in">JSON</span>.parse(fs.readFileSync(vapidKeyFilePath));</span><br><span class="line">  &#125;</span><br><span class="line">    <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="built_in">console</span>.error(<span class="string">"There is an error with the vapid key file. Log: "</span> + e.message);</span><br><span class="line">    process.exit(<span class="number">-1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">//if the file did not exists, we use the web-push module to create keys</span></span><br><span class="line">  <span class="comment">//and store them in the file for future use</span></span><br><span class="line">  <span class="comment">//you should copy the public key in the index.js file</span></span><br><span class="line"></span><br><span class="line">  vapidKeys = webPush.generateVAPIDKeys();</span><br><span class="line">  fs.writeFileSync(vapidKeyFilePath, <span class="built_in">JSON</span>.stringify(vapidKeys));</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"No vapid key file found. One was generated. Here is the public key: "</span> + vapidKeys.publicKey);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>You then have to call the <strong>setVapidDetails()</strong> function to configure the web push module to send push notifications using the vapid private key. This will ensure the push server to be sure it comes from you.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">webPush.setVapidDetails(</span><br><span class="line">  <span class="string">'mailto:example@yourdomain.org'</span>,</span><br><span class="line">  vapidKeys.publicKey,</span><br><span class="line">  vapidKeys.privateKey);</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong>Handling event to register push</strong></li>
-</ul>
-<p>A bot can receive messages from the user but it can also receive events from the client code. This is very handful to send data to your bot backend code without the user knowing it. In the web chat control it is called the backchannel.</p>
-<p>We are going to use this backchannel for the client code to have a way of sending every user push subscription information. We just listen to incoming activities of type <strong>event</strong> and check that the message name is <strong>pushsubscriptionadded</strong> (which is one I totally imagine myself, you can pass whatever name you want).</p>
-<p>Each time the bot receive a new push subscription, we store it in a local variable associating it to the user internal id in the bot. Note that it might be best to store it in the bot user data.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bot.on(<span class="string">"event"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">message</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (message.name === <span class="string">"pushsubscriptionadded"</span>) &#123;</span><br><span class="line">    pushPerUser[message.user.id] = message.value;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong>Catching messages going out and sending push notifications</strong></li>
-</ul>
-<p>In our current scenario, we want to send a push notification to the user each time there is a message sent by the bot. This can easily be done with an event called <strong>outgoing</strong>. You subscribe to this event then check to see if there is a push notification associated with the user the outgoing message is sent to. If we do, then we use the <strong>webPush.sendNotification()</strong> function from the web-push module. It will use the VAPID private key and the information from the push subscription to ask the appropriate web push server to send a notification to the browser. It knows which server to talk to thanks to the endpoint property we got from the client in the <strong>pushsubscriptionadded</strong> event call.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">bot.on(<span class="string">"outgoing"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">message</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (pushPerUser &amp;&amp; pushPerUser[message.address.user.id]) &#123;</span><br><span class="line">    <span class="keyword">var</span> pushsub = pushPerUser[message.address.user.id];</span><br><span class="line"></span><br><span class="line">    webPush.sendNotification(&#123;</span><br><span class="line">        endpoint: pushsub.endpoint,</span><br><span class="line">        TTL: <span class="string">"1"</span>,</span><br><span class="line">        keys: &#123;</span><br><span class="line">        p256dh: pushsub.key,</span><br><span class="line">        auth: pushsub.authSecret</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, message.text);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h1 id="Setting-up-push-in-the-client"><a href="#Setting-up-push-in-the-client" class="headerlink" title="Setting up push in the client"></a><strong>Setting up push in the client</strong></h1><p>This is the most interesting part. The first role of the client code is to register the service worker in the browser. To do this, we use the <strong>navigator.serviceWorker.register()</strong> function by giving it the service worker file name. This function return a Promise so you can chain a <strong>.then()</strong> function to execute some code once the service worker is registered. If the service worker is already registered, it will return the current one.</p>
-<p>In our case, we take this opportunity to try to get the existing push notification manager subscription using <strong>registration.pushManager.getSubscription()</strong> (where registration is the service worker instance). If it does not exist, we will just have to create and return a new one create using <strong>registration.pushManager.subscribe()</strong> giving it an <strong>applicationServerKey</strong>. This applicationServerKey is the public key your server generated.</p>
-<p>The subscription object we get from this is containing everything the server will need to send a notification to the client: the endpoint, the key and a secret.</p>
-<p>In the current sample, all this is done in the <strong>setupPush</strong> function which takes a callback as a parameter and calls it back with the subscription information.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> setupPush = <span class="function"><span class="keyword">function</span> (<span class="params">done</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//first step is registering the service worker file</span></span><br><span class="line">  navigator.serviceWorker.register(<span class="string">'service-worker.js'</span>)</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span> (<span class="params">registration</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//once the sw is registered, we try to get an existing push subscription </span></span><br><span class="line">    <span class="keyword">return</span> registration.pushManager.getSubscription()</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span> (<span class="params">subscription</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//if the subscription exists, then we pass is to the next chained .then function using return</span></span><br><span class="line">    <span class="keyword">if</span> (subscription) &#123;</span><br><span class="line">      <span class="keyword">return</span> subscription;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//if the subscription does not exists, we wrap the VAPID public key and create a new one</span></span><br><span class="line">  <span class="comment">//we pass this new once to the next chaind .then function using return</span></span><br><span class="line">  <span class="keyword">const</span> convertedVapidKey = urlBase64ToUint8Array(VAPID_PUBLICKEY);</span><br><span class="line">    <span class="keyword">return</span> registration.pushManager.subscribe(&#123;</span><br><span class="line">      userVisibleOnly: <span class="literal">true</span>,</span><br><span class="line">        applicationServerKey: convertedVapidKey</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span> (<span class="params">subscription</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//wrapping the key and secret</span></span><br><span class="line">  <span class="keyword">const</span> rawKey = subscription.getKey ? subscription.getKey(<span class="string">'p256dh'</span>) : <span class="string">''</span>;</span><br><span class="line">  <span class="keyword">const</span> key = rawKey ? btoa(<span class="built_in">String</span>.fromCharCode.apply(<span class="literal">null</span>, <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(rawKey))) : <span class="string">''</span>;</span><br><span class="line">  <span class="keyword">const</span> rawAuthSecret = subscription.getKey ? subscription.getKey(<span class="string">'auth'</span>) : <span class="string">''</span>;</span><br><span class="line">  <span class="keyword">const</span> authSecret = rawAuthSecret ? btoa(<span class="built_in">String</span>.fromCharCode.apply(<span class="literal">null</span>, <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(rawAuthSecret))) : <span class="string">''</span>;</span><br><span class="line">  <span class="keyword">const</span> endpoint = subscription.endpoint;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//we call back the code that asked to register push notification with the subscription information</span></span><br><span class="line"></span><br><span class="line">  done(&#123;</span><br><span class="line">    endpoint: subscription.endpoint,</span><br><span class="line">      key: key,</span><br><span class="line">      authSecret: authSecret</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>This <strong>setupPush</strong> function is called right after we setup the Web Chat control. In the callback function we give to it, we use the Direct Line SDK to send an event of type <strong>pushsubscriptionadded</strong> to the bot, through the back channel.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">setupPush(<span class="function">(<span class="params">subscriptionInfo</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">//once push notifications are setup, we get the subscription info back in this callback</span></span><br><span class="line">  <span class="comment">//we use the backchannel to send this info back to the bot using an 'event’ activity</span></span><br><span class="line">  botConnection</span><br><span class="line">    .postActivity(&#123;</span><br><span class="line">      type: <span class="string">"event"</span>,</span><br><span class="line">      name: <span class="string">"pushsubscriptionadded"</span>,</span><br><span class="line">      value: subscriptionInfo,</span><br><span class="line">      <span class="keyword">from</span>: &#123; <span class="attr">id</span>: botConnection.conversationId &#125; <span class="comment">//you could define your own userId here</span></span><br><span class="line">    &#125;)</span><br><span class="line">    .subscribe(<span class="function"><span class="params">id</span> =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//we store the conversation id which we get back from postActivity(…) in the LocalStorage</span></span><br><span class="line">    <span class="comment">//we will need this in case of conversation resuming</span></span><br><span class="line">    localStorage.setItem(<span class="string">"pushsample.botConnection.conversationId"</span>, botConnection.conversationId);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>As you can see in the code above, we also store the <strong>conversationid</strong> in the browser <strong>localStorage</strong> so it will persist. We need this to be able to resume the conversation when the user clicks on a notification after the tab was closed. We handle this by adding a get parameter to the webpage url: <strong>?isBack=y</strong>. To resume a conversation using Direct Line, you just have to give back the <strong>conversationid</strong> as we do here:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (getParameterByName(<span class="string">"isback"</span>) === <span class="string">'y'</span>) &#123;</span><br><span class="line">  <span class="comment">//if we are resuming an existing conversation, we get back the conversationid from LocalStorage</span></span><br><span class="line">  botConnection = <span class="keyword">new</span> DirectLine.DirectLine(&#123;</span><br><span class="line">  secret: DIRECTLINE_SECRET,</span><br><span class="line">  conversationId: localStorage.getItem(<span class="string">"pushsample.botConnection.conversationId"</span>),</span><br><span class="line">  webSocket: <span class="literal">false</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h1 id="Listening-to-push-notification-in-the-background-with-the-service-worker"><a href="#Listening-to-push-notification-in-the-background-with-the-service-worker" class="headerlink" title="Listening to push notification in the background with the service worker"></a><strong>Listening to push notification in the background with the service worker</strong></h1><p>Last but not least, we need to write the code that will sit in the browser and handle push notification event even if the website is not opened.</p>
-<ul>
-<li><strong>Registering to push</strong></li>
-</ul>
-<p>The first piece of code is the one handling the push events.  To do this we use the self.addEventListener() function. It takes an event name (here “push”) and a callback. Each time a new push notification is received, this callback is going to be called. Here, we just call <strong>registration.showNotification()</strong> which displays it using a nice image and some text. The payload variable is built using the event data (which is the notification text we send from the server).</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(<span class="string">'push'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line"><span class="comment">//creating the notification message (we should never be in the "no message” case)</span></span><br><span class="line"><span class="keyword">var</span> payload = event.data ? event.data.text() : <span class="string">'No message…'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//we show a notification to the user with the text message</span></span><br><span class="line"><span class="comment">//and an icon which is hosted as a resource on the website</span></span><br><span class="line">event.waitUntil(</span><br><span class="line">    self.registration.showNotification(<span class="string">'Chat bot!'</span>, &#123;</span><br><span class="line">      body: payload,</span><br><span class="line">      icon: <span class="string">'/web/img/thinking_morphi.png'</span></span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong>Handling click on notifications</strong></li>
-</ul>
-<p>By default, clicking on a browser notification does nothing. You can add a custom behavior using the ‘notificationclick’ event in the service worker code. Its code is pretty straightforward as we list all the clients (a tab being also seen as a client), we look if one is displaying our web page. If yes and the focus is on another one, we switch to it. If yes and the focus is on it, we do nothing. And finally, if no, we reopen the page adding the <strong>?isBack=y</strong> parameter.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(<span class="string">'notificationclick'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Android doesn’t close the notification when you click on it </span></span><br><span class="line">  <span class="comment">// See: http://crbug.com/463146 </span></span><br><span class="line">  event.notification.close();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// This looks to see if the current is already open and </span></span><br><span class="line">  <span class="comment">// focuses if it is </span></span><br><span class="line"></span><br><span class="line">  event.waitUntil(</span><br><span class="line"></span><br><span class="line">    <span class="comment">//searching for all clients / tab opened in the browser</span></span><br><span class="line">    clients.matchAll(&#123;</span><br><span class="line">      type: <span class="string">"window"</span></span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span> (<span class="params">clientList</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//going through the list of clients/tab and trying to find our website</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = ; i &lt; clientList.length; i++) &#123;</span><br><span class="line">      <span class="keyword">var</span> client = clientList[i];</span><br><span class="line"></span><br><span class="line">      <span class="comment">//if we find it, we put focus back on the tab</span></span><br><span class="line">      <span class="keyword">if</span> ((client.url.toLowerCase() == baseurl + <span class="string">'/web/index.html'</span> || client.url.toLowerCase() == baseurl + <span class="string">'/web/index.html?isback=y'</span>) &amp;&amp; <span class="string">'focus'</span> <span class="keyword">in</span> client)</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> client.focus();</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (clients.openWindow) &#123;</span><br><span class="line">      <span class="comment">//if we did not find it, then we re-open it with the isback=y parameter</span></span><br><span class="line">      <span class="comment">//to ensure that we resume the conversation using the conversationid</span></span><br><span class="line">      <span class="keyword">return</span> clients.openWindow(<span class="string">'/web/index.html?isback=y'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h1 id="What’s-next"><a href="#What’s-next" class="headerlink" title="What’s next?"></a><strong>What’s next?</strong></h1><p>Using <strong>web push notifications</strong> in a web chat control is obvious. There are a lot of other cases in which it can be really helpful. It can help you notify someone about a trending news, an update on your website or a new friend connection.</p>
-<p>Understanding how web notifications are working and adding them to one of your projects is a great first step. Implementing more PWAs’ features can be simpler than you think. At Microsoft, we have recently introduced <a href="http://preview.pwabuilder.com/generator" target="_blank" rel="noopener">PWA Builder</a>, which simplifies and automates building a manifest so it’s as easy as providing resources and a description for your app. It will also help you in the process of adding service workers features to your app, such as cache management. In a future version, it will certainly also help you create the service worker code needed to handle push notifications.</p>
-<p>In a very near future, service workers will be available in <a href="https://developer.microsoft.com/en-us/microsoft-edge/platform/status/serviceworker/?q=service%20workers" target="_blank" rel="noopener">every modern browser</a>: <strong>take this opportunity and be part of the Progressive Web Apps world!</strong></p>
-<blockquote>
-<p>If you have any question about this blog article, feel free to contact me on twitter: <a href="https://twitter.com/meulta" target="_blank" rel="noopener">@meulta</a></p>
-</blockquote>
-
                     
+                        <a href="/2017/04/17/bot-framework-web-chat-and-push-notifications/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
                         
-
-                    
-                    
-                        <p>
-                            <a href="/2017/04/17/bot-framework-web-chat-and-push-notifications/#post-footer" class="postShorten-excerpt_link link">
-                                Comment and share
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -395,7 +280,7 @@
     </article>
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -423,73 +308,15 @@
 
             </div>
             
-                <div class="postShorten-content">
+                <div class="postShorten-excerpt">
                     <h1 id="Bots"><a href="#Bots" class="headerlink" title="Bots."></a><strong>Bots.</strong></h1><p>They are everywhere. Everyone talks about it and everyone wants to have one.</p>
 <p>And <strong>you</strong>, developer, always dreamt of creating your own. An artificial intelligence that you could shape and which could rule the web and, later, even the world.</p>
 <p>Well not so fast. It is not that easy. It is getting easiER but still requires work and knowledge in various areas.</p>
-<p>A bot (or Conversational Agent) is basically a <strong>web API</strong>. This web API is plugged to a conversation channel such as Skype, Facebook or Kik and do 2 things:</p>
-<ul>
-<li>Receiving messages from the user</li>
-<li>Doing stuff and sending a message to the user</li>
-</ul>
-<p>Receiving and sending messages is not really the complex part. The hard piece of code is the one that is going to make your <strong>bot look intelligent</strong>. And there are a lot of challenges here, from <strong>understanding</strong> what the user wants, to managing the data and the <strong>conversation flow</strong> and history.</p>
-<p>At Microsoft, we are working on solutions to help you on all those aspects:</p>
-<ul>
-<li>The <a href="https://dev.botframework.com/" target="_blank" rel="noopener">bot framework</a> helps you <ul>
-<li>Create and maintain a conversation state with the Bot Builder sdk</li>
-<li>Expose your bot to multiple conversation channel with no or little configuration</li>
-</ul>
-</li>
-<li><a href="http://luis.ai" target="_blank" rel="noopener">LUIS.ai</a> is here to help understanding the structure of a sentence. It is using NLP (<a href="https://en.wikipedia.org/wiki/Natural_language_processing" target="_blank" rel="noopener">Natural Language Processing</a>) to give you a hint about what the human user intent is. This way, you can try and answer something appropriate and go to one or another path of your conversation.</li>
-<li><a href="https://azure.microsoft.com/en-us" target="_blank" rel="noopener">Microsoft Azure</a> contains a huge list of services that are helpful here. Obviously you can think of <a href="https://docs.microsoft.com/en-us/azure/app-service-web/" target="_blank" rel="noopener">web apps</a> or <a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview" target="_blank" rel="noopener">functions</a> to host your bot API but there also is <a href="https://www.microsoft.com/cognitive-services/en-us/apis" target="_blank" rel="noopener">Cognitive Services</a> for image analysis, emotion analysis, face recognition and so on. <a href="https://docs.microsoft.com/en-us/azure/search/" target="_blank" rel="noopener">Azure Search</a> is a component that has proven to be a great ally in organizing and finding data for bots.</li>
-</ul>
-<p>I am sure you get it, creating a bot involves a lot of tools, languages and features. The goal in this post is not to go deep into details on how you create a bot so I will stop here. You can find a lot of great content here :  <a href="https://docs.botframework.com" target="_blank" rel="noopener">https://docs.botframework.com</a></p>
-<h1 id="Bot-Builder"><a href="#Bot-Builder" class="headerlink" title="Bot Builder"></a>Bot Builder</h1><p>The <a href="https://docs.botframework.com/en-us/" target="_blank" rel="noopener">bot builder</a> is an <strong>SDK</strong> that is available for<strong> <a href="https://docs.botframework.com/en-us/csharp/builder/sdkreference/" target="_blank" rel="noopener">.NET</a> and <a href="https://docs.botframework.com/en-us/node/builder/overview/#navtitle" target="_blank" rel="noopener">Node.js</a></strong>. It is helping you creating and maintaining the conversation state. You have to think of a bot as a list of paths that the conversation can take. If you create a IMDB bot for instance, it might be able to talk about movies or  actors. When you talk about actors with it, you also can have various sub-subjects like the actor&#8217;s list of movies or other stuff that he or she did. The way we design conversations today is by creating hierarchical dialogs: &#8220;<em>First the user can ask for an actor and get his description, then from there the user can ask for the actors&#8217; age, or movies</em>&#8220;. Usually you will have a small dialog trees but even there it can be complicated to understand. (Even if you are its initial coder 😉</p>
-<p>In your bot, dialogs are going to start other dialogs and this is going to create a <strong>dialog stack</strong>. It is basically a way for the Bot Builder SDK to remember the state of the conversation and what to do next.</p>
-<p>When I first started to code bots, I did not really pay attention to what this dialog stack was and how it worked. Sometimes i was trying to fix issues and understand what was happening using step by step debugging. That is useful and can help to a limit where you need to have a more visual way of seeing this stack.</p>
-<p>We realized that with <a href="http://twitter.com/davrous" target="_blank" rel="noopener">David</a> and that is why we worked with the <strong>Microsoft bot framework team</strong> to create a plugin in Vorlon.js that will <strong>help bot developers understand what is happening in their code</strong>.</p>
-<h1 id="The-Bot-Framework-Inspector-plugin-in-Vorlon-js"><a href="#The-Bot-Framework-Inspector-plugin-in-Vorlon-js" class="headerlink" title="The Bot Framework Inspector plugin in Vorlon.js"></a>The Bot Framework Inspector plugin in Vorlon.js</h1><blockquote>
-<p>You do not know how to setup Vorlon.js? It is really easy. Here is a step by step guide: <a href="https://github.com/meulta/VorlonBotLab" target="_blank" rel="noopener">https://github.com/meulta/VorlonBotLab</a></p>
-</blockquote>
-<p>Vorlon.js is a tool designed to remote inspect JavaScript code. You can use it for front websites when it is hard to get F12 tools working (on a mobile, a tablet, a Tesla car, a connected fridge or whatever). You can also use it to inspect Node.js processes. Of course you can debug Node.js code step by step using tools like Visual Studio Code but Vorlon.js purpose is to help you using <strong>dedicated plugins</strong>. We have one for NodeJS, another one for XHR requests, one for Express.js, and now: One for the bot builder SDK.</p>
-<p>This only work for the node.js version of the SDK for now.</p>
-<p><em><strong>Note</strong>: The current version is in Beta, so please do not pay too much attention to the design. We will fix that when we are sure we implemented useful features for you, bot devs! 🙂</em></p>
-<div style="width: 640px;" class="wp-video"><br>  <video class="wp-video-shortcode" id="video-220-5" width="640" height="248" loop="1" autoplay="1" preload="metadata" controls="controls"><source type="video/mp4" src="/media/BotInspector-1.mp4?_=5"><a href="/media/BotInspector-1.mp4">BotInspector-1.mp4</a></video><br></div>
-
-<p>&nbsp;</p>
-<p>The plugin is splitted into 3 parts. The upper left one is showing you the list of dialogs that are declared in your bot. Each line is a dialog and its id is composed of the library name (* if you do not have any library) and the actual dialog name.</p>
-<p><img class="alignnone wp-image-222" src="/media/plugin-botframeworkinspector-1.jpg" alt="" width="619" height="193" sizes="(max-width: 619px) 100vw, 619px"></p>
-<p>On the right you can see the list of steps you have in each dialog. If you let your mouse over one of them you will have a quick view of its code.</p>
-<p><img class="alignnone wp-image-223" src="/media/plugin-botframeworkinspector-2.jpg" alt="" width="606" height="217" sizes="(max-width: 606px) 100vw, 606px"></p>
-<p>On the lower left part of the plugin, you can see the live view of events happening inside your bot. You have to actually start interacting with it to see things here 🙂</p>
-<p>In the botbuilder, each <strong>user entry</strong> generates one or more <strong>events</strong>. These events are linked to your bot code. For instance, each time a dialog start, there is a <strong>BeginDialog</strong> event happening. You can see all these in this view. When the bot builder is done with all the events generated by one user entry, it automatically <strong>save the state</strong>. This end up launching a FinalSate event.</p>
-<p>For each event, you can see the current <strong>dialog stack</strong>. The dialog stack is the list of dialogs that are currently started. One dialog starts another on, which starts another one, and so on. The dialog usually only ends when EndDialog is called. The dialog stack state is memorized between 2 user entries.</p>
-<p><img class="alignnone wp-image-224" src="/media/plugin-botframeworkinspector-3.jpg" alt="" width="607" height="346" sizes="(max-width: 607px) 100vw, 607px"></p>
-<p>The last part of the plugin is the <strong>live graph</strong>. It is generated by the bot execution and it thightly coupled with the event view. It is built live while you are using the bot. It is interesting to have a graphical overview of what is happening inside your bot and can help you discover and fix dialog stack issues.</p>
-<p>Whenever you have 0 dialogs in the stack or you call endConversation, a new graph is created on the right.</p>
-<p><img class="alignnone wp-image-225" src="/media/plugin-botframeworkinspector-4.jpg" alt="" width="632" height="261" sizes="(max-width: 632px) 100vw, 632px"></p>
-<h1 id="What-8217-s-next"><a href="#What-8217-s-next" class="headerlink" title="What&#8217;s next"></a>What&#8217;s next</h1><p>The next features we have in mind are mainly:</p>
-<ul>
-<li>Being able to save a specific state at a given moment in time and restore it</li>
-<li>Making data editable from the dashboard</li>
-<li>Making it work for .NET</li>
-<li>Design improvements</li>
-<li>Handling more events from the bot builder</li>
-</ul>
-<p>The only way to make this tool great is to test it accross a huge number of developers.</p>
-<p>That is where you can help!</p>
-<p><strong>Try it out today</strong> and send feedbacks to either <a href="http://twitter.com/meulta" target="_blank" rel="noopener">me</a> or <a href="http://twitter.com/davrous" target="_blank" rel="noopener">davrous</a>.</p>
-
                     
+                        <a href="/2017/01/25/how-to-debug-your-bot-with-vorlon-js/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
                         
-
-                    
-                    
-                        <p>
-                            <a href="/2017/01/25/how-to-debug-your-bot-with-vorlon-js/#post-footer" class="postShorten-excerpt_link link">
-                                Comment and share
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -498,7 +325,7 @@
     </article>
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -526,38 +353,14 @@
 
             </div>
             
-                <div class="postShorten-content">
+                <div class="postShorten-excerpt">
                     <p>Last version of Vorlon.js was focused on debugging JavaScript on the server thanks to the <a href="https://meulta.github.io/2016/07/05/remote-inspect-node-js-and-express-with-vorlon-js/" target="_blank" rel="noopener">Node.js and Express.js plugins</a>.</p>
 <p>We have been busy since then working tightly with <a href="https://twitter.com/fremycompany" target="_blank" rel="noopener">Francois Remy</a> to help you debug DOM even easier than it already is. And it is now available in <a href="https://www.npmjs.com/package/vorlon" target="_blank" rel="noopener">Vorlon.js 0.4</a> !</p>
-<p><strong>Introducing the DOM Timeline plugin</strong></p>
-<p>Modern web interfaces are more and more complex. JavaScript enables you to do a lot of changes in your DOM. How many times you hide, show or change an HTML element? And how many times you have hard time to debug these changes when something is not going well?</p>
-<p>The goal of the DOM Timeline is to let you track the history of DOM events. You can record and then have a look at every change, add or removal that happened while you used the debugged website.</p>
-<div style="width: 640px;" class="wp-video"><br>  <video class="wp-video-shortcode" id="video-208-4" width="640" height="285" preload="metadata" controls="controls"><source type="video/mp4" src="/media/Vorlon-Domtimeline.mp4?_=4"><a href="/media/Vorlon-Domtimeline.mp4">Vorlon-Domtimeline.mp4</a></video><br></div>
-
-<p>As you can see on the video, you are also able to go back in history and the website is going to be exactly as it was at that specific point in time.</p>
-<p><strong>Next steps</strong></p>
-<p>We are now in the process of getting more stuff done on the server debugging side.</p>
-<p>Our next goal is to simplify <strong>bots developpers</strong> life!</p>
-<ul>
-<li>Vorlon.js <strong>website</strong>: <a href="http://vorlonjs.io" target="_blank" rel="noopener">http://vorlonjs.io</a></li>
-<li>Vorlon.js <strong>github</strong> repo: <a href="http://github.com/microsoftdx/vorlonjs" target="_blank" rel="noopener">http://github.com/microsoftdx/vorlonjs</a></li>
-<li>Vorlonjs <strong>npm</strong> package: <a href="https://www.npmjs.com/package/vorlon" target="_blank" rel="noopener">https://www.npmjs.com/package/vorlon</a></li>
-</ul>
-<p>Thanks to <a href="http://www.techsmith.fr/camtasia.html" target="_blank" rel="noopener">Camtasia</a> for their help on the video!</p>
-<blockquote>
-<p>If you have any question about Vorlon.js or this article, feel free to contact me on twitter : <a href="http://twitter.com/meulta" target="_blank" rel="noopener">http://twitter.com/meulta</a></p>
-</blockquote>
-
                     
+                        <a href="/2016/11/15/debug-your-dom-history-using-vorlon-js/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
                         
-
-                    
-                    
-                        <p>
-                            <a href="/2016/11/15/debug-your-dom-history-using-vorlon-js/#post-footer" class="postShorten-excerpt_link link">
-                                Comment and share
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -566,7 +369,7 @@
     </article>
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -594,77 +397,15 @@
 
             </div>
             
-                <div class="postShorten-content">
+                <div class="postShorten-excerpt">
                     <p>Here we are !</p>
 <p>A few weeks after the last release we are excited to ship Vorlon.js 0.3 to the world. 🙂</p>
 <p>In this version we focused to make node.js inspection better with Vorlon.js. Special thanks to <a href="https://twitter.com/totose_" target="_blank" rel="noopener">Sofiene Djebali</a> who is doing an awesome contribution to Vorlon.js!</p>
-<p>We already added a preview of this capability in the 0.2 version, you can read more about it here : <a href="http://meulta.com/en/2016/02/01/vorlon-js-0-2-1-is-out/" target="_blank" rel="noopener">http://meulta.com/en/2016/02/01/vorlon-js-0-2-1-is-out/</a></p>
-<p>&nbsp;</p>
-<p><strong>Why would I want to use Vorlon.js to inspect my node.js app ?</strong></p>
-<p>The idea behind this is to make you capable of getting all the information you need to debug a node.js app remotely.</p>
-<p>We all know Tools to debug locally and we also know some of them that work remotely. What we are aiming is to create an easy-to-use set of Tools specialized on various node.js modules:</p>
-<ol>
-<li>In version 0.2 we added the possibilty to inspect a node.js app with Vorlon.js. To do this you only have to <strong>npm install</strong> and <strong>require</strong> the vorlonjs-node-wrapper npm module. Then you can start the client part of Vorlon.js Inside your node app as documented here : <a href="http://vorlonjs.io/documentation/#debugging-nodejs-applications" target="_blank" rel="noopener">http://vorlonjs.io/documentation/#debugging-nodejs-applications</a>. Thanks to this, you can use Vorlon.js plugins</li>
-<li>Still in version 0.2 we made the standard <strong>Interactive Console</strong>, <strong>Object Explorer</strong> and <strong>XHR</strong> plugins working in node.js inspection scenarios</li>
-<li>In version 0.3 we are bringing you 2 new plugins specifically crafted for node.js debugging <ol>
-<li>Node.js</li>
-<li>Express.js</li>
-</ol>
-</li>
-</ol>
-<p>We plan to add more of these specialized plugin to help you going through your worst debugging cases! 🙂</p>
-<p>To activate these, you just have to go in the settings from the Vorlon.js Dashboard page.</p>
-<div style="width: 640px;" class="wp-video"><br>  <!--[if lt IE 9]><![endif]--><video class="wp-video-shortcode" id="video-197-1" width="640" height="384" loop="1" autoplay="1" preload="metadata" controls="controls"><source type="video/mp4" src="/media/settings.mp4?_=1"><br><br>  <a href="/media/settings.mp4">settings.mp4</a></video><br></div>
-
-<p>&nbsp;</p>
-<p><strong>The Node.js plugin</strong></p>
-<p>This one is the main that you want to use in a remote node debug scenario. As the Console, XHR and Object Explorer one it can be use for any node.js apps.</p>
-<p>It is composed of 3 panes:</p>
-<ul>
-<li>One displaying the hierarchy of modules you required inside your app</li>
-<li>One showing a graph of your app memory usage</li>
-<li>One giving you information about the node process</li>
-</ul>
-<div style="width: 640px;" class="wp-video"><br>  <video class="wp-video-shortcode" id="video-197-2" width="640" height="384" loop="1" autoplay="1" preload="metadata" controls="controls"><source type="video/mp4" src="/media/nodejsdebugging.mp4?_=2"><a href="/media/nodejsdebugging.mp4">nodejsdebugging.mp4</a></video><br></div>
-
-<p>&nbsp;</p>
-<p><strong>The Express.js plugin</strong></p>
-<p>To be able to use this plugin, you obviously have to use Express.js in your node app. You also have to declare a variable so that Vorlon.js is able to access the Express informations:</p>
-<p>_EXPRESS_VORLONJS = app;_</p>
-<p>Once this is done, you will have access to :</p>
-<ul>
-<li>The list of routes configured in your express app</li>
-<li>The requests that has been made and that hit your routes</li>
-<li>Your session variables</li>
-<li>And the express local configuration</li>
-</ul>
-<div style="width: 640px;" class="wp-video"><br>  <video class="wp-video-shortcode" id="video-197-3" width="640" height="384" loop="1" autoplay="1" preload="metadata" controls="controls"><source type="video/mp4" src="/media/expressjsdebug.mp4?_=3"><a href="/media/expressjsdebug.mp4">expressjsdebug.mp4</a></video><br></div>
-
-<p>&nbsp;</p>
-<p><strong>Next steps</strong></p>
-<p>We are now going to start a huge refactoring process to be sure that the server part catches up with our plugin ambitions. We have a lot of great stuff in our roadmap. We will share this soon, stay tuned ! 🙂</p>
-<p>If you have any idea of improvements or ideas of plugins that might be useful in Node.js remote inspection scenario, reach out with the team via twitter or slack 🙂</p>
-<p>To get this version you can:</p>
-<ul>
-<li>Clone our <a href="https://github.com/MicrosoftDX/Vorlonjs" target="_blank" rel="noopener">github repo</a></li>
-<li>run: npm install vorlon (<a href="https://www.npmjs.com/package/vorlon" target="_blank" rel="noopener">https://www.npmjs.com/package/vorlon</a>)</li>
-<li>Clic on the <a href="https://github.com/MicrosoftDX/Vorlonjs#deploy-on-azure" target="_blank" rel="noopener">Deploy on azure button</a> on the Github repo readme page</li>
-<li>Use the <a href="https://hub.docker.com/r/vorlonjs/dashboard/" target="_blank" rel="noopener">Docker image</a> brought to you by <a href="http://twitter.com/jcorioland" target="_blank" rel="noopener">Julien Corioland</a></li>
-</ul>
-<blockquote>
-<p>If you have any question about Vorlon.js or this article, feel free to contact me on twitter : <a href="http://twitter.com/meulta" target="_blank" rel="noopener">http://twitter.com/meulta</a></p>
-</blockquote>
-
                     
+                        <a href="/2016/07/05/remote-inspect-node-js-and-express-with-vorlon-js/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
                         
-
-                    
-                    
-                        <p>
-                            <a href="/2016/07/05/remote-inspect-node-js-and-express-with-vorlon-js/#post-footer" class="postShorten-excerpt_link link">
-                                Comment and share
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -673,7 +414,7 @@
     </article>
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -701,58 +442,13 @@
 
             </div>
             
-                <div class="postShorten-content">
+                <div class="postShorten-excerpt">
                     <p>It has already been one year that we started Vorlon.js. One year full of feedbacks, new features, a lot of talks in meetups and conferences. It is really a pleasure to talk with devs and Vorlon.js users to understand what they like about it or what they would like to have there! 🙂</p>
-<p><img class="wp-image-184 aligncenter" src="/media/vorlon.gif" alt="vorlon ultra quick demo" width="450" height="316"></p>
-<p>As David explained <a href="https://www.eternalcoding.com/?p=1894" target="_blank" rel="noopener">here</a> we ended up creating Vorlon.js to help web front devs in their remote debug scenarios, particularly on <strong>phones and tablets</strong>. When we released the first version, it only contained 4 plugins.</p>
-<p>Today, we have more than 10 of them. They debug various things like <strong>Angular.js, Office Addins</strong>, and more. What is really interesting is that we have different features than classic F12 tools more specialized to some languages or rendering frameworks. Vorlon.js is easy to extend and a lot of people are doing it and contributing!</p>
-<p>In only a few month, we managed to create a good F12 like experience. <strong>I am proud of that, and I am proud of the team </strong>🙂</p>
-<p>At the beginning of this year, we thought that front web debugging was not enough. Server development with Node.js obviously uses JavaScript. And we were already able to inspect and debug JavaScript. This is why we decided to add support for <a href="http://vorlonjs.com/documentation/#debugging-nodejs-applications" target="_blank" rel="noopener">node.js debugging</a>. Now, you can use a node module inside your server apps and get the Interactive Console, the <strong>XHR Panel</strong> and the <strong>Object Explorer</strong> to inspect and debug your running code.</p>
-<p><img class="wp-image-189 aligncenter" src="/media/4846.image_5178F222.png" alt="4846.image_5178F222" width="539" height="303" sizes="(max-width: 539px) 100vw, 539px"></p>
-<p><strong>Where are we going ?</strong></p>
-<p>In the next few months we are going to improve the support for <strong>Node.js debugging</strong>. A lot is coming in this area. We are working on Node.js and Express.js dedicated plugins. We still need to improve the stability of node.js debugging: this is pretty new and some things are not identical to front debugging and inspection.</p>
-<p>We want to get an <strong>hosted Vorlon.js platform</strong>. Right now you have to locally install the server to use it (or install it somewhere in the cloud). It is not a hard task but us developers are lazy folks: the more is done for us the better ;). You can simply picture this as a webpage where you can click on a &#8220;I want an online Vorlon.js server&#8221; button and get it instantly, ready to use. I really hope we will be ready to release this soon!</p>
-<p>We are going to do a lot of refactoring on the server side. We barely changed this since the first version to focus on the plugins and user experience part. We want to clean it to make it easier to change in the future.</p>
-<p>We also have some awesome projects we will be able to talk about soon! 🙂</p>
-<p><strong>What is new in the last version?</strong></p>
-<p>A couple of weeks ago, we released the 0.2.2 version. It contains some great features and mainly 2 new plugins.</p>
-<ul>
-<li><strong>The Universal Windows Platform plugin</strong></li>
-</ul>
-<p>It is possible to create a first class Windows application using HTML and JavaScript. You have direct access to the WinRT API and your app gets native performances by design. It is not running as a webview, but really by Windows core. This Vorlon.js plugin helps you understand better your code behavior. You have access to the CPU and Memory usage and more usefull infos.</p>
-<p><img class="size-full wp-image-186 aligncenter" src="/media/sans-titre.png" alt="sans-titre" width="630" height="332" sizes="(max-width: 630px) 100vw, 630px"></p>
-<ul>
-<li><strong>Office Addins plugin</strong></li>
-</ul>
-<p><strong>Office is everywhere</strong>. You can get it on your <strong>iPhone</strong>, your <strong>Android</strong>, your <strong>iPad</strong>, your <strong>Mac</strong>, your <strong>PC</strong>, your [<em>put whatever you want here</em>]. And you are not alone. A lot of us have office on our devices. Office 365 is a plateform behind the Office apps and softwares. It is a mail, file, contact, calendar, app server for enterprises.</p>
-<p>And it matters. A <strong>lot</strong>.</p>
-<p>A recent study showed that Office 365 is the Software as a Service app the most used in the world. If you never consider creating apps for it, you should. By creating app I mean an addin: it can be a pane inside the email composition interface or a tool inside Excel, or something inside Word. To create it you use web front tools that you already know. The addin is hosted somewhere and displayed inside every version of office you want (on ipad, android, etc.).</p>
-<p>So, why am I talking to you about this? Because when it comes to debugging Office addins on tablets or phone, there are no great options. Or at least, there WAS! 😉</p>
-<p>You can use all the features from Vorlon.js to debug the DOM, understand an issue using the console or the object explorer, improve performances thanks to the Network monitor, etc. You can also use the new Office Addin plugin. It helps you get access to the whole office addin API (which is JavaScript of course) and call some of them, get configuration values and more!</p>
-<p><img class="size-full wp-image-187 aligncenter" src="/media/2313.image_099DC3E5.png" alt="2313.image_099DC3E5" width="800" height="493" sizes="(max-width: 800px) 100vw, 800px"></p>
-<p>You can read more about this and how to use it here: <a href="https://blogs.msdn.microsoft.com/mim/2016/02/18/vorlonjs-plugin-for-debugging-office-addin" target="_blank" rel="noopener">https://blogs.msdn.microsoft.com/mim/2016/02/18/vorlonjs-plugin-for-debugging-office-addin</a></p>
-<ul>
-<li><strong>User interface for Config editing !</strong></li>
-</ul>
-<p>All the Vorlon.js configuration is done through the config.json file. It is not always handy to change it when you installed Vorlon from the <strong>npm</strong> package or if you deployed it on a remote server. We now have a user interface to be able to edit the plugins list. You can <strong>activate / deactivate a plugin</strong>, change its <strong>name</strong> or choose on which <strong>pane</strong> it will be displayed. You can also see an icon indicating you if you can use it in Node.js debug scenarios.</p>
-<p><img class="wp-image-188 aligncenter" src="/media/CiFYYPHW0AAGl9X.jpg" alt="CiFYYPHW0AAGl9X" width="799" height="379" sizes="(max-width: 799px) 100vw, 799px"></p>
-<p>You can read more about this in the readme file here : <a href="https://github.com/MicrosoftDX/Vorlonjs/blob/master/whatsnew.md" target="_blank" rel="noopener">https://github.com/MicrosoftDX/Vorlonjs/blob/master/whatsnew.md</a></p>
-<p><strong>You want to help ?</strong></p>
-<p>The more people we are the better! If you have an idea of plugin, or if you want to chat with us about Vorlon, feel free to join us on slack.</p>
-<blockquote>
-<p><span style="text-align: center;">If you have any question about this article, feel free to contact me on <a href="http://twitter.com/meulta" target="_blank" rel="noopener">http://twitter.com/meulta</a> 🙂</span></p>
-</blockquote>
-
                     
+                        <a href="/2016/06/04/one-year-of-vorlon-js/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
                         
-
-                    
-                    
-                        <p>
-                            <a href="/2016/06/04/one-year-of-vorlon-js/#post-footer" class="postShorten-excerpt_link link">
-                                Comment and share
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -761,7 +457,7 @@
     </article>
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -789,101 +485,13 @@
 
             </div>
             
-                <div class="postShorten-content">
-                    <blockquote>
-<p><em>If you have any question about this article or Vorlon.js, feel free to contact me on twitter: <a href="http://twitter.com/meulta" target="_blank" rel="noopener">http://twitter.com/meulta</a></em> </p>
-</blockquote>
-<p>3 month ago, we released the <a href="http://blogs.msdn.com/b/emargraff/archive/2015/10/29/vorlon-js-0-1-0-is-out.aspx" target="_blank" rel="noopener">0.1 version of</a> <a href="http://vorlonjs.io" target="_blank" rel="noopener">Vorlon.js</a>. We added a lot of great new features such as the Unit Test, the Device Info and the Best Practices plugin. One main improvement for this version was certainly the HTTP proxy which helps you debug a website using Vorlon.js without having to change its source code (<a href="http://vorlonjs.io/documentation/#vorlon-proxy" title="http://vorlonjs.io/documentation/#vorlon-proxy" target="_blank" rel="noopener">http://vorlonjs.io/documentation/#vorlon-proxy</a>).</p>
-<p align="center"><br>  <strong>Today we are thrilled to tell you that 0.2.1 is out !</strong><br></p>
-
-<p align="center"><br>  <img src="http://ekladata.com/WN5Rhx9M1LOKiQYTgbhSTuVC5gQ.jpg" alt="Afficher l'image d'origine" width="288" height="267"><br></p>
-
-<p><em>Note: if you (still? ;-)) don’t know what Vorlon.js is, you must</em> <a href="https://blogs.msdn.microsoft.com/eternalcoding/2015/04/29/why-we-made-vorlon-js-and-how-to-use-it-to-debug-your-javascript-remotely/" target="_blank" rel="noopener"><em>read this</em></a><em>, or</em> <a href="https://channel9.msdn.com/Shows/codechat/046" target="_blank" rel="noopener"><em>watch this</em></a>_._</p>
-<p align="left"><br>  What makes open source projects so interesting is as much the product itself as the strong community built around it. The 0.1 version has been created by a lot of people around the world and so did the new release we are announcing in this blog post.<br></p>
-
-<p align="center"><br>  <strong>We really want to thank you all</strong>. Sharing and working together is what makes the web so amazing!<br></p>
-
-<p>Amoung a lot of improvements, the 4 main new features in 0.2.1 are :</p>
-<ul>
-<li><strong>Accessibility rules</strong> added in the Best Practice Analyser (thanks to Deque and their wonderful project : aXe)</li>
-<li><a href="http://mcnextpost.com/2015/12/01/how-to-use-vorlon-js-desktop/" target="_blank" rel="noopener">Vorlon.js Desktop : a new way to install Vorlon</a></li>
-<li><strong>Node.js</strong> process debugging !</li>
-<li>We setup some <a href="http://blogs.technet.com/b/devops/archive/2016/01/12/vorlonjs-a-journey-to-devops-introducing-the-blog-post-series.aspx" target="_blank" rel="noopener">DevOps practices</a> to help us test and deploy our staging environments</li>
-</ul>
-<p>I will go through a quick description of all the improvements made to Vorlon.js in this article. Other blog posts will come later this week about these features.</p>
-<p># </p>
-<h1 id="Node-js-debugging-Vorlon-js-server-side"><a href="#Node-js-debugging-Vorlon-js-server-side" class="headerlink" title="Node.js debugging: Vorlon.js server side !"></a>Node.js debugging: Vorlon.js server side !</h1><p>We first made Vorlon.js for a specific task: <strong>helping web developers</strong> to debug their JavaScript, HTML and CSS code running on a <strong>mobile</strong>. It was first like an F12 alternative for remote debugging.</p>
-<p>We quickly understood that it could be <strong>more than that</strong>. The great work made by the community brought us specialized plugins like <strong>Angular.js inspector</strong> or <strong>QUnit runner</strong>. At this time, Vorlon.js was more and more a relevant tool for web (remote) desktop debugging, bringing additionnal features to classics F12 tools.</p>
-<p>As Vorlon.js is built on top of JavaScript, we start wondering if it could be a good idea to use it to also debug <strong>Node.js apps</strong>. Obviously some plugins such as DOM Explorer or Modernizr might not be relevant in this case but what about the Console or the Object Explorer? In a world where Node.js processes are running <strong>everywhere in the cloud and on IOT objects</strong>, remote debugging could really be helpful, right? 🙂</p>
-<p>Guess what ? It is now possible!</p>
-<p>All you have to do is requiring a new NPM package we created:</p>
-<p><strong>npm install vorlon-node-wrapper</strong></p>
-<p>Requiring it in your project:</p>
-<p><strong>var vorlonWrapper = require(&#8220;vorlon-node-wrapper&#8221;);</strong></p>
-<p>Starting the Vorlon for Node client by giving it your Vorlon.js instance:</p>
-<p><strong>vorlonWrapper.start(serverUrl, dashboardSession, false);</strong></p>
-<p>And voila! Each time you will start your node.js process, you will have remotely access to the Console, the Object Explorer, and the XHRPanel.</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/4846.image_5178F222.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/3414.image_thumb_62EBE3AB.png" alt="image" width="712" height="401" border="0"></a></p>
-<p>Here is the documentation for this: <a href="http://vorlonjs.io/documentation/#debugging-nodejs-applications" title="http://vorlonjs.io/documentation/#debugging-nodejs-applications" target="_blank" rel="noopener">http://vorlonjs.io/documentation/#debugging-nodejs-applications</a></p>
-<h1 id="Vorlon-js-Desktop-another-way-to-get-our-tool"><a href="#Vorlon-js-Desktop-another-way-to-get-our-tool" class="headerlink" title="Vorlon.js Desktop: another way to get our tool"></a>Vorlon.js Desktop: another way to get our tool</h1><p>As you can read on our <a href="http://vorlonjs.io/documentation/" target="_blank" rel="noopener">documentation web site</a>, Vorlon can be installed in many different ways. You can install it as an <strong>npm</strong> package, clone our GitHub repo or even auto deploy to Microsoft Azure. In the web community these are the common ways to get new tools on your dev box. Some people don’t know or don’t want to learn about these. Some of them don’t want to mess with command lines (yep, it happens ! :)).</p>
-<p>We want Vorlon to be accessible to the most people we can. This is why we (and more precisely <a href="https://twitter.com/gleborgne" target="_blank" rel="noopener">Guillaume Leborgne</a> and <a href="https://twitter.com/Mehdi_La" target="_blank" rel="noopener">Mehdi Lahlou</a>, kudos to them!) decided to work on a standalone installer. It currently works on Mac and Windows.</p>
-<p>Guillaume wrote a great article about this, feel free to take a look at it : <a href="http://mcnextpost.com/2015/12/01/how-to-use-vorlon-js-desktop/" title="http://mcnextpost.com/2015/12/01/how-to-use-vorlon-js-desktop/" target="_blank" rel="noopener">http://mcnextpost.com/2015/12/01/how-to-use-vorlon-js-desktop/</a></p>
-<p><img src="https://mcnextpost.files.wordpress.com/2015/12/screen.png?w=945" alt="screen.PNG" width="677" height="603"></p>
-<h1 id="Vorlon-js-team-went-DevOps"><a href="#Vorlon-js-team-went-DevOps" class="headerlink" title="Vorlon.js team went DevOps"></a>Vorlon.js team went DevOps</h1><p>Well. DevOps means a lot of stuff.</p>
-<p>It is about organization, people, tools, practices. As every team on the planet, we always need to improve what we do to release better code, faster and more efficiently. None of us are full time on this project, a lot of the work is done on our free (and passionate!) time. That’s why we love to optimize what we do to be able to achieve more.</p>
-<p>This first iteration we did on DevOps covers the basics:</p>
-<ul>
-<li>We organized better into clear releases using Issues</li>
-<li>We activated automated checks on commits and pull requests</li>
-<li>We enabled automated deployment of our internal staging environment</li>
-<li>We automated the creation of a ready to use Docker Vorlon.js image</li>
-<li>And more !</li>
-</ul>
-<p>A lot of this is using <strong>Visual Studio Team Services</strong> and its integration capabilities with GitHub:</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/7144.image_69A17DDF.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/5123.image_thumb_769B5DF0.png" alt="image" width="639" height="125" border="0"></a></p>
-<p>DevOps is about <strong>continuous improvement.</strong> This is why it is a work in progress. <a href="https://twitter.com/jcorioland" target="_blank" rel="noopener">Julien Corioland</a> did a great work on that and is sharing all of it with you in a blog posts series. It is a must read!</p>
-<p>You can start from here: <a href="http://blogs.technet.com/b/devops/archive/2016/01/12/vorlonjs-a-journey-to-devops-introducing-the-blog-post-series.aspx" title="http://blogs.technet.com/b/devops/archive/2016/01/12/vorlonjs-a-journey-to-devops-introducing-the-blog-post-series.aspx" target="_blank" rel="noopener">http://blogs.technet.com/b/devops/archive/2016/01/12/vorlonjs-a-journey-to-devops-introducing-the-blog-post-series.aspx</a></p>
-<h1 id="What-else"><a href="#What-else" class="headerlink" title="What else?"></a>What else?</h1><p>We did a lot of other improvements to this release :</p>
-<ul>
-<li>Added new accessibility rule in the best practices plugin</li>
-<li>Updated Modernizr to 3.0 and integrated more rules</li>
-<li>Various bug fixes</li>
-<li>Added click to URI on a resource in the DOM Explorer (kudos to <a href="https://twitter.com/paulfasola" target="_blank" rel="noopener">Paul Fasola</a>)</li>
-<li>Stability improvements on the dashboard</li>
-<li>Generating source map to be able to debug using Typescript files (thanks <a href="https://twitter.com/ramisayar" target="_blank" rel="noopener">Rami Sayar</a>)</li>
-<li>Merged the two gulp files to only one (really… I cannot remember why we thought 2 of them was a good idea in the first place… 😉</li>
-<li>Moved samples to the <strong>client samples</strong> folder. (Containing now a sample for Node.js debugging)</li>
-</ul>
-<p>&nbsp;</p>
-<p>I also want to notice that <a href="https://twitter.com/ramisayar" target="_blank" rel="noopener">Rami</a> did a huge work porting our Web Standard analyzer to a <strong>Grunt</strong> and <strong>Gulp</strong> extension. You can now check your web code quality during your build workflow:</p>
-<ul>
-<li>Here is the grunt task: <a href="https://www.npmjs.com/package/grunt-webstandards" title="https://www.npmjs.com/package/grunt-webstandards" target="_blank" rel="noopener">https://www.npmjs.com/package/grunt-webstandards</a></li>
-<li>Here is the gulp task: <a href="https://www.npmjs.com/package/gulp-webstandards" title="https://www.npmjs.com/package/gulp-webstandards" target="_blank" rel="noopener">https://www.npmjs.com/package/gulp-webstandards</a></li>
-<li>Here is a blog article talking about this : <a href="http://www.sitepoint.com/three-plugins-every-gruntfile-gulpfile-needs-make-website-great/" title="http://www.sitepoint.com/three-plugins-every-gruntfile-gulpfile-needs-make-website-great/" target="_blank" rel="noopener">http://www.sitepoint.com/three-plugins-every-gruntfile-gulpfile-needs-make-website-great/</a></li>
-</ul>
-<p>&nbsp;</p>
-<h1 id="What’s-next"><a href="#What’s-next" class="headerlink" title="What’s next ?"></a>What’s next ?</h1><p>We have multiple plans for the next version of Vorlon.js. The main focus now is certainly the Node.js debugging capability. Right now you can connect your node process to Vorlon and debug it but we want to create more specialized plugins. We have 3 of them in mind:</p>
-<ul>
-<li><strong>Node.js info</strong> (what you required, which version, and stuff like this)</li>
-<li><strong>Express.js</strong> (what view are loaded, automatic logs when a route is called, etc.)</li>
-<li><strong>Mocha</strong> (advanced remote test monitor)</li>
-</ul>
-<p>&nbsp;</p>
-<p><a href="https://twitter.com/sebastienpertus" target="_blank" rel="noopener">Sebastien Pertus</a> is also working on a plugin to help Office addin developers to debug their JavaScript code inside Vorlon. That should be released soon!</p>
-<p>If you have other ideas for the Node.js area or for Vorlon.js in general, do not hesitate to do some <a href="https://github.com/MicrosoftDX/Vorlonjs/pulls" target="_blank" rel="noopener">pull requests</a> or to <a href="https://github.com/MicrosoftDX/Vorlonjs/issues" target="_blank" rel="noopener">add issues to our backlog</a>!</p>
-<p>We also now have a <strong>Slack account</strong>. If you want to join and chat about Vorlon, feel free to contact me on twitter 😉</p>
-<p>Happy debugging! 🙂</p>
-
+                <div class="postShorten-excerpt">
+                    <p>3 month ago, we released the <a href="http://blogs.msdn.com/b/emargraff/archive/2015/10/29/vorlon-js-0-1-0-is-out.aspx" target="_blank" rel="noopener">0.1 version of</a> <a href="http://vorlonjs.io" target="_blank" rel="noopener">Vorlon.js</a>. We added a lot of great new features such as the Unit Test, the Device Info and the Best Practices plugin. One main improvement for this version was certainly the HTTP proxy which helps you debug a website using Vorlon.js without having to change its source code (<a href="http://vorlonjs.io/documentation/#vorlon-proxy" title="http://vorlonjs.io/documentation/#vorlon-proxy" target="_blank" rel="noopener">http://vorlonjs.io/documentation/#vorlon-proxy</a>).</p>
                     
+                        <a href="/2016/02/01/vorlon-js-0-2-1-is-out/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
                         
-
-                    
-                    
-                        <p>
-                            <a href="/2016/02/01/vorlon-js-0-2-1-is-out/#post-footer" class="postShorten-excerpt_link link">
-                                Comment and share
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -977,7 +585,7 @@
     </article>
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -1005,75 +613,13 @@
 
             </div>
             
-                <div class="postShorten-content">
-                    <blockquote>
-<p><em>If you have any question about this article or Vorlon.js, feel free to contact me on twitter: <a href="http://twitter.com/meulta" target="_blank" rel="noopener">http://twitter.com/meulta</a></em> </p>
-</blockquote>
-<p>When it comes to writing good code in web development it is easy to get lost in the quantity of resources you find online. There are some basics that everyone knows or should know and there are some more specific ones.</p>
-<p>Are you able to tell me right now that you sure you follow these practices ? Probably not. You probably have the intuition that you do and you are certainly writing your code with them in mind but you cannot be sure you always respect them.</p>
-<p>As I said, there are a <a href="http://thenextweb.com/dd/2015/10/19/10-rules-of-best-practice-for-responsive-design/" target="_blank">lot</a> <a href="http://thenextweb.com/dd/2015/10/19/10-rules-of-best-practice-for-responsive-design/" target="_blank">of</a> <a href="http://www.webaxe.org/" target="_blank">different</a> <a href="http://webuilddesign.com/10-css-best-practices-for-2015/" target="_blank">resources</a> <a href="http://jstherightway.org/" target="_blank">on the web</a>. It is not easy to know all of them. It is not easy to follow all of them. And it is <strong>sure</strong> not easy to be sure you did it correctly.</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/1513.image_316750DD.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/0027.image_thumb_5A9D8B9A.png" alt="image" width="673" height="154" border="0"></a></p>
-<p>This is why we decided to create the <strong><a href="http://vorlonjs.com/documentation/#best-practices" target="_blank">Best Practices</a></strong> plugin in Vorlon.js. It is a way for you to automatically get hints and recommandations about how you could improve your code. The current list of practices and scans have been created from our own experience. It is extensible and you can add your own rules to contribute to this plugin and make it more accurate and comprehensive. 🙂</p>
-<blockquote>
-<p><em>A <strong>great thanks</strong> to</em> <a href="https://twitter.com/gleborgne" target="_blank"><em>Guillaume Leborgne</em></a> <em>and</em> <a href="https://twitter.com/Mehdi_La" target="_blank"><em>Mehdi Lahlou</em></a> <em>for their strong work on this!</em></p>
-</blockquote>
-<h2 id="How-to-use-the-best-practices-plugin"><a href="#How-to-use-the-best-practices-plugin" class="headerlink" title="How to use the best practices plugin"></a>How to use the best practices plugin</h2><p>First of all, you need to setup a Vorlon.js environment. You can follow the documentation we provide here : <a href="http://vorlonjs.com/documentation/#vorlonjs-server" title="http://vorlonjs.com/documentation/#vorlonjs-server" target="_blank" rel="noopener">http://vorlonjs.com/documentation/#vorlonjs-server</a></p>
-<p>Once you have an up and running vorlon.js server and your website is connected to it, hit the “play” button on the Best Practice tab. It will run dynamic and static tests on the page you are currently debugging and the resources linked to it (JavaScript files, CSS files, etc.)</p>
-<p><span style="color: #333333;">The above video shows you the kind of result you get when using this plugin. All the recommendations are organized into 4 categories, <strong>Web Standards</strong>, <strong>Accessibility</strong>, <strong>Performances</strong>, <strong>Mobile Web</strong>.</span></p>
-<p><span style="color: #333333;">Let’s have a look at some of the rules you get in each of these categories.</span></p>
-<h2 id="1-Web-Standards"><a href="#1-Web-Standards" class="headerlink" title="1. Web Standards"></a>1. Web Standards</h2><p>There are a lot of common mistakes we can do in this area. Sometimes, it is not even a mistakes. Take the JavaScript libraries you use for instance: how frequently do you go and check if the version you are referencing is obsolete or not ? Or consider the CSS prefixes problematic: are you sure you always add all the vendor prefixes? That could be a good idea to make sure your site works correctly on the widest range of computers. Do you have code which does browser detection ? You should change it to feature detection. Etc. etc.</p>
-<p>This section gives your insights about what you can improve in this area:</p>
-<ul>
-<li><strong>Avoid browser detection</strong>: tells you if you have code calling <em>navigator.userAgent</em></li>
-<li><strong>Avoid browser specific content</strong>: is checking whether your website is sending a different content for some browsers</li>
-<li><strong>Avoid conditionnal comment</strong>: Conditional comments are not the best way to adapt your website to target browser, and support is dropped for IE &gt; 9.</li>
-<li><strong>Incorrect use of css fallback</strong>: validates that all the css rules present in the CSS file are really there in the computed styles. This is a dynamic check and the result might be <em>true</em> or <em>false</em> depending on the browser you use.</li>
-<li><strong>Incorrect use of prefixes</strong>: this one is performing a static scan on your CSS files to ensure you are always using all the vendor prefixes</li>
-<li><strong>Object and embed</strong>: the modern web is only about web languages not plugins, activeX and other embeded objects. This validates that your website does not include one</li>
-<li><strong>Update JavaScript libraries</strong>: checks if all the JS files you are using are considered by their creators as not obsolete</li>
-<li><strong>Use modern doctype</strong>: Modern doctype like &lt;!DOCTYPE html&gt; are better for browser compatibility and enable using HTML5 features.</li>
-</ul>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/7635.image_3F67C34A.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/6012.image_thumb_6A42B80D.png" alt="image" width="678" height="325" border="0"></a></p>
-<h2 id="2-Accessibility"><a href="#2-Accessibility" class="headerlink" title="2. Accessibility"></a>2. Accessibility</h2><p>Following web standards does not guarantee you that your web page is easily accessible. <strong>Accessibility</strong> is something the Vorlon.js team is really concerned about.</p>
-<p>A lot of work is done currently for sometimes now about this by great people. One exemple is the <a href="http://www.deque.com/products/aXe/" target="_blank">aXe</a> product created by <a href="http://www.deque.com" target="_blank">deque</a>. It is an open source tool which gives you a gigantic list of advices about your website. They go deep in the analysis and can for instance tell you that a specific element has insufficient color contrast for someone visually impaired to see properly. This is really awesome work and we worked with the team at deque to integrate this into this plugin.</p>
-<p>_Note : this integration is not available in the npm version of Vorlon.js yet but you can get it form the <a href="https://github.com/Microsoftdx/vorlonjs/tree/dev" target="_blank">dev branch</a> in the github repository._</p>
-<p>There are too much rules in there for me to be able to list them all but here are the fixed one:</p>
-<ul>
-<li><strong>Form elements must have labels</strong>: for them to be understandable by automated web readers</li>
-<li><strong>Images must have alternate text</strong>: this one is listing you all the <img> tag which does not contain the alt attribute.</li>
-<li><strong>Use aria attributes</strong></li>
-</ul>
-<p>All the <strong>aXe</strong> rules are displayed only if they are in a failed state :</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/0830.image_0C2E1A92.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/2273.image_thumb_3BEBC311.png" alt="image" width="697" height="299" border="0"></a></p>
-<h2 id="3-Performances"><a href="#3-Performances" class="headerlink" title="3. Performances"></a>3. Performances</h2><p>You can follow some simple rules to get better performances for your website.</p>
-<ul>
-<li><strong>Encore static content</strong>: tries to determine if you are using gzip or deflate encoding to reduce de network bandwith</li>
-<li><strong>Minify static files</strong>: checks if you used a minification process to reduce the size of your CSS and JavaScript files</li>
-<li><strong>Try bundling your files</strong>: simple algorithm that checks if you created a single file for all your scripts to reduce HTTP requests</li>
-</ul>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/6087.image_5DD72595.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/4034.image_thumb_119F1BE7.png" alt="image" width="684" height="239" border="0"></a></p>
-<h2 id="4-Mobile-Web"><a href="#4-Mobile-Web" class="headerlink" title="4. Mobile Web"></a>4. Mobile Web</h2><p>When it comes to mobiles, a lot of web devs forget to add the correct elements and information to take it correctly into account.</p>
-<ul>
-<li><strong>define platform icons</strong>: This is really not mandatory but it gives the user a better experience when they are pinning your websites</li>
-<li><strong>use meta viewport</strong>: Use meta viewport tag to choose how your website will get scaled on smaller devices like phones. Define at least <meta name="&#8221;viewport&#8221;" content="&#8221;width=device-width," initial-scale="1&#8243;"></li>
-<li><strong>use responsive approaches</strong>: Even if your website target only certain devices, you may have users with unexpected devices or screen ratio.</li>
-</ul>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/1731.image_2860F421.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/6283.image_thumb_0A163D2B.png" alt="image" width="655" height="304" border="0"></a></p>
-<h2 id="Your-turn"><a href="#Your-turn" class="headerlink" title="Your turn !"></a>Your turn !</h2><p>The plugin provides for now somes basic rules. We really hope this will be completed by new rules that anyone in the community can create. Do not hesitate to add yours and create a pull request in the <a href="https://github.com/Microsoftdx/vorlonjs" target="_blank">Vorlon.js repo</a>.</p>
-<blockquote>
-<p><em>If you have any question about this article or Vorlon.js, feel free to contact me on twitter: <a href="http://twitter.com/meulta" target="_blank" rel="noopener">http://twitter.com/meulta</a></em></p>
-</blockquote>
-
+                <div class="postShorten-excerpt">
+                    <p>When it comes to writing good code in web development it is easy to get lost in the quantity of resources you find online. There are some basics that everyone knows or should know and there are some more specific ones.</p>
                     
+                        <a href="/2015/11/27/how-vorlon-js-helps-you-improve-your-web-code/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
                         
-
-                    
-                    
-                        <p>
-                            <a href="/2015/11/27/how-vorlon-js-helps-you-improve-your-web-code/#post-footer" class="postShorten-excerpt_link link">
-                                Comment and share
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -1082,7 +628,7 @@
     </article>
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -1110,112 +656,13 @@
 
             </div>
             
-                <div class="postShorten-content">
-                    <blockquote>
-<p><em>Si vous avez une question à propos de cet article, n&#8217;hésitez pas à me contacter via Twitter:</em> <a href="http://twitter.com/meulta" target="_blank" rel="noopener"><em>http://twitter.com/meulta</em></a></p>
-</blockquote>
-<p>Quand on se lance dans le développement web, on démarre par une longue phase d’apprentissage des languages. A ce moment-là, on ne se pose pas trop la question du logiciel qu’on utilise pour écrire son code. On prend ce qu’on nous conseille à droite ou à gauche, généralement celui du premier tutoriel qu’on a suivi.</p>
-<p>Dès qu’on progresse et qu’on arrive à un stade on maîtrise le code qu’on écrit, on commence à faire attention aux outils qu’on utilise. On démarre l’utilisation de <strong>Gulp</strong> ou <strong>Grunt</strong> pour minifier ses fichiers automatiquement ou vérifier son code JavaScript avec JSLint. Et dans ce processus d’amélioration de sa propre expérience de développement se pose la question de l’éditeur de code qu’on utilise. SublimeText ? Notepad++ ? Autre chose ? Le choix n’est pas simple et les défenseurs de l’un ou de l’autre vous donnerons leur point de vue un peu partout sur le net. 🙂</p>
-<h2 id="Enter-Visual-Studio-Code"><a href="#Enter-Visual-Studio-Code" class="headerlink" title="Enter Visual Studio Code !"></a>Enter Visual Studio Code !</h2><p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/0804.image_5D67F028.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/8546.image_thumb_2A2E4770.png" alt="image" width="683" height="389" border="0"></a></p>
-<p><a href="https://www.microsoft.com/france/visual-studio/code/" target="_blank">Visual Studio Code</a> est une alternative très intéressante à ces outils. Il faut le voir comme un éditeur de code idéal pour un développeur web full stack. Parmi ses fonctionnalités les plus intéressantes on peut noter :</p>
-<ul>
-<li>L’auto-complétion et l’intelliSense</li>
-<li>La coloration syntaxique</li>
-<li>Son extensibilité via des plugins accessibles au sein d’<a href="https://code.visualstudio.com/docs/editor/extension-gallery" target="_blank">une gallerie</a></li>
-<li>La gestion de nombreux langages tels que HTML, CSS / Sass / Less, JavaScript, C#, JSON, DockerFile, Markdown, TypeScript</li>
-<li>L’intégration à Git (et donc GitHub)</li>
-<li>L’éxécution de tâches Gulp, Grunt et autres systèmes de workflow</li>
-<li>Le <strong>debug de code côté serveur</strong> tels que ASP.net et <strong>Node.js</strong></li>
-</ul>
-<p>Vous pouvez le télécharger gratuitement ici : <a href="https://www.microsoft.com/france/visual-studio/code/" title="https://www.microsoft.com/france/visual-studio/code/" target="_blank" rel="noopener">https://www.microsoft.com/france/visual-studio/code/</a></p>
-<h2 id="Ne-pas-confondre-avec-Visual-Studio"><a href="#Ne-pas-confondre-avec-Visual-Studio" class="headerlink" title="Ne pas confondre avec Visual Studio"></a>Ne pas confondre avec Visual Studio</h2><p>Visual Studio est un environnement de développement très complet proposé par Microsoft depuis des années. Il permet de faire toutes sortes de dev, que ce soit pour le web, pour le serveur, pour créer des applications Win32, des applications Android, iOS, Windows et développer pour le Cloud.</p>
-<p>Visual Studio <strong>Code</strong> est un logiciel complétement différent. Il fonctionne sur <strong>Linux</strong>, <strong>Mac</strong> et <strong>Windows</strong> et est Open-Source (<a href="https://github.com/Microsoft/vscode" title="https://github.com/Microsoft/vscode" target="_blank" rel="noopener">https://github.com/Microsoft/vscode</a>).</p>
-<p>Et surtout : Il est <strong>extrêmement plus</strong> léger que son cousin historique!</p>
-<p>C’est cet outil que nous utilisons au quotidien pour développer l’outil de débug web open-source Vorlon.js (<a href="http://www.vorlonjs.io" target="_blank" rel="noopener">http://www.vorlonjs.io</a>).</p>
-<h2 id="Developper-avec-VS-Code"><a href="#Developper-avec-VS-Code" class="headerlink" title="Développer avec VS Code"></a>Développer avec VS Code</h2><p>Le fonctionnement de VS Code est très simple. Vous effectuez un clic droit sur un répertoire et demandez <strong>Ouvrir avec Code.</strong> Le répertoire et l’intégralité des fichiers qui s’y trouvent sont alors ouvert dans une instance de VS Code.</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/8132.image_300B7BBA.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/8738.image_thumb_2DD183AF.png" alt="image" width="338" height="195" border="0"></a>  <a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/5224.image_0220B9B3.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/2311.image_thumb_1D5912B4.png" alt="image" width="271" height="199" border="0"></a></p>
-<p>Le langage est automatiquement découvert par l’outil et la coloration syntaxique se met en place.</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/7140.image_31722F3D.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/8233.image_thumb_1C833D7B.png" alt="image" width="597" height="374" border="0"></a></p>
-<h2 id="Integrer-votre-outil-de-workflow"><a href="#Integrer-votre-outil-de-workflow" class="headerlink" title="Intégrer votre outil de workflow"></a>Intégrer votre outil de workflow</h2><p>Quand on fait du développement web, même dans le cas d’une application Node.js, on a toujours des tâches à exécuter avant chaque test. Généralement, on utilise un outil comme Grunt ou Gulp pour automatiser ces tâches. Ces outils de workflow (ou “ordonnanceurs de tâches”) s’intègrent parfaitement à VS Code.</p>
-<p>Dans l’exemple très basic disponible ici : <a href="https://github.com/meulta/meultasamples/tree/master/debugNodeVSCode" title="https://github.com/meulta/meultasamples/tree/master/debugNodeVSCode" target="_blank" rel="noopener">https://github.com/meulta/meultasamples/tree/master/debugNodeVSCode</a> vous trouverez un fichier gulpfile.js qui execute une tâche JSLint pour vérifier la syntaxe du code JavaScript de mes différents fichiers.</p>
-<p>Vous pouvez l’exécuter en ligne de commande:</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/5164.image_326F407C.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/6165.image_thumb_0F41D5CA.png" alt="image" width="699" height="143" border="0"></a></p>
-<p><em>Note : n’oubliez pas d’effectuer un <strong>npm install</strong> dans le répertoire au préalable pour installer les dépendances nécessaires. Et d’effectuer un <strong>npm install –g gulp</strong> si Gulp n’est pas installé sur votre poste.</em></p>
-<p>Pour vous simplifier la vie, vous pourriez évidemment créer une tâche <strong>watch</strong> qui exécuterait tout votre workflow à chaque modification de fichier.</p>
-<p>Une version intermédiaire existe dans Visual Studio Code. L’exécution du workflow se fait avec le raccourci clavier <strong>Ctrl+Maj.+B</strong>. La première fois il n’est pas configuré et VS Code vous propose de le faire pour vous:</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/3365.image_33D5F3FF.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/3225.image_thumb_7C8F6CC3.png" alt="image" width="687" height="114" border="0"></a></p>
-<p>Cela a pour effet de créer le répertoire <strong>.vscode</strong>. Celui-ci contient toute la configuration spécifique à VS Code et notamment le fichier <strong>tasks.json</strong> qui défini vos tâches et comment les exécuter.</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/6560.image_1E7ACF48.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/0726.image_thumb_1B687153.png" alt="image" width="686" height="303" border="0"></a></p>
-<p>Vous n’avez plus qu’à ajouter la configuration décrivant la tâche qui doit être exécutée (ici <strong>default</strong>). Chaque fois que vous ferez le raccourci Ctrl+Shift+B le processus sera exécuté avec un retour direct dans VS Code!</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/6471.image_71F43012.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/1108.image_thumb_5F41C70C.png" alt="image" width="690" height="271" border="0"></a></p>
-<h2 id="Debuguer-son-application-Node-js"><a href="#Debuguer-son-application-Node-js" class="headerlink" title="Débuguer son application Node.js"></a>Débuguer son application Node.js</h2><h3 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h3><p>Vous avez maintenant un environnement simple à utiliser pour créer votre code, pour vérifier sa qualité et effectuer n’importe quel traitement tel que de la minification ou du bundling.</p>
-<p>Un des aspects intéressants de VS Code est que vous pouvez réaliser du debug live et pas à pas de votre code.</p>
-<p>Le debug et toutes les fonctionnalités associées sont regroupées dans le dernier onglet situé dans le bandeau gauche. Lorsque vous cliquez sur le bouton en forme de triangle vert (le bouton “play”) cela aura pour effet de démarrer le debug:</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/5074.image_15B2790F.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/5861.image_thumb_29CB9598.png" alt="image" width="514" height="426" border="0"></a></p>
-<p>Au tout premier lancement VS Code vous demande le type d’application que vous souhaitez débuguer:</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/0574.image_46D44460.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/0447.image_thumb_36C8065A.png" alt="image" width="524" height="273" border="0"></a></p>
-<p>Peu importe votre choix, cela aura pour effet de créer le fichier .<strong>vscode/launch.json</strong> qui contient tous les paramètres de débug avancés. Vous pouvez y configurer par exemple le type de debug (ici : “node”), le fichier JavaScript à exécuter : ici, je l’ai modifié en <strong>server.js:</strong></p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/6710.image_52005F5B.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/0118.image_thumb_173DD7E7.png" alt="image" width="757" height="688" border="0"></a></p>
-<p>Dans ce fichier, vous pouvez définir deux configurations.</p>
-<ul>
-<li><strong>Launch :</strong> démarre le processus node et s’y attache</li>
-<li><strong>Attach</strong> : permet de s’attacher à un processus node déjà démarré.</li>
-</ul>
-<p>Pour chacun de ces modes de démarrage, vous pouvez choisir les paramètres associés.</p>
-<p>Quand vous démarrez le débug (en <strong>launch</strong> ou en <strong>attach</strong>), une console apparaît et vous donne les logs générés par votre application Node. Vous avez également accès à un panneau de contrôle en haut de l’outil qui vous permet de naviguer dans l’exécution du code ou d’arrêter le debug avec le bouton stop (carré rouge).<a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/0044.image_6A4D966D.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/4048.image_thumb_2B148E32.png" alt="image" width="774" height="368" border="0"></a></p>
-<h3 id="Les-points-d’arret"><a href="#Les-points-d’arret" class="headerlink" title="Les points d’arrêt"></a>Les points d’arrêt</h3><p>Lorsque l’on effectue une session de debug, un des objectifs est de pouvoir jeter un œil à l’exécution du code à un instant T. On évite généralement de parcourir tout le code ligne à ligne, on a plutôt tendance à laisser libre cours et à l’arrêter à la ligne de code choisie. C’est tout l’intérêt des points d’arrêt.</p>
-<p>Pour positionner un point d’arrêt vous pouvez :</p>
-<ul>
-<li>Cliquer dans la marge à la hauteur de la ligne pour laquelle vous souhaitez le définir</li>
-<li>Positionner le curseur dans le code et appuyer sur la touche F9</li>
-</ul>
-<p>Dans tous les cas cela à pour effet d’ajouter une pastille rouge au niveau de votre ligne de code.</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/6786.image_0F065FF8.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/8204.image_thumb_62E96306.png" alt="image" width="476" height="115" border="0"></a></p>
-<p>Vous pouvez également modifier cette liste de points d’arrêt dans le panneau de débug à gauche de VS Code. Si vous décochez un point d’arrêt, il ne sera temporairement plus pris en compte:</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/7167.image_12A70B86.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/0333.image_thumb_2968E3C0.png" alt="image" width="388" height="178" border="0"></a></p>
-<p>Dans notre exemple, il suffit de naviguer sur la page <a href="http://127.0.0.1:8000/" target="_blank" rel="noopener">http://127.0.0.1:8000/</a> et cela appellera le code pour lequel nous avons défini un point d’arrêt. L’exécution de l’application est alors stoppée (la ligne sur laquelle on est arrêté est surlignée en jaune):</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/2804.image_728E8F79.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/4135.image_thumb_02312B3C.png" alt="image" width="708" height="277" border="0"></a></p>
-<p><em>Note : La ligne surlignée n’est pas encore exécutée. C’est la prochaine qui sera lancée.</em></p>
-<p>Vous pouvez alors vous déplacer dans le code et demander l’exécution des lignes suivantes grâce aux boutons situés dans la barre supérieure, de gauche à droite:</p>
-<ul>
-<li><strong>Continue (F5)</strong>: reprend l’exécution du code jusqu’au prochain point d’arrêt ou jusqu’à ce que l’application s’arrête ou soit en standby.</li>
-<li><strong>Step Over (F10)</strong>: Exécute la ligne de code courante mais reste dans le scope de code actuel (si c’est une fonction, le débug exécute toute la fonction dans entrer dans le code en pas à pas).</li>
-<li><strong>Step Into</strong> <strong>(F11)</strong>: Exécute la ligne de code courante et s’il s’agit d’une fonction, arrête l’exécution à la première ligne de code dans cette fonction. Cela permet de parcourir en pas à pas le contenu de la fonction également.</li>
-<li><strong>Step Out</strong> <strong>(Maj.+F11)</strong>: Exécute la ligne courante et toutes les lignes de la fonction actuelle jusqu’à en sortir.</li>
-<li><strong>Stop</strong>: Arrête la session de débug et arrête l’application Node.</li>
-</ul>
-<p>### </p>
-<h3 id="Comprendre-le-contexte-d’execution"><a href="#Comprendre-le-contexte-d’execution" class="headerlink" title="Comprendre le contexte d’exécution"></a>Comprendre le contexte d’exécution</h3><p>L’intérêt du débug ne se limite pas à exécuter les lignes de codes les unes après les autres. L’objectif principal est de consulter l’état des variables au fil de l’eau ainsi que la pile d’appel (i.e. l’enchainement des fonctions les unes dans les autres).</p>
-<p>Pour visualiser une variable, vous avez plusieurs solutions.</p>
-<p><strong>Survoler quelques instants la variable dans le code pour voir apparaître un popup</strong></p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/4606.image_714C874B.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/4705.image_thumb_3C4288CC.png" alt="image" width="608" height="362" border="0"></a></p>
-<p><strong>Parcourir l’intégralité des variables présentes via le volet de débug</strong></p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/1184.image_74EFC38A.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/5706.image_thumb_44C878C7.png" alt="image" width="499" height="443" border="0"></a></p>
-<p><em>Notez que vous pouvez déplier l’arborescence pour découvrir l’ensemble des variables et leurs propriétés/enfants.</em></p>
-<p><strong>Ajouter une variable à l’onglet watch pour en suivre de prêt l’évolution</strong>:</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/5633.image_3A96DE5A.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/5008.image_thumb_4AA5AD11.png" alt="image" width="568" height="331" border="0"></a></p>
-<p>L’onglet <strong>CALL STACK</strong> quand à lui vous permet de connaître l’enchaînement des appels de fonctions qui ont permis d’arriver à la ligne de code à laquelle vous vous trouvez.</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/0456.image_681A8ECE.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/0880.image_thumb_1C4EB815.png" alt="image" width="579" height="251" border="0"></a></p>
-<p>Dans l’exemple ci-dessus, on remarque que la fonction dans laquelle on est arrêtée a en réalité été appelée par la fonction <strong>emitTwo</strong> située dans le fichier <strong>events.js</strong> qui elle-même avait été appelée par <strong>emit</strong> située dans le même fichier.</p>
-<p>Si vous cliquez sur une de ces lignes, un volet s’ouvre sur la droite et vous indique le code exact qui a effectué l’appel :</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/0068.image_16FFD164.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/7384.image_thumb_61228E5C.png" alt="image" width="728" height="331" border="0"></a></p>
-<h1 id="Et-pour-finir…"><a href="#Et-pour-finir…" class="headerlink" title="Et pour finir…"></a>Et pour finir…</h1><p>Je vous ai donné ici un premier aperçu de ce que vous pouvez réaliser avec VS Code et surtout son débuguer. C’est maintenant à vous de jouer pour dénicher les bugs les plus tenaces dans votre code.</p>
-<p>Téléchargez Visual Studio Code gratuitement ici : <a href="https://www.microsoft.com/france/visual-studio/code/" title="https://www.microsoft.com/france/visual-studio/code/" target="_blank" rel="noopener">https://www.microsoft.com/france/visual-studio/code/</a> et démarrez votre première session de débug ! 🙂</p>
-<p>Vous pouvez également aller plus loin dans le débug web avec Vorlon.js. C’est un outil qui permet de reproduire l’expérience des outils F12 qu’on trouve dans tous les navigateurs mais à distance et entre tous les navigateurs. C’est un outil open source disponible sur <a href="http://www.vorlonjs.io" target="_blank" rel="noopener">http://www.vorlonjs.io</a> !</p>
-<blockquote>
-<p><em>Si vous avez une question à propos de cet article, n&#8217;hésitez pas à me contacter via Twitter:</em> <a href="http://twitter.com/meulta" target="_blank" rel="noopener"><em>http://twitter.com/meulta</em></a></p>
-</blockquote>
-
+                <div class="postShorten-excerpt">
+                    <p>Quand on se lance dans le développement web, on démarre par une longue phase d’apprentissage des languages. A ce moment-là, on ne se pose pas trop la question du logiciel qu’on utilise pour écrire son code. On prend ce qu’on nous conseille à droite ou à gauche, généralement celui du premier tutoriel qu’on a suivi.</p>
                     
+                        <a href="/2015/11/24/dbuguer-node-js-avec-vs-code/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
                         
-
-                    
-                    
-                        <p>
-                            <a href="/2015/11/24/dbuguer-node-js-avec-vs-code/#post-footer" class="postShorten-excerpt_link link">
-                                Comment and share
-                            </a>
-                        </p>
                     
                 </div>
             

@@ -194,7 +194,7 @@
     <section class="postShorten-group main-content-wrap">
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -222,101 +222,13 @@
 
             </div>
             
-                <div class="postShorten-content">
-                    <blockquote>
-<p><em>If you have any question about this article or Vorlon.js, feel free to contact me on twitter: <a href="http://twitter.com/meulta" target="_blank" rel="noopener">http://twitter.com/meulta</a></em> </p>
-</blockquote>
-<p>3 month ago, we released the <a href="http://blogs.msdn.com/b/emargraff/archive/2015/10/29/vorlon-js-0-1-0-is-out.aspx" target="_blank" rel="noopener">0.1 version of</a> <a href="http://vorlonjs.io" target="_blank" rel="noopener">Vorlon.js</a>. We added a lot of great new features such as the Unit Test, the Device Info and the Best Practices plugin. One main improvement for this version was certainly the HTTP proxy which helps you debug a website using Vorlon.js without having to change its source code (<a href="http://vorlonjs.io/documentation/#vorlon-proxy" title="http://vorlonjs.io/documentation/#vorlon-proxy" target="_blank" rel="noopener">http://vorlonjs.io/documentation/#vorlon-proxy</a>).</p>
-<p align="center"><br>  <strong>Today we are thrilled to tell you that 0.2.1 is out !</strong><br></p>
-
-<p align="center"><br>  <img src="http://ekladata.com/WN5Rhx9M1LOKiQYTgbhSTuVC5gQ.jpg" alt="Afficher l'image d'origine" width="288" height="267"><br></p>
-
-<p><em>Note: if you (still? ;-)) don’t know what Vorlon.js is, you must</em> <a href="https://blogs.msdn.microsoft.com/eternalcoding/2015/04/29/why-we-made-vorlon-js-and-how-to-use-it-to-debug-your-javascript-remotely/" target="_blank" rel="noopener"><em>read this</em></a><em>, or</em> <a href="https://channel9.msdn.com/Shows/codechat/046" target="_blank" rel="noopener"><em>watch this</em></a>_._</p>
-<p align="left"><br>  What makes open source projects so interesting is as much the product itself as the strong community built around it. The 0.1 version has been created by a lot of people around the world and so did the new release we are announcing in this blog post.<br></p>
-
-<p align="center"><br>  <strong>We really want to thank you all</strong>. Sharing and working together is what makes the web so amazing!<br></p>
-
-<p>Amoung a lot of improvements, the 4 main new features in 0.2.1 are :</p>
-<ul>
-<li><strong>Accessibility rules</strong> added in the Best Practice Analyser (thanks to Deque and their wonderful project : aXe)</li>
-<li><a href="http://mcnextpost.com/2015/12/01/how-to-use-vorlon-js-desktop/" target="_blank" rel="noopener">Vorlon.js Desktop : a new way to install Vorlon</a></li>
-<li><strong>Node.js</strong> process debugging !</li>
-<li>We setup some <a href="http://blogs.technet.com/b/devops/archive/2016/01/12/vorlonjs-a-journey-to-devops-introducing-the-blog-post-series.aspx" target="_blank" rel="noopener">DevOps practices</a> to help us test and deploy our staging environments</li>
-</ul>
-<p>I will go through a quick description of all the improvements made to Vorlon.js in this article. Other blog posts will come later this week about these features.</p>
-<p># </p>
-<h1 id="Node-js-debugging-Vorlon-js-server-side"><a href="#Node-js-debugging-Vorlon-js-server-side" class="headerlink" title="Node.js debugging: Vorlon.js server side !"></a>Node.js debugging: Vorlon.js server side !</h1><p>We first made Vorlon.js for a specific task: <strong>helping web developers</strong> to debug their JavaScript, HTML and CSS code running on a <strong>mobile</strong>. It was first like an F12 alternative for remote debugging.</p>
-<p>We quickly understood that it could be <strong>more than that</strong>. The great work made by the community brought us specialized plugins like <strong>Angular.js inspector</strong> or <strong>QUnit runner</strong>. At this time, Vorlon.js was more and more a relevant tool for web (remote) desktop debugging, bringing additionnal features to classics F12 tools.</p>
-<p>As Vorlon.js is built on top of JavaScript, we start wondering if it could be a good idea to use it to also debug <strong>Node.js apps</strong>. Obviously some plugins such as DOM Explorer or Modernizr might not be relevant in this case but what about the Console or the Object Explorer? In a world where Node.js processes are running <strong>everywhere in the cloud and on IOT objects</strong>, remote debugging could really be helpful, right? 🙂</p>
-<p>Guess what ? It is now possible!</p>
-<p>All you have to do is requiring a new NPM package we created:</p>
-<p><strong>npm install vorlon-node-wrapper</strong></p>
-<p>Requiring it in your project:</p>
-<p><strong>var vorlonWrapper = require(&#8220;vorlon-node-wrapper&#8221;);</strong></p>
-<p>Starting the Vorlon for Node client by giving it your Vorlon.js instance:</p>
-<p><strong>vorlonWrapper.start(serverUrl, dashboardSession, false);</strong></p>
-<p>And voila! Each time you will start your node.js process, you will have remotely access to the Console, the Object Explorer, and the XHRPanel.</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/4846.image_5178F222.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/3414.image_thumb_62EBE3AB.png" alt="image" width="712" height="401" border="0"></a></p>
-<p>Here is the documentation for this: <a href="http://vorlonjs.io/documentation/#debugging-nodejs-applications" title="http://vorlonjs.io/documentation/#debugging-nodejs-applications" target="_blank" rel="noopener">http://vorlonjs.io/documentation/#debugging-nodejs-applications</a></p>
-<h1 id="Vorlon-js-Desktop-another-way-to-get-our-tool"><a href="#Vorlon-js-Desktop-another-way-to-get-our-tool" class="headerlink" title="Vorlon.js Desktop: another way to get our tool"></a>Vorlon.js Desktop: another way to get our tool</h1><p>As you can read on our <a href="http://vorlonjs.io/documentation/" target="_blank" rel="noopener">documentation web site</a>, Vorlon can be installed in many different ways. You can install it as an <strong>npm</strong> package, clone our GitHub repo or even auto deploy to Microsoft Azure. In the web community these are the common ways to get new tools on your dev box. Some people don’t know or don’t want to learn about these. Some of them don’t want to mess with command lines (yep, it happens ! :)).</p>
-<p>We want Vorlon to be accessible to the most people we can. This is why we (and more precisely <a href="https://twitter.com/gleborgne" target="_blank" rel="noopener">Guillaume Leborgne</a> and <a href="https://twitter.com/Mehdi_La" target="_blank" rel="noopener">Mehdi Lahlou</a>, kudos to them!) decided to work on a standalone installer. It currently works on Mac and Windows.</p>
-<p>Guillaume wrote a great article about this, feel free to take a look at it : <a href="http://mcnextpost.com/2015/12/01/how-to-use-vorlon-js-desktop/" title="http://mcnextpost.com/2015/12/01/how-to-use-vorlon-js-desktop/" target="_blank" rel="noopener">http://mcnextpost.com/2015/12/01/how-to-use-vorlon-js-desktop/</a></p>
-<p><img src="https://mcnextpost.files.wordpress.com/2015/12/screen.png?w=945" alt="screen.PNG" width="677" height="603"></p>
-<h1 id="Vorlon-js-team-went-DevOps"><a href="#Vorlon-js-team-went-DevOps" class="headerlink" title="Vorlon.js team went DevOps"></a>Vorlon.js team went DevOps</h1><p>Well. DevOps means a lot of stuff.</p>
-<p>It is about organization, people, tools, practices. As every team on the planet, we always need to improve what we do to release better code, faster and more efficiently. None of us are full time on this project, a lot of the work is done on our free (and passionate!) time. That’s why we love to optimize what we do to be able to achieve more.</p>
-<p>This first iteration we did on DevOps covers the basics:</p>
-<ul>
-<li>We organized better into clear releases using Issues</li>
-<li>We activated automated checks on commits and pull requests</li>
-<li>We enabled automated deployment of our internal staging environment</li>
-<li>We automated the creation of a ready to use Docker Vorlon.js image</li>
-<li>And more !</li>
-</ul>
-<p>A lot of this is using <strong>Visual Studio Team Services</strong> and its integration capabilities with GitHub:</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/7144.image_69A17DDF.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/5123.image_thumb_769B5DF0.png" alt="image" width="639" height="125" border="0"></a></p>
-<p>DevOps is about <strong>continuous improvement.</strong> This is why it is a work in progress. <a href="https://twitter.com/jcorioland" target="_blank" rel="noopener">Julien Corioland</a> did a great work on that and is sharing all of it with you in a blog posts series. It is a must read!</p>
-<p>You can start from here: <a href="http://blogs.technet.com/b/devops/archive/2016/01/12/vorlonjs-a-journey-to-devops-introducing-the-blog-post-series.aspx" title="http://blogs.technet.com/b/devops/archive/2016/01/12/vorlonjs-a-journey-to-devops-introducing-the-blog-post-series.aspx" target="_blank" rel="noopener">http://blogs.technet.com/b/devops/archive/2016/01/12/vorlonjs-a-journey-to-devops-introducing-the-blog-post-series.aspx</a></p>
-<h1 id="What-else"><a href="#What-else" class="headerlink" title="What else?"></a>What else?</h1><p>We did a lot of other improvements to this release :</p>
-<ul>
-<li>Added new accessibility rule in the best practices plugin</li>
-<li>Updated Modernizr to 3.0 and integrated more rules</li>
-<li>Various bug fixes</li>
-<li>Added click to URI on a resource in the DOM Explorer (kudos to <a href="https://twitter.com/paulfasola" target="_blank" rel="noopener">Paul Fasola</a>)</li>
-<li>Stability improvements on the dashboard</li>
-<li>Generating source map to be able to debug using Typescript files (thanks <a href="https://twitter.com/ramisayar" target="_blank" rel="noopener">Rami Sayar</a>)</li>
-<li>Merged the two gulp files to only one (really… I cannot remember why we thought 2 of them was a good idea in the first place… 😉</li>
-<li>Moved samples to the <strong>client samples</strong> folder. (Containing now a sample for Node.js debugging)</li>
-</ul>
-<p>&nbsp;</p>
-<p>I also want to notice that <a href="https://twitter.com/ramisayar" target="_blank" rel="noopener">Rami</a> did a huge work porting our Web Standard analyzer to a <strong>Grunt</strong> and <strong>Gulp</strong> extension. You can now check your web code quality during your build workflow:</p>
-<ul>
-<li>Here is the grunt task: <a href="https://www.npmjs.com/package/grunt-webstandards" title="https://www.npmjs.com/package/grunt-webstandards" target="_blank" rel="noopener">https://www.npmjs.com/package/grunt-webstandards</a></li>
-<li>Here is the gulp task: <a href="https://www.npmjs.com/package/gulp-webstandards" title="https://www.npmjs.com/package/gulp-webstandards" target="_blank" rel="noopener">https://www.npmjs.com/package/gulp-webstandards</a></li>
-<li>Here is a blog article talking about this : <a href="http://www.sitepoint.com/three-plugins-every-gruntfile-gulpfile-needs-make-website-great/" title="http://www.sitepoint.com/three-plugins-every-gruntfile-gulpfile-needs-make-website-great/" target="_blank" rel="noopener">http://www.sitepoint.com/three-plugins-every-gruntfile-gulpfile-needs-make-website-great/</a></li>
-</ul>
-<p>&nbsp;</p>
-<h1 id="What’s-next"><a href="#What’s-next" class="headerlink" title="What’s next ?"></a>What’s next ?</h1><p>We have multiple plans for the next version of Vorlon.js. The main focus now is certainly the Node.js debugging capability. Right now you can connect your node process to Vorlon and debug it but we want to create more specialized plugins. We have 3 of them in mind:</p>
-<ul>
-<li><strong>Node.js info</strong> (what you required, which version, and stuff like this)</li>
-<li><strong>Express.js</strong> (what view are loaded, automatic logs when a route is called, etc.)</li>
-<li><strong>Mocha</strong> (advanced remote test monitor)</li>
-</ul>
-<p>&nbsp;</p>
-<p><a href="https://twitter.com/sebastienpertus" target="_blank" rel="noopener">Sebastien Pertus</a> is also working on a plugin to help Office addin developers to debug their JavaScript code inside Vorlon. That should be released soon!</p>
-<p>If you have other ideas for the Node.js area or for Vorlon.js in general, do not hesitate to do some <a href="https://github.com/MicrosoftDX/Vorlonjs/pulls" target="_blank" rel="noopener">pull requests</a> or to <a href="https://github.com/MicrosoftDX/Vorlonjs/issues" target="_blank" rel="noopener">add issues to our backlog</a>!</p>
-<p>We also now have a <strong>Slack account</strong>. If you want to join and chat about Vorlon, feel free to contact me on twitter 😉</p>
-<p>Happy debugging! 🙂</p>
-
+                <div class="postShorten-excerpt">
+                    <p>3 month ago, we released the <a href="http://blogs.msdn.com/b/emargraff/archive/2015/10/29/vorlon-js-0-1-0-is-out.aspx" target="_blank" rel="noopener">0.1 version of</a> <a href="http://vorlonjs.io" target="_blank" rel="noopener">Vorlon.js</a>. We added a lot of great new features such as the Unit Test, the Device Info and the Best Practices plugin. One main improvement for this version was certainly the HTTP proxy which helps you debug a website using Vorlon.js without having to change its source code (<a href="http://vorlonjs.io/documentation/#vorlon-proxy" title="http://vorlonjs.io/documentation/#vorlon-proxy" target="_blank" rel="noopener">http://vorlonjs.io/documentation/#vorlon-proxy</a>).</p>
                     
+                        <a href="/2016/02/01/vorlon-js-0-2-1-is-out/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
                         
-
-                    
-                    
-                        <p>
-                            <a href="/2016/02/01/vorlon-js-0-2-1-is-out/#post-footer" class="postShorten-excerpt_link link">
-                                Comment and share
-                            </a>
-                        </p>
                     
                 </div>
             

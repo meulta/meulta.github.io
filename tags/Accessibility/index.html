@@ -194,7 +194,7 @@
     <section class="postShorten-group main-content-wrap">
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -222,101 +222,13 @@
 
             </div>
             
-                <div class="postShorten-content">
-                    <blockquote>
-<p><em>If you have any question about this article or Vorlon.js, feel free to contact me on twitter: <a href="http://twitter.com/meulta" target="_blank" rel="noopener">http://twitter.com/meulta</a></em> </p>
-</blockquote>
-<p>3 month ago, we released the <a href="http://blogs.msdn.com/b/emargraff/archive/2015/10/29/vorlon-js-0-1-0-is-out.aspx" target="_blank" rel="noopener">0.1 version of</a> <a href="http://vorlonjs.io" target="_blank" rel="noopener">Vorlon.js</a>. We added a lot of great new features such as the Unit Test, the Device Info and the Best Practices plugin. One main improvement for this version was certainly the HTTP proxy which helps you debug a website using Vorlon.js without having to change its source code (<a href="http://vorlonjs.io/documentation/#vorlon-proxy" title="http://vorlonjs.io/documentation/#vorlon-proxy" target="_blank" rel="noopener">http://vorlonjs.io/documentation/#vorlon-proxy</a>).</p>
-<p align="center"><br>  <strong>Today we are thrilled to tell you that 0.2.1 is out !</strong><br></p>
-
-<p align="center"><br>  <img src="http://ekladata.com/WN5Rhx9M1LOKiQYTgbhSTuVC5gQ.jpg" alt="Afficher l'image d'origine" width="288" height="267"><br></p>
-
-<p><em>Note: if you (still? ;-)) don’t know what Vorlon.js is, you must</em> <a href="https://blogs.msdn.microsoft.com/eternalcoding/2015/04/29/why-we-made-vorlon-js-and-how-to-use-it-to-debug-your-javascript-remotely/" target="_blank" rel="noopener"><em>read this</em></a><em>, or</em> <a href="https://channel9.msdn.com/Shows/codechat/046" target="_blank" rel="noopener"><em>watch this</em></a>_._</p>
-<p align="left"><br>  What makes open source projects so interesting is as much the product itself as the strong community built around it. The 0.1 version has been created by a lot of people around the world and so did the new release we are announcing in this blog post.<br></p>
-
-<p align="center"><br>  <strong>We really want to thank you all</strong>. Sharing and working together is what makes the web so amazing!<br></p>
-
-<p>Amoung a lot of improvements, the 4 main new features in 0.2.1 are :</p>
-<ul>
-<li><strong>Accessibility rules</strong> added in the Best Practice Analyser (thanks to Deque and their wonderful project : aXe)</li>
-<li><a href="http://mcnextpost.com/2015/12/01/how-to-use-vorlon-js-desktop/" target="_blank" rel="noopener">Vorlon.js Desktop : a new way to install Vorlon</a></li>
-<li><strong>Node.js</strong> process debugging !</li>
-<li>We setup some <a href="http://blogs.technet.com/b/devops/archive/2016/01/12/vorlonjs-a-journey-to-devops-introducing-the-blog-post-series.aspx" target="_blank" rel="noopener">DevOps practices</a> to help us test and deploy our staging environments</li>
-</ul>
-<p>I will go through a quick description of all the improvements made to Vorlon.js in this article. Other blog posts will come later this week about these features.</p>
-<p># </p>
-<h1 id="Node-js-debugging-Vorlon-js-server-side"><a href="#Node-js-debugging-Vorlon-js-server-side" class="headerlink" title="Node.js debugging: Vorlon.js server side !"></a>Node.js debugging: Vorlon.js server side !</h1><p>We first made Vorlon.js for a specific task: <strong>helping web developers</strong> to debug their JavaScript, HTML and CSS code running on a <strong>mobile</strong>. It was first like an F12 alternative for remote debugging.</p>
-<p>We quickly understood that it could be <strong>more than that</strong>. The great work made by the community brought us specialized plugins like <strong>Angular.js inspector</strong> or <strong>QUnit runner</strong>. At this time, Vorlon.js was more and more a relevant tool for web (remote) desktop debugging, bringing additionnal features to classics F12 tools.</p>
-<p>As Vorlon.js is built on top of JavaScript, we start wondering if it could be a good idea to use it to also debug <strong>Node.js apps</strong>. Obviously some plugins such as DOM Explorer or Modernizr might not be relevant in this case but what about the Console or the Object Explorer? In a world where Node.js processes are running <strong>everywhere in the cloud and on IOT objects</strong>, remote debugging could really be helpful, right? 🙂</p>
-<p>Guess what ? It is now possible!</p>
-<p>All you have to do is requiring a new NPM package we created:</p>
-<p><strong>npm install vorlon-node-wrapper</strong></p>
-<p>Requiring it in your project:</p>
-<p><strong>var vorlonWrapper = require(&#8220;vorlon-node-wrapper&#8221;);</strong></p>
-<p>Starting the Vorlon for Node client by giving it your Vorlon.js instance:</p>
-<p><strong>vorlonWrapper.start(serverUrl, dashboardSession, false);</strong></p>
-<p>And voila! Each time you will start your node.js process, you will have remotely access to the Console, the Object Explorer, and the XHRPanel.</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/4846.image_5178F222.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/3414.image_thumb_62EBE3AB.png" alt="image" width="712" height="401" border="0"></a></p>
-<p>Here is the documentation for this: <a href="http://vorlonjs.io/documentation/#debugging-nodejs-applications" title="http://vorlonjs.io/documentation/#debugging-nodejs-applications" target="_blank" rel="noopener">http://vorlonjs.io/documentation/#debugging-nodejs-applications</a></p>
-<h1 id="Vorlon-js-Desktop-another-way-to-get-our-tool"><a href="#Vorlon-js-Desktop-another-way-to-get-our-tool" class="headerlink" title="Vorlon.js Desktop: another way to get our tool"></a>Vorlon.js Desktop: another way to get our tool</h1><p>As you can read on our <a href="http://vorlonjs.io/documentation/" target="_blank" rel="noopener">documentation web site</a>, Vorlon can be installed in many different ways. You can install it as an <strong>npm</strong> package, clone our GitHub repo or even auto deploy to Microsoft Azure. In the web community these are the common ways to get new tools on your dev box. Some people don’t know or don’t want to learn about these. Some of them don’t want to mess with command lines (yep, it happens ! :)).</p>
-<p>We want Vorlon to be accessible to the most people we can. This is why we (and more precisely <a href="https://twitter.com/gleborgne" target="_blank" rel="noopener">Guillaume Leborgne</a> and <a href="https://twitter.com/Mehdi_La" target="_blank" rel="noopener">Mehdi Lahlou</a>, kudos to them!) decided to work on a standalone installer. It currently works on Mac and Windows.</p>
-<p>Guillaume wrote a great article about this, feel free to take a look at it : <a href="http://mcnextpost.com/2015/12/01/how-to-use-vorlon-js-desktop/" title="http://mcnextpost.com/2015/12/01/how-to-use-vorlon-js-desktop/" target="_blank" rel="noopener">http://mcnextpost.com/2015/12/01/how-to-use-vorlon-js-desktop/</a></p>
-<p><img src="https://mcnextpost.files.wordpress.com/2015/12/screen.png?w=945" alt="screen.PNG" width="677" height="603"></p>
-<h1 id="Vorlon-js-team-went-DevOps"><a href="#Vorlon-js-team-went-DevOps" class="headerlink" title="Vorlon.js team went DevOps"></a>Vorlon.js team went DevOps</h1><p>Well. DevOps means a lot of stuff.</p>
-<p>It is about organization, people, tools, practices. As every team on the planet, we always need to improve what we do to release better code, faster and more efficiently. None of us are full time on this project, a lot of the work is done on our free (and passionate!) time. That’s why we love to optimize what we do to be able to achieve more.</p>
-<p>This first iteration we did on DevOps covers the basics:</p>
-<ul>
-<li>We organized better into clear releases using Issues</li>
-<li>We activated automated checks on commits and pull requests</li>
-<li>We enabled automated deployment of our internal staging environment</li>
-<li>We automated the creation of a ready to use Docker Vorlon.js image</li>
-<li>And more !</li>
-</ul>
-<p>A lot of this is using <strong>Visual Studio Team Services</strong> and its integration capabilities with GitHub:</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/7144.image_69A17DDF.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/5123.image_thumb_769B5DF0.png" alt="image" width="639" height="125" border="0"></a></p>
-<p>DevOps is about <strong>continuous improvement.</strong> This is why it is a work in progress. <a href="https://twitter.com/jcorioland" target="_blank" rel="noopener">Julien Corioland</a> did a great work on that and is sharing all of it with you in a blog posts series. It is a must read!</p>
-<p>You can start from here: <a href="http://blogs.technet.com/b/devops/archive/2016/01/12/vorlonjs-a-journey-to-devops-introducing-the-blog-post-series.aspx" title="http://blogs.technet.com/b/devops/archive/2016/01/12/vorlonjs-a-journey-to-devops-introducing-the-blog-post-series.aspx" target="_blank" rel="noopener">http://blogs.technet.com/b/devops/archive/2016/01/12/vorlonjs-a-journey-to-devops-introducing-the-blog-post-series.aspx</a></p>
-<h1 id="What-else"><a href="#What-else" class="headerlink" title="What else?"></a>What else?</h1><p>We did a lot of other improvements to this release :</p>
-<ul>
-<li>Added new accessibility rule in the best practices plugin</li>
-<li>Updated Modernizr to 3.0 and integrated more rules</li>
-<li>Various bug fixes</li>
-<li>Added click to URI on a resource in the DOM Explorer (kudos to <a href="https://twitter.com/paulfasola" target="_blank" rel="noopener">Paul Fasola</a>)</li>
-<li>Stability improvements on the dashboard</li>
-<li>Generating source map to be able to debug using Typescript files (thanks <a href="https://twitter.com/ramisayar" target="_blank" rel="noopener">Rami Sayar</a>)</li>
-<li>Merged the two gulp files to only one (really… I cannot remember why we thought 2 of them was a good idea in the first place… 😉</li>
-<li>Moved samples to the <strong>client samples</strong> folder. (Containing now a sample for Node.js debugging)</li>
-</ul>
-<p>&nbsp;</p>
-<p>I also want to notice that <a href="https://twitter.com/ramisayar" target="_blank" rel="noopener">Rami</a> did a huge work porting our Web Standard analyzer to a <strong>Grunt</strong> and <strong>Gulp</strong> extension. You can now check your web code quality during your build workflow:</p>
-<ul>
-<li>Here is the grunt task: <a href="https://www.npmjs.com/package/grunt-webstandards" title="https://www.npmjs.com/package/grunt-webstandards" target="_blank" rel="noopener">https://www.npmjs.com/package/grunt-webstandards</a></li>
-<li>Here is the gulp task: <a href="https://www.npmjs.com/package/gulp-webstandards" title="https://www.npmjs.com/package/gulp-webstandards" target="_blank" rel="noopener">https://www.npmjs.com/package/gulp-webstandards</a></li>
-<li>Here is a blog article talking about this : <a href="http://www.sitepoint.com/three-plugins-every-gruntfile-gulpfile-needs-make-website-great/" title="http://www.sitepoint.com/three-plugins-every-gruntfile-gulpfile-needs-make-website-great/" target="_blank" rel="noopener">http://www.sitepoint.com/three-plugins-every-gruntfile-gulpfile-needs-make-website-great/</a></li>
-</ul>
-<p>&nbsp;</p>
-<h1 id="What’s-next"><a href="#What’s-next" class="headerlink" title="What’s next ?"></a>What’s next ?</h1><p>We have multiple plans for the next version of Vorlon.js. The main focus now is certainly the Node.js debugging capability. Right now you can connect your node process to Vorlon and debug it but we want to create more specialized plugins. We have 3 of them in mind:</p>
-<ul>
-<li><strong>Node.js info</strong> (what you required, which version, and stuff like this)</li>
-<li><strong>Express.js</strong> (what view are loaded, automatic logs when a route is called, etc.)</li>
-<li><strong>Mocha</strong> (advanced remote test monitor)</li>
-</ul>
-<p>&nbsp;</p>
-<p><a href="https://twitter.com/sebastienpertus" target="_blank" rel="noopener">Sebastien Pertus</a> is also working on a plugin to help Office addin developers to debug their JavaScript code inside Vorlon. That should be released soon!</p>
-<p>If you have other ideas for the Node.js area or for Vorlon.js in general, do not hesitate to do some <a href="https://github.com/MicrosoftDX/Vorlonjs/pulls" target="_blank" rel="noopener">pull requests</a> or to <a href="https://github.com/MicrosoftDX/Vorlonjs/issues" target="_blank" rel="noopener">add issues to our backlog</a>!</p>
-<p>We also now have a <strong>Slack account</strong>. If you want to join and chat about Vorlon, feel free to contact me on twitter 😉</p>
-<p>Happy debugging! 🙂</p>
-
+                <div class="postShorten-excerpt">
+                    <p>3 month ago, we released the <a href="http://blogs.msdn.com/b/emargraff/archive/2015/10/29/vorlon-js-0-1-0-is-out.aspx" target="_blank" rel="noopener">0.1 version of</a> <a href="http://vorlonjs.io" target="_blank" rel="noopener">Vorlon.js</a>. We added a lot of great new features such as the Unit Test, the Device Info and the Best Practices plugin. One main improvement for this version was certainly the HTTP proxy which helps you debug a website using Vorlon.js without having to change its source code (<a href="http://vorlonjs.io/documentation/#vorlon-proxy" title="http://vorlonjs.io/documentation/#vorlon-proxy" target="_blank" rel="noopener">http://vorlonjs.io/documentation/#vorlon-proxy</a>).</p>
                     
+                        <a href="/2016/02/01/vorlon-js-0-2-1-is-out/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
                         
-
-                    
-                    
-                        <p>
-                            <a href="/2016/02/01/vorlon-js-0-2-1-is-out/#post-footer" class="postShorten-excerpt_link link">
-                                Comment and share
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -410,7 +322,7 @@
     </article>
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -438,75 +350,13 @@
 
             </div>
             
-                <div class="postShorten-content">
-                    <blockquote>
-<p><em>If you have any question about this article or Vorlon.js, feel free to contact me on twitter: <a href="http://twitter.com/meulta" target="_blank" rel="noopener">http://twitter.com/meulta</a></em> </p>
-</blockquote>
-<p>When it comes to writing good code in web development it is easy to get lost in the quantity of resources you find online. There are some basics that everyone knows or should know and there are some more specific ones.</p>
-<p>Are you able to tell me right now that you sure you follow these practices ? Probably not. You probably have the intuition that you do and you are certainly writing your code with them in mind but you cannot be sure you always respect them.</p>
-<p>As I said, there are a <a href="http://thenextweb.com/dd/2015/10/19/10-rules-of-best-practice-for-responsive-design/" target="_blank">lot</a> <a href="http://thenextweb.com/dd/2015/10/19/10-rules-of-best-practice-for-responsive-design/" target="_blank">of</a> <a href="http://www.webaxe.org/" target="_blank">different</a> <a href="http://webuilddesign.com/10-css-best-practices-for-2015/" target="_blank">resources</a> <a href="http://jstherightway.org/" target="_blank">on the web</a>. It is not easy to know all of them. It is not easy to follow all of them. And it is <strong>sure</strong> not easy to be sure you did it correctly.</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/1513.image_316750DD.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/0027.image_thumb_5A9D8B9A.png" alt="image" width="673" height="154" border="0"></a></p>
-<p>This is why we decided to create the <strong><a href="http://vorlonjs.com/documentation/#best-practices" target="_blank">Best Practices</a></strong> plugin in Vorlon.js. It is a way for you to automatically get hints and recommandations about how you could improve your code. The current list of practices and scans have been created from our own experience. It is extensible and you can add your own rules to contribute to this plugin and make it more accurate and comprehensive. 🙂</p>
-<blockquote>
-<p><em>A <strong>great thanks</strong> to</em> <a href="https://twitter.com/gleborgne" target="_blank"><em>Guillaume Leborgne</em></a> <em>and</em> <a href="https://twitter.com/Mehdi_La" target="_blank"><em>Mehdi Lahlou</em></a> <em>for their strong work on this!</em></p>
-</blockquote>
-<h2 id="How-to-use-the-best-practices-plugin"><a href="#How-to-use-the-best-practices-plugin" class="headerlink" title="How to use the best practices plugin"></a>How to use the best practices plugin</h2><p>First of all, you need to setup a Vorlon.js environment. You can follow the documentation we provide here : <a href="http://vorlonjs.com/documentation/#vorlonjs-server" title="http://vorlonjs.com/documentation/#vorlonjs-server" target="_blank" rel="noopener">http://vorlonjs.com/documentation/#vorlonjs-server</a></p>
-<p>Once you have an up and running vorlon.js server and your website is connected to it, hit the “play” button on the Best Practice tab. It will run dynamic and static tests on the page you are currently debugging and the resources linked to it (JavaScript files, CSS files, etc.)</p>
-<p><span style="color: #333333;">The above video shows you the kind of result you get when using this plugin. All the recommendations are organized into 4 categories, <strong>Web Standards</strong>, <strong>Accessibility</strong>, <strong>Performances</strong>, <strong>Mobile Web</strong>.</span></p>
-<p><span style="color: #333333;">Let’s have a look at some of the rules you get in each of these categories.</span></p>
-<h2 id="1-Web-Standards"><a href="#1-Web-Standards" class="headerlink" title="1. Web Standards"></a>1. Web Standards</h2><p>There are a lot of common mistakes we can do in this area. Sometimes, it is not even a mistakes. Take the JavaScript libraries you use for instance: how frequently do you go and check if the version you are referencing is obsolete or not ? Or consider the CSS prefixes problematic: are you sure you always add all the vendor prefixes? That could be a good idea to make sure your site works correctly on the widest range of computers. Do you have code which does browser detection ? You should change it to feature detection. Etc. etc.</p>
-<p>This section gives your insights about what you can improve in this area:</p>
-<ul>
-<li><strong>Avoid browser detection</strong>: tells you if you have code calling <em>navigator.userAgent</em></li>
-<li><strong>Avoid browser specific content</strong>: is checking whether your website is sending a different content for some browsers</li>
-<li><strong>Avoid conditionnal comment</strong>: Conditional comments are not the best way to adapt your website to target browser, and support is dropped for IE &gt; 9.</li>
-<li><strong>Incorrect use of css fallback</strong>: validates that all the css rules present in the CSS file are really there in the computed styles. This is a dynamic check and the result might be <em>true</em> or <em>false</em> depending on the browser you use.</li>
-<li><strong>Incorrect use of prefixes</strong>: this one is performing a static scan on your CSS files to ensure you are always using all the vendor prefixes</li>
-<li><strong>Object and embed</strong>: the modern web is only about web languages not plugins, activeX and other embeded objects. This validates that your website does not include one</li>
-<li><strong>Update JavaScript libraries</strong>: checks if all the JS files you are using are considered by their creators as not obsolete</li>
-<li><strong>Use modern doctype</strong>: Modern doctype like &lt;!DOCTYPE html&gt; are better for browser compatibility and enable using HTML5 features.</li>
-</ul>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/7635.image_3F67C34A.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/6012.image_thumb_6A42B80D.png" alt="image" width="678" height="325" border="0"></a></p>
-<h2 id="2-Accessibility"><a href="#2-Accessibility" class="headerlink" title="2. Accessibility"></a>2. Accessibility</h2><p>Following web standards does not guarantee you that your web page is easily accessible. <strong>Accessibility</strong> is something the Vorlon.js team is really concerned about.</p>
-<p>A lot of work is done currently for sometimes now about this by great people. One exemple is the <a href="http://www.deque.com/products/aXe/" target="_blank">aXe</a> product created by <a href="http://www.deque.com" target="_blank">deque</a>. It is an open source tool which gives you a gigantic list of advices about your website. They go deep in the analysis and can for instance tell you that a specific element has insufficient color contrast for someone visually impaired to see properly. This is really awesome work and we worked with the team at deque to integrate this into this plugin.</p>
-<p>_Note : this integration is not available in the npm version of Vorlon.js yet but you can get it form the <a href="https://github.com/Microsoftdx/vorlonjs/tree/dev" target="_blank">dev branch</a> in the github repository._</p>
-<p>There are too much rules in there for me to be able to list them all but here are the fixed one:</p>
-<ul>
-<li><strong>Form elements must have labels</strong>: for them to be understandable by automated web readers</li>
-<li><strong>Images must have alternate text</strong>: this one is listing you all the <img> tag which does not contain the alt attribute.</li>
-<li><strong>Use aria attributes</strong></li>
-</ul>
-<p>All the <strong>aXe</strong> rules are displayed only if they are in a failed state :</p>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/0830.image_0C2E1A92.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/2273.image_thumb_3BEBC311.png" alt="image" width="697" height="299" border="0"></a></p>
-<h2 id="3-Performances"><a href="#3-Performances" class="headerlink" title="3. Performances"></a>3. Performances</h2><p>You can follow some simple rules to get better performances for your website.</p>
-<ul>
-<li><strong>Encore static content</strong>: tries to determine if you are using gzip or deflate encoding to reduce de network bandwith</li>
-<li><strong>Minify static files</strong>: checks if you used a minification process to reduce the size of your CSS and JavaScript files</li>
-<li><strong>Try bundling your files</strong>: simple algorithm that checks if you created a single file for all your scripts to reduce HTTP requests</li>
-</ul>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/6087.image_5DD72595.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/4034.image_thumb_119F1BE7.png" alt="image" width="684" height="239" border="0"></a></p>
-<h2 id="4-Mobile-Web"><a href="#4-Mobile-Web" class="headerlink" title="4. Mobile Web"></a>4. Mobile Web</h2><p>When it comes to mobiles, a lot of web devs forget to add the correct elements and information to take it correctly into account.</p>
-<ul>
-<li><strong>define platform icons</strong>: This is really not mandatory but it gives the user a better experience when they are pinning your websites</li>
-<li><strong>use meta viewport</strong>: Use meta viewport tag to choose how your website will get scaled on smaller devices like phones. Define at least <meta name="&#8221;viewport&#8221;" content="&#8221;width=device-width," initial-scale="1&#8243;"></li>
-<li><strong>use responsive approaches</strong>: Even if your website target only certain devices, you may have users with unexpected devices or screen ratio.</li>
-</ul>
-<p><a href="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/1731.image_2860F421.png" target="_blank" rel="noopener"><img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-width: 0px;" title="image" src="https://msdnshared.blob.core.windows.net/media/MSDNBlogsFS/prod.evol.blogs.msdn.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/01/66/21/metablogapi/6283.image_thumb_0A163D2B.png" alt="image" width="655" height="304" border="0"></a></p>
-<h2 id="Your-turn"><a href="#Your-turn" class="headerlink" title="Your turn !"></a>Your turn !</h2><p>The plugin provides for now somes basic rules. We really hope this will be completed by new rules that anyone in the community can create. Do not hesitate to add yours and create a pull request in the <a href="https://github.com/Microsoftdx/vorlonjs" target="_blank">Vorlon.js repo</a>.</p>
-<blockquote>
-<p><em>If you have any question about this article or Vorlon.js, feel free to contact me on twitter: <a href="http://twitter.com/meulta" target="_blank" rel="noopener">http://twitter.com/meulta</a></em></p>
-</blockquote>
-
+                <div class="postShorten-excerpt">
+                    <p>When it comes to writing good code in web development it is easy to get lost in the quantity of resources you find online. There are some basics that everyone knows or should know and there are some more specific ones.</p>
                     
+                        <a href="/2015/11/27/how-vorlon-js-helps-you-improve-your-web-code/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
                         
-
-                    
-                    
-                        <p>
-                            <a href="/2015/11/27/how-vorlon-js-helps-you-improve-your-web-code/#post-footer" class="postShorten-excerpt_link link">
-                                Comment and share
-                            </a>
-                        </p>
                     
                 </div>
             

@@ -194,7 +194,7 @@
     <section class="postShorten-group main-content-wrap">
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -222,77 +222,15 @@
 
             </div>
             
-                <div class="postShorten-content">
+                <div class="postShorten-excerpt">
                     <p>Here we are !</p>
 <p>A few weeks after the last release we are excited to ship Vorlon.js 0.3 to the world. 🙂</p>
 <p>In this version we focused to make node.js inspection better with Vorlon.js. Special thanks to <a href="https://twitter.com/totose_" target="_blank" rel="noopener">Sofiene Djebali</a> who is doing an awesome contribution to Vorlon.js!</p>
-<p>We already added a preview of this capability in the 0.2 version, you can read more about it here : <a href="http://meulta.com/en/2016/02/01/vorlon-js-0-2-1-is-out/" target="_blank" rel="noopener">http://meulta.com/en/2016/02/01/vorlon-js-0-2-1-is-out/</a></p>
-<p>&nbsp;</p>
-<p><strong>Why would I want to use Vorlon.js to inspect my node.js app ?</strong></p>
-<p>The idea behind this is to make you capable of getting all the information you need to debug a node.js app remotely.</p>
-<p>We all know Tools to debug locally and we also know some of them that work remotely. What we are aiming is to create an easy-to-use set of Tools specialized on various node.js modules:</p>
-<ol>
-<li>In version 0.2 we added the possibilty to inspect a node.js app with Vorlon.js. To do this you only have to <strong>npm install</strong> and <strong>require</strong> the vorlonjs-node-wrapper npm module. Then you can start the client part of Vorlon.js Inside your node app as documented here : <a href="http://vorlonjs.io/documentation/#debugging-nodejs-applications" target="_blank" rel="noopener">http://vorlonjs.io/documentation/#debugging-nodejs-applications</a>. Thanks to this, you can use Vorlon.js plugins</li>
-<li>Still in version 0.2 we made the standard <strong>Interactive Console</strong>, <strong>Object Explorer</strong> and <strong>XHR</strong> plugins working in node.js inspection scenarios</li>
-<li>In version 0.3 we are bringing you 2 new plugins specifically crafted for node.js debugging <ol>
-<li>Node.js</li>
-<li>Express.js</li>
-</ol>
-</li>
-</ol>
-<p>We plan to add more of these specialized plugin to help you going through your worst debugging cases! 🙂</p>
-<p>To activate these, you just have to go in the settings from the Vorlon.js Dashboard page.</p>
-<div style="width: 640px;" class="wp-video"><br>  <!--[if lt IE 9]><![endif]--><video class="wp-video-shortcode" id="video-197-1" width="640" height="384" loop="1" autoplay="1" preload="metadata" controls="controls"><source type="video/mp4" src="/media/settings.mp4?_=1"><br><br>  <a href="/media/settings.mp4">settings.mp4</a></video><br></div>
-
-<p>&nbsp;</p>
-<p><strong>The Node.js plugin</strong></p>
-<p>This one is the main that you want to use in a remote node debug scenario. As the Console, XHR and Object Explorer one it can be use for any node.js apps.</p>
-<p>It is composed of 3 panes:</p>
-<ul>
-<li>One displaying the hierarchy of modules you required inside your app</li>
-<li>One showing a graph of your app memory usage</li>
-<li>One giving you information about the node process</li>
-</ul>
-<div style="width: 640px;" class="wp-video"><br>  <video class="wp-video-shortcode" id="video-197-2" width="640" height="384" loop="1" autoplay="1" preload="metadata" controls="controls"><source type="video/mp4" src="/media/nodejsdebugging.mp4?_=2"><a href="/media/nodejsdebugging.mp4">nodejsdebugging.mp4</a></video><br></div>
-
-<p>&nbsp;</p>
-<p><strong>The Express.js plugin</strong></p>
-<p>To be able to use this plugin, you obviously have to use Express.js in your node app. You also have to declare a variable so that Vorlon.js is able to access the Express informations:</p>
-<p>_EXPRESS_VORLONJS = app;_</p>
-<p>Once this is done, you will have access to :</p>
-<ul>
-<li>The list of routes configured in your express app</li>
-<li>The requests that has been made and that hit your routes</li>
-<li>Your session variables</li>
-<li>And the express local configuration</li>
-</ul>
-<div style="width: 640px;" class="wp-video"><br>  <video class="wp-video-shortcode" id="video-197-3" width="640" height="384" loop="1" autoplay="1" preload="metadata" controls="controls"><source type="video/mp4" src="/media/expressjsdebug.mp4?_=3"><a href="/media/expressjsdebug.mp4">expressjsdebug.mp4</a></video><br></div>
-
-<p>&nbsp;</p>
-<p><strong>Next steps</strong></p>
-<p>We are now going to start a huge refactoring process to be sure that the server part catches up with our plugin ambitions. We have a lot of great stuff in our roadmap. We will share this soon, stay tuned ! 🙂</p>
-<p>If you have any idea of improvements or ideas of plugins that might be useful in Node.js remote inspection scenario, reach out with the team via twitter or slack 🙂</p>
-<p>To get this version you can:</p>
-<ul>
-<li>Clone our <a href="https://github.com/MicrosoftDX/Vorlonjs" target="_blank" rel="noopener">github repo</a></li>
-<li>run: npm install vorlon (<a href="https://www.npmjs.com/package/vorlon" target="_blank" rel="noopener">https://www.npmjs.com/package/vorlon</a>)</li>
-<li>Clic on the <a href="https://github.com/MicrosoftDX/Vorlonjs#deploy-on-azure" target="_blank" rel="noopener">Deploy on azure button</a> on the Github repo readme page</li>
-<li>Use the <a href="https://hub.docker.com/r/vorlonjs/dashboard/" target="_blank" rel="noopener">Docker image</a> brought to you by <a href="http://twitter.com/jcorioland" target="_blank" rel="noopener">Julien Corioland</a></li>
-</ul>
-<blockquote>
-<p>If you have any question about Vorlon.js or this article, feel free to contact me on twitter : <a href="http://twitter.com/meulta" target="_blank" rel="noopener">http://twitter.com/meulta</a></p>
-</blockquote>
-
                     
+                        <a href="/2016/07/05/remote-inspect-node-js-and-express-with-vorlon-js/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
                         
-
-                    
-                    
-                        <p>
-                            <a href="/2016/07/05/remote-inspect-node-js-and-express-with-vorlon-js/#post-footer" class="postShorten-excerpt_link link">
-                                Comment and share
-                            </a>
-                        </p>
                     
                 </div>
             
