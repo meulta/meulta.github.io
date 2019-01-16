@@ -15,15 +15,15 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Bots.They are everywhere. Everyone talks about it and everyone wants to have one. And you, developer, always dreamt of creating your own. An artificial intelligence that you could shape and which coul">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://meulta.com/wp-content/uploads/2017/01/plugin-botframeworkinspector-1.jpg">
-<meta property="og:image" content="http://meulta.com/wp-content/uploads/2017/01/plugin-botframeworkinspector-2.jpg">
-<meta property="og:image" content="http://meulta.com/wp-content/uploads/2017/01/plugin-botframeworkinspector-3.jpg">
-<meta property="og:image" content="http://meulta.com/wp-content/uploads/2017/01/plugin-botframeworkinspector-4.jpg">
-<meta property="og:updated_time" content="2019-01-15T19:27:45.303Z">
+<meta property="og:image" content="http://yoursite.com/media/plugin-botframeworkinspector-1.jpg">
+<meta property="og:image" content="http://yoursite.com/media/plugin-botframeworkinspector-2.jpg">
+<meta property="og:image" content="http://yoursite.com/media/plugin-botframeworkinspector-3.jpg">
+<meta property="og:image" content="http://yoursite.com/media/plugin-botframeworkinspector-4.jpg">
+<meta property="og:updated_time" content="2019-01-15T23:23:56.136Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to debug your bot with Vorlon.js">
 <meta name="twitter:description" content="Bots.They are everywhere. Everyone talks about it and everyone wants to have one. And you, developer, always dreamt of creating your own. An artificial intelligence that you could shape and which coul">
-<meta name="twitter:image" content="http://meulta.com/wp-content/uploads/2017/01/plugin-botframeworkinspector-1.jpg">
+<meta name="twitter:image" content="http://yoursite.com/media/plugin-botframeworkinspector-1.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -126,20 +126,20 @@
 <p>Vorlon.js is a tool designed to remote inspect JavaScript code. You can use it for front websites when it is hard to get F12 tools working (on a mobile, a tablet, a Tesla car, a connected fridge or whatever). You can also use it to inspect Node.js processes. Of course you can debug Node.js code step by step using tools like Visual Studio Code but Vorlon.js purpose is to help you using <strong>dedicated plugins</strong>. We have one for NodeJS, another one for XHR requests, one for Express.js, and now: One for the bot builder SDK.</p>
 <p>This only work for the node.js version of the SDK for now.</p>
 <p><em><strong>Note</strong>: The current version is in Beta, so please do not pay too much attention to the design. We will fix that when we are sure we implemented useful features for you, bot devs! 🙂</em></p>
-<div style="width: 640px;" class="wp-video"><br>  <video class="wp-video-shortcode" id="video-220-5" width="640" height="248" loop="1" autoplay="1" preload="metadata" controls="controls"><source type="video/mp4" src="http://meulta.com/wp-content/uploads/2017/01/BotInspector-1.mp4?_=5"><a href="http://meulta.com/wp-content/uploads/2017/01/BotInspector-1.mp4" target="_blank" rel="noopener">http://meulta.com/wp-content/uploads/2017/01/BotInspector-1.mp4</a></video><br></div>
+<div style="width: 640px;" class="wp-video"><br>  <video class="wp-video-shortcode" id="video-220-5" width="640" height="248" loop="1" autoplay="1" preload="metadata" controls="controls"><source type="video/mp4" src="/media/BotInspector-1.mp4?_=5"><a href="/media/BotInspector-1.mp4">BotInspector-1.mp4</a></video><br></div>
 
 <p>&nbsp;</p>
 <p>The plugin is splitted into 3 parts. The upper left one is showing you the list of dialogs that are declared in your bot. Each line is a dialog and its id is composed of the library name (* if you do not have any library) and the actual dialog name.</p>
-<p><img class="alignnone wp-image-222" src="http://meulta.com/wp-content/uploads/2017/01/plugin-botframeworkinspector-1.jpg" alt="" width="619" height="193" srcset="http://meulta.com/wp-content/uploads/2017/01/plugin-botframeworkinspector-1.jpg 673w, http://meulta.com/wp-content/uploads/2017/01/plugin-botframeworkinspector-1-300x94.jpg 300w, http://meulta.com/wp-content/uploads/2017/01/plugin-botframeworkinspector-1-600x187.jpg 600w" sizes="(max-width: 619px) 100vw, 619px"></p>
+<p><img class="alignnone wp-image-222" src="/media/plugin-botframeworkinspector-1.jpg" alt="" width="619" height="193" sizes="(max-width: 619px) 100vw, 619px"></p>
 <p>On the right you can see the list of steps you have in each dialog. If you let your mouse over one of them you will have a quick view of its code.</p>
-<p><img class="alignnone wp-image-223" src="http://meulta.com/wp-content/uploads/2017/01/plugin-botframeworkinspector-2.jpg" alt="" width="606" height="217" srcset="http://meulta.com/wp-content/uploads/2017/01/plugin-botframeworkinspector-2.jpg 673w, http://meulta.com/wp-content/uploads/2017/01/plugin-botframeworkinspector-2-300x107.jpg 300w, http://meulta.com/wp-content/uploads/2017/01/plugin-botframeworkinspector-2-600x215.jpg 600w" sizes="(max-width: 606px) 100vw, 606px"></p>
+<p><img class="alignnone wp-image-223" src="/media/plugin-botframeworkinspector-2.jpg" alt="" width="606" height="217" sizes="(max-width: 606px) 100vw, 606px"></p>
 <p>On the lower left part of the plugin, you can see the live view of events happening inside your bot. You have to actually start interacting with it to see things here 🙂</p>
 <p>In the botbuilder, each <strong>user entry</strong> generates one or more <strong>events</strong>. These events are linked to your bot code. For instance, each time a dialog start, there is a <strong>BeginDialog</strong> event happening. You can see all these in this view. When the bot builder is done with all the events generated by one user entry, it automatically <strong>save the state</strong>. This end up launching a FinalSate event.</p>
 <p>For each event, you can see the current <strong>dialog stack</strong>. The dialog stack is the list of dialogs that are currently started. One dialog starts another on, which starts another one, and so on. The dialog usually only ends when EndDialog is called. The dialog stack state is memorized between 2 user entries.</p>
-<p><img class="alignnone wp-image-224" src="http://meulta.com/wp-content/uploads/2017/01/plugin-botframeworkinspector-3.jpg" alt="" width="607" height="346" srcset="http://meulta.com/wp-content/uploads/2017/01/plugin-botframeworkinspector-3.jpg 802w, http://meulta.com/wp-content/uploads/2017/01/plugin-botframeworkinspector-3-300x171.jpg 300w, http://meulta.com/wp-content/uploads/2017/01/plugin-botframeworkinspector-3-768x438.jpg 768w, http://meulta.com/wp-content/uploads/2017/01/plugin-botframeworkinspector-3-600x342.jpg 600w" sizes="(max-width: 607px) 100vw, 607px"></p>
+<p><img class="alignnone wp-image-224" src="/media/plugin-botframeworkinspector-3.jpg" alt="" width="607" height="346" sizes="(max-width: 607px) 100vw, 607px"></p>
 <p>The last part of the plugin is the <strong>live graph</strong>. It is generated by the bot execution and it thightly coupled with the event view. It is built live while you are using the bot. It is interesting to have a graphical overview of what is happening inside your bot and can help you discover and fix dialog stack issues.</p>
 <p>Whenever you have 0 dialogs in the stack or you call endConversation, a new graph is created on the right.</p>
-<p><img class="alignnone wp-image-225" src="http://meulta.com/wp-content/uploads/2017/01/plugin-botframeworkinspector-4.jpg" alt="" width="632" height="261" srcset="http://meulta.com/wp-content/uploads/2017/01/plugin-botframeworkinspector-4.jpg 785w, http://meulta.com/wp-content/uploads/2017/01/plugin-botframeworkinspector-4-300x124.jpg 300w, http://meulta.com/wp-content/uploads/2017/01/plugin-botframeworkinspector-4-768x317.jpg 768w, http://meulta.com/wp-content/uploads/2017/01/plugin-botframeworkinspector-4-600x248.jpg 600w" sizes="(max-width: 632px) 100vw, 632px"></p>
+<p><img class="alignnone wp-image-225" src="/media/plugin-botframeworkinspector-4.jpg" alt="" width="632" height="261" sizes="(max-width: 632px) 100vw, 632px"></p>
 <h1 id="What-8217-s-next"><a href="#What-8217-s-next" class="headerlink" title="What&#8217;s next"></a>What&#8217;s next</h1><p>The next features we have in mind are mainly:</p>
 <ul>
 <li>Being able to save a specific state at a given moment in time and restore it</li>
@@ -155,7 +155,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/25/how-to-debug-your-bot-with-vorlon-js/" data-id="cjqydglp4000tcsulbdgi9sps" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/25/how-to-debug-your-bot-with-vorlon-js/" data-id="cjqyfo1hb000wqculqrw0heas" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bots/">Bots</a></li></ul>
